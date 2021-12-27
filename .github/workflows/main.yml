@@ -34,11 +34,11 @@ jobs:
       - name: Restore NuGet Packages
         run: nuget restore Waratah\Waratah.sln
         
-      - name: Build and Publish Web App
+      - name: Build
         run: msbuild Waratah\Waratah.sln /p:Configuration=Release
         
-      - name: Upload Artifact
+      - name: Upload Artifacts
         uses: actions/upload-artifact@v1.0.0
         with:
           name: published_waratah
-          path: Waratah\bin\Release\Publish
+          path: "./_build"
