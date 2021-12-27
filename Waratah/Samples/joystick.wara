@@ -1,0 +1,29 @@
+[[applicationCollection]]
+usage = ['Generic Desktop', 'Joystick']
+
+    [[applicationCollection.inputReport]]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Simulation Controls', 'Throttle']
+        sizeInBits = 8
+
+        [[applicationCollection.inputReport.physicalCollection]]
+        usage = ['Generic Desktop', 'Pointer']
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usage = ['Generic Desktop', 'X']
+            sizeInBits = 8
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usage = ['Generic Desktop', 'Y']
+            sizeInBits = 8
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Generic Desktop', 'Hat Switch']
+        logicalValueRange = [0, 3]
+        physicalValueRange = [0, 270]
+        unit = 'degrees'
+
+        [[applicationCollection.inputReport.variableItem]]
+        usageRange = ['Button', 'Button 1', 'Button 4']
+        logicalValueRange = [0, 1]

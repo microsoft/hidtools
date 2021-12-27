@@ -1,0 +1,21 @@
+[[applicationCollection]]
+usage = ['Generic Desktop', 'Gamepad']
+
+    [[applicationCollection.inputReport]]
+
+        # Two axis rocker (tilting forward/backward and left/right)
+        [[applicationCollection.inputReport.physicalCollection]]
+        usage = ['Generic Desktop', 'Pointer']
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usage = ['Generic Desktop', 'X']
+            logicalValueRange = [-1, 1]
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usage = ['Generic Desktop', 'Y']
+            logicalValueRange = [-1, 1]
+
+        # 6 buttons
+        [[applicationCollection.inputReport.variableItem]]
+        usageRange = ['Button', 'Button 1', 'Button 6']
+        logicalValueRange = [0, 1]

@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C420E9CD-5F03-4999-8766-D37E4B7C3CEB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HidEngine</RootNamespace>
+    <AssemblyName>HidEngine</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Bits, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bits.1.1.0\lib\net45\Bits.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandLine, Version=2.6.0.0, Culture=neutral, PublicKeyToken=5a870481e358d379, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommandLineParser.2.6.0\lib\net461\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="ConsoleTables, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ConsoleTables.2.4.2\lib\net40\ConsoleTables.dll</HintPath>
+    </Reference>
+    <Reference Include="Nett, Version=0.13.0.0, Culture=neutral, PublicKeyToken=605dcfe7a1d3365b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nett.0.13.0\lib\net40\Nett.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CppGenerator\CppDescriptor.cs" />
+    <Compile Include="CppGenerator\CppEnum.cs" />
+    <Compile Include="CppGenerator\CppFieldPrimativeDataTypeExtension.cs" />
+    <Compile Include="CppGenerator\CppHeader.cs" />
+    <Compile Include="CppGenerator\CppStruct.cs" />
+    <Compile Include="CppGenerator\CppStructMemberEnum.cs" />
+    <Compile Include="CppGenerator\CppStructMemberSimple.cs" />
+    <Compile Include="CppGenerator\UniqueNameCache.cs" />
+    <Compile Include="CppGenerator\DisposableIndent.cs" />
+    <Compile Include="CppGenerator\ICppGenerator.cs" />
+    <Compile Include="CppGenerator\IndentedWriter.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDescriptorComposition\Modules\ApplicationCollectionModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\ArrayModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\CollectionModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\BaseModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\PaddingModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\ReportModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\BaseElementDataModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\BaseElementModule.cs" />
+    <Compile Include="ReportDescriptorComposition\DescriptorModuleFlags.cs" />
+    <Compile Include="ReportDescriptorComposition\DescriptorRange.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\VariableModule.cs" />
+    <Compile Include="ReportDescriptorComposition\DescriptorModuleParsingException.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\BaseElementDataVariableModule.cs" />
+    <Compile Include="ReportDescriptorComposition\Modules\VariableRangeModule.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="ReportDescriptorComposition\Descriptor.cs" />
+    <Compile Include="ReportDescriptorItems\DesignatorIndexItem.cs" />
+    <Compile Include="ReportDescriptorItems\DesignatorMaximumItem.cs" />
+    <Compile Include="ReportDescriptorItems\DesignatorMinimumItem.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportDescriptorItems\CollectionItem.cs" />
+    <Compile Include="ReportDescriptorItems\DelimiterItem.cs" />
+    <Compile Include="ReportDescriptorItems\EndCollectionItem.cs" />
+    <Compile Include="ReportDescriptorItems\FeatureItem.cs" />
+    <Compile Include="ReportDescriptorItems\GlobalItemAttribute.cs" />
+    <Compile Include="ReportDescriptorItems\InputItem.cs" />
+    <Compile Include="ReportDescriptorItems\BaseHidItemAttribute.cs" />
+    <Compile Include="ReportDescriptorItems\LocalItemAttribute.cs" />
+    <Compile Include="ReportDescriptorItems\LogicalMaximumItem.cs" />
+    <Compile Include="ReportDescriptorItems\LogicalMinimumItem.cs" />
+    <Compile Include="ReportDescriptorItems\MainItemAttribute.cs" />
+    <Compile Include="ReportDescriptorItems\OutputItem.cs" />
+    <Compile Include="ReportDescriptorItems\PhysicalMaximumItem.cs" />
+    <Compile Include="ReportDescriptorItems\PhysicalMinimumItem.cs" />
+    <Compile Include="ReportDescriptorItems\PopItem.cs" />
+    <Compile Include="ReportDescriptorItems\PushItem.cs" />
+    <Compile Include="ReportDescriptorItems\ReportCountItem.cs" />
+    <Compile Include="ReportDescriptorItems\ReportIdItem.cs" />
+    <Compile Include="ReportDescriptorItems\ReportSizeItem.cs" />
+    <Compile Include="ReportDescriptorItems\ShortItem.cs" />
+    <Compile Include="ReportDescriptorItems\StringIndexItem.cs" />
+    <Compile Include="ReportDescriptorItems\StringMaximumItem.cs" />
+    <Compile Include="ReportDescriptorItems\StringMinimumItem.cs" />
+    <Compile Include="ReportDescriptorItems\UnitExponentItem.cs" />
+    <Compile Include="ReportDescriptorItems\UnitItem.cs" />
+    <Compile Include="ReportDescriptorItems\UsageItem.cs" />
+    <Compile Include="ReportDescriptorItems\UsageMaximumItem.cs" />
+    <Compile Include="ReportDescriptorItems\UsageMinimumItem.cs" />
+    <Compile Include="ReportDescriptorItems\UsagePageItem.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\SupportedHidKindsAttribute.cs" />
+    <Compile Include="TomlReportDescriptorParser\TomlGenericException.cs" />
+    <Compile Include="TomlReportDescriptorParser\Helpers.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\ApplicationCollectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\ArrayItemTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\CountTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\TomlDocumentParser.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\CppDescriptorNameTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\FeatureReportTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\GenerateCppTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\IdTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\IModuleGeneratorTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\InputReportTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\LogicalCollectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\LogicalValueRangeTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\NameTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\OptimizeTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\OutputReportTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\PaddingItemTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\PhysicalCollectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\PhysicalValueRangeTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\BaseReportTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\PackingInBytesTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\ReportFlagsTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\SettingsSectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\SizeInBitsTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\BaseTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\TagDecorator.cs" />
+    <Compile Include="TomlReportDescriptorParser\TagFinder.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\TagAttribute.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UnitDimensionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UnitSectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UnitTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsageKindsTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsageTransformTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsagePageSectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsageRangeTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsageSectionTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsageTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\BaseValueRangeBaseTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsageUnitMultiplierTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\VariableItemTag.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <AdditionalFiles Include="stylecop.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.CodeFixes.dll" />
+    <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HidSpecification\HidSpecification.csproj">
+      <Project>{f6a61745-0a87-435c-a0dc-caa73f3f8bc7}</Project>
+      <Name>HidSpecification</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
+  <!-- Optionally make the import portable across VS versions -->
+</Project>

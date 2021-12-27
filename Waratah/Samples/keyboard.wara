@@ -1,0 +1,21 @@
+[[applicationCollection]]
+usage = ['Generic Desktop', 'Keyboard']
+
+    [[applicationCollection.inputReport]]
+
+        # Regular Buttons
+        [[applicationCollection.inputReport.arrayItem]]
+        usageRange = ['Keyboard/Keypad', 'ErrorRollOver', 'Keyboard Application']
+        count = 8
+
+        # Special buttons
+        [[applicationCollection.inputReport.variableItem]]
+        usageRange = ['Keyboard/Keypad', 'Keyboard LeftControl', 'Keyboard Right GUI']
+        logicalValueRange = [0, 1]
+
+    # LEDS
+    [[applicationCollection.outputReport]]
+
+        [[applicationCollection.outputReport.variableItem]]
+        usageRange = ['LED', 'Num Lock', 'Kana']
+        logicalValueRange = [0, 1]

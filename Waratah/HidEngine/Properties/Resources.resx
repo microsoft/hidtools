@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ExceptionDescriptorApplicationCollectionModuleNoReports" xml:space="preserve">
+    <value>Must contain a least 1 report</value>
+  </data>
+  <data name="ExceptionDescriptorArrayModuleInvalidFlag" xml:space="preserve">
+    <value>Cannot specify '{0}' flag within '{1}' report</value>
+  </data>
+  <data name="ExceptionDescriptorBaseElementModuleCannotFindReport" xml:space="preserve">
+    <value>Cannot find report in ancestor chain</value>
+  </data>
+  <data name="ExceptionDescriptorBaseElementModuleInvalidCount" xml:space="preserve">
+    <value>'{0}' invalid for count</value>
+  </data>
+  <data name="ExceptionDescriptorBaseElementModuleInvalidSize" xml:space="preserve">
+    <value>'{0}' invalid for size</value>
+  </data>
+  <data name="ExceptionDescriptorCollectionModuleInvalidSupport" xml:space="preserve">
+    <value>Invalid kind '{0}'.  Only '{1}' and '{2}' collections currently supported</value>
+  </data>
+  <data name="ExceptionDescriptorCollectionModuleNoItems" xml:space="preserve">
+    <value>Must contain at least 1 item</value>
+  </data>
+  <data name="ExceptionDescriptorCouldNotCalculateLogicalRange" xml:space="preserve">
+    <value>Could not calculate bits required for logical range [{0}, {1}]</value>
+  </data>
+  <data name="ExceptionDescriptorElementCannotSpecifySize" xml:space="preserve">
+    <value>Cannot specify size when logicalRange is specified</value>
+  </data>
+  <data name="ExceptionDescriptorElementSizeMustBeSpecified" xml:space="preserve">
+    <value>Size must be specified when logicalRange is absent</value>
+  </data>
+  <data name="ExceptionDescriptorElementSizeMustBeSpecifiedWhenMaxSigned" xml:space="preserve">
+    <value>Size must be specified when logicalRange is maxSigned</value>
+  </data>
+  <data name="ExceptionDescriptorElementSizeMustBeSpecifiedWhenMaxUnsigned" xml:space="preserve">
+    <value>Size must be specified when logicalRange is maxUnsigned</value>
+  </data>
+  <data name="ExceptionDescriptorElementSizeTooSmallForMaxSigned" xml:space="preserve">
+    <value>Size '{0}' must be &gt;1 for maxSigned value to have meaning</value>
+  </data>
+  <data name="ExceptionDescriptorInvalidDataSize" xml:space="preserve">
+    <value>Only 0, 1, 2, 4 bytes are valid, actual '{0}'</value>
+  </data>
+  <data name="ExceptionDescriptorInvalidLogicalRange" xml:space="preserve">
+    <value>Invalid logicalRange.  Max '{0}' &lt;= Min '{1}'</value>
+  </data>
+  <data name="ExceptionDescriptorModuleNoUsage" xml:space="preserve">
+    <value>Must specify a usage</value>
+  </data>
+  <data name="ExceptionDescriptorNoApplicationCollections" xml:space="preserve">
+    <value>Must specify at least 1 ApplicationCollection.</value>
+  </data>
+  <data name="ExceptionDescriptorOverspanningCouldntBePrevented" xml:space="preserve">
+    <value>Overspanning detected; not possible to automatically add padding to prevent overspanning.</value>
+  </data>
+  <data name="ExceptionDescriptorPhysicalRangeMustBeDecimal" xml:space="preserve">
+    <value>Physical range must be decimal</value>
+  </data>
+  <data name="ExceptionDescriptorReportIdInvalidRange" xml:space="preserve">
+    <value>Report Id ({0}) must be between {1} and {2}(inclusive)</value>
+  </data>
+  <data name="ExceptionDescriptorReportModuleNoItems" xml:space="preserve">
+    <value>Report empty, must contain at least 1 item</value>
+  </data>
+  <data name="ExceptionDescriptorReportUnexpectedModuleEncountered" xml:space="preserve">
+    <value>Unexpected module uncountered</value>
+  </data>
+  <data name="ExceptionDescriptorTooBig" xml:space="preserve">
+    <value>Descriptor is {0} bytes.  Must be &lt;= {1}</value>
+  </data>
+  <data name="ExceptionDescriptorUsageEndMissing" xml:space="preserve">
+    <value>UsageEnd is either invalid or missing</value>
+  </data>
+  <data name="ExceptionDescriptorUsagePagesDiffer" xml:space="preserve">
+    <value>Page for UsageStart ({0}) and Page for UsageEnd ({1}) are different</value>
+  </data>
+  <data name="ExceptionDescriptorUsageStartIdGreaterThanEnd" xml:space="preserve">
+    <value>First Usage ({0}) in range must be smaller than last Usage ({1}) in range</value>
+  </data>
+  <data name="ExceptionDescriptorUsageStartMissing" xml:space="preserve">
+    <value>UsageStart is either invalid or missing</value>
+  </data>
+  <data name="ExceptionItemCouldNotFindAttribute" xml:space="preserve">
+    <value>Could not find attribute for this item.</value>
+  </data>
+  <data name="ExceptionItemInvalidCount" xml:space="preserve">
+    <value>Value {0} invalid for count</value>
+  </data>
+  <data name="ExceptionItemInvalidReportId" xml:space="preserve">
+    <value>Report Id ({0}) must be between {1} and {2}(inclusive)</value>
+  </data>
+  <data name="ExceptionItemInvalidSize" xml:space="preserve">
+    <value>Value {0} invalid for size</value>
+  </data>
+  <data name="ExceptionItemInvalidVendorDefinedCollection" xml:space="preserve">
+    <value>Vendor-defined collection must be between {0} and {1}: actual {2}"</value>
+  </data>
+  <data name="ExceptionRootMessage" xml:space="preserve">
+    <value>Error @ '{0}' (L{1}) WAR{2:X}: {3}.</value>
+  </data>
+  <data name="ExceptionRootMessageNoTag" xml:space="preserve">
+    <value>Error - WARA{0:X}: {1}.</value>
+  </data>
+  <data name="ExceptionSettingsDestinationFileNoExtension" xml:space="preserve">
+    <value>Extension must not be specified, determined by settings</value>
+  </data>
+  <data name="ExceptionSettingsInvalidSizeInBits" xml:space="preserve">
+    <value>Invalid for size {0}</value>
+  </data>
+  <data name="ExceptionSettingsMissingSourceFile" xml:space="preserve">
+    <value>No source file specified</value>
+  </data>
+  <data name="ExceptionSettingsPackingBytesMustBeSize" xml:space="preserve">
+    <value>Must be either 1, 2 or 4</value>
+  </data>
+  <data name="ExceptionSettingsRootMessage" xml:space="preserve">
+    <value>Error - WARA{0:X}: {1}.</value>
+  </data>
+  <data name="ExceptionSettingsSourceFileDoesNotExist" xml:space="preserve">
+    <value>Source file '{0}' does not exist</value>
+  </data>
+  <data name="ExceptionSettingsSourceFileExtensionUnsupported" xml:space="preserve">
+    <value>Cannot parse a non {0} source file</value>
+  </data>
+  <data name="ExceptionTomlArrayItemMissingUsageRangeTag" xml:space="preserve">
+    <value>Missing required usageRange key, must specify a usageRange</value>
+  </data>
+  <data name="ExceptionTomlCannotBeZero" xml:space="preserve">
+    <value>Must be a non-zero value</value>
+  </data>
+  <data name="ExceptionTomlCannotSpecifyBothKeys" xml:space="preserve">
+    <value>Cannot specify both '{0}' and '{1}' keys</value>
+  </data>
+  <data name="ExceptionTomlCppNameEmpty" xml:space="preserve">
+    <value>Invalid name.  Must be a non-empty string</value>
+  </data>
+  <data name="ExceptionTomlCppNameNonDigitsLetters" xml:space="preserve">
+    <value>Invalid name.  Must only contain characters and digits</value>
+  </data>
+  <data name="ExceptionTomlDuplicateReportFlag" xml:space="preserve">
+    <value>Duplicate flag '{0}'</value>
+  </data>
+  <data name="ExceptionTomlDuplicateSettingsTag" xml:space="preserve">
+    <value>Duplicate '{0}' section detected, previously defined @ L{1}.  Only a single '{0}' is permitted</value>
+  </data>
+  <data name="ExceptionTomlInvalidReportFlag" xml:space="preserve">
+    <value>Invalid flag '{0}'. Valid flags: "{1}"</value>
+  </data>
+  <data name="ExceptionTomlInvalidRootTagPlacement" xml:space="preserve">
+    <value>Invalid section. Cannot be a root section</value>
+  </data>
+  <data name="ExceptionTomlInvalidSectionNameToken" xml:space="preserve">
+    <value>Invalid token</value>
+  </data>
+  <data name="ExceptionTomlInvalidTagPlacement" xml:space="preserve">
+    <value>Invalid placement.  Not a valid key/section in '{0}' (L{1})</value>
+  </data>
+  <data name="ExceptionTomlInvalidTypeForSectionTag" xml:space="preserve">
+    <value>Invalid type.  Must be of the form [[..{0}]]</value>
+  </data>
+  <data name="ExceptionTomlInvalidTypeForTag" xml:space="preserve">
+    <value>Invalid type.  Valid types, "{0}"</value>
+  </data>
+  <data name="ExceptionTomlInvalidTypeForTopLevelSectionTag" xml:space="preserve">
+    <value>Invalid type.  Must be of the form [[{0}]]</value>
+  </data>
+  <data name="ExceptionTomlMissingRequiredKey" xml:space="preserve">
+    <value>Missing required '{0}' key</value>
+  </data>
+  <data name="ExceptionTomlMustSpecifyOneOfThreeKeys" xml:space="preserve">
+    <value>Must specify either a '{0}', '{1}' or '{2}' key</value>
+  </data>
+  <data name="ExceptionTomlMustSpecifyOneOfTwoKeys" xml:space="preserve">
+    <value>Missing '{0}' and '{1}' keys.  Must specify at least 1</value>
+  </data>
+  <data name="ExceptionTomlMutuallyExclusiveReportFlags" xml:space="preserve">
+    <value>Flags '{0}' and '{1}' are mutually exclusive.  Both cannot be declared, remove one</value>
+  </data>
+  <data name="ExceptionTomlReportFlagsCannotBeEmpty" xml:space="preserve">
+    <value>Must not be empty.  Valid flags: "{0}"</value>
+  </data>
+  <data name="ExceptionTomlReportItemDuplicateReportId" xml:space="preserve">
+    <value>id '{0}' utilized in previous report</value>
+  </data>
+  <data name="ExceptionTomlUnitDimensionArrayDimension" xml:space="preserve">
+    <value>Must be an array of 2 doubles</value>
+  </data>
+  <data name="ExceptionTomlUnitDimensionInvalid" xml:space="preserve">
+    <value>Invalid dimension.  {0}</value>
+  </data>
+  <data name="ExceptionTomlUnitDimensionPowerFieldFractional" xml:space="preserve">
+    <value>Power field '{0}' cannot contain a fractional component</value>
+  </data>
+  <data name="ExceptionTomlUnitInvalidExponent" xml:space="preserve">
+    <value>Invalid combination of dimensions.  {0}</value>
+  </data>
+  <data name="ExceptionTomlUnitNameNotFound" xml:space="preserve">
+    <value>Unit with name '{0}' could not be found</value>
+  </data>
+  <data name="ExceptionTomlUnitSectionCannotFindDimension" xml:space="preserve">
+    <value>Cannot find dimension BaseUnit '{0}'</value>
+  </data>
+  <data name="ExceptionTomlUnitsSectionMissingDimensions" xml:space="preserve">
+    <value>Missing dimensions.  Must specifiy at least 1 dimension (e.g. {0})</value>
+  </data>
+  <data name="ExceptionTomlUnknownUsage" xml:space="preserve">
+    <value>Unknown usage [{0}, {1}]</value>
+  </data>
+  <data name="ExceptionTomlUsageKindInvalid" xml:space="preserve">
+    <value>Invalid type '{0}' found.  Valid types: "{1}"</value>
+  </data>
+  <data name="ExceptionTomlUsageKindsDuplicate" xml:space="preserve">
+    <value>Duplicate type '{0}' found</value>
+  </data>
+  <data name="ExceptionTomlUsageKindsEmpty" xml:space="preserve">
+    <value>Must not be empty.  Valid types: "{0}"</value>
+  </data>
+  <data name="ExceptionTomlUsagePageSectionMissingUsages" xml:space="preserve">
+    <value>Missing child '{0}' sections.  Must specify at least 1</value>
+  </data>
+  <data name="ExceptionTomlUsageRangeInvalidDataType" xml:space="preserve">
+    <value>Invalid type. Must be either an array of 3 integers or 3 strings</value>
+  </data>
+  <data name="ExceptionTomlUsageTagInvalid" xml:space="preserve">
+    <value>Invalid type. Must be either an array of 2 integers or 2 strings</value>
+  </data>
+  <data name="ExceptionTomlUsageTransformInvalidDataType" xml:space="preserve">
+    <value>Invalid type. Must be either an array of 3 integers or 3 strings</value>
+  </data>
+  <data name="ExceptionTomlValueOutOfBounds" xml:space="preserve">
+    <value>Invalid value '{0}'.  {1}</value>
+  </data>
+  <data name="ExceptionTomlValueRangeCannotUseMaxRange" xml:space="preserve">
+    <value>Cannot use '{0}'.  Must be an array of two integers</value>
+  </data>
+  <data name="ExceptionTomlValueRangeInvalidDataType" xml:space="preserve">
+    <value>Invalid type.  Must be either an array of two integers, '{0}' or '{1}'</value>
+  </data>
+</root>

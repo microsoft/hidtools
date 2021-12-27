@@ -1,0 +1,23 @@
+[[applicationCollection]]
+usage = ['Generic Desktop', 'Mouse']
+
+    [[applicationCollection.inputReport]]
+
+        [[applicationCollection.inputReport.physicalCollection]]
+        usage = ['Generic Desktop', 'Pointer']
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usage = ['Generic Desktop', 'X']
+            sizeInBits = 8
+            logicalValueRange = 'maxSignedSizeRange'
+            reportFlags = ['relative']
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usage = ['Generic Desktop', 'Y']
+            sizeInBits = 8
+            logicalValueRange = 'maxSignedSizeRange'
+            reportFlags = ['relative']
+
+            [[applicationCollection.inputReport.physicalCollection.variableItem]]
+            usageRange = ['Button', 'Button 1', 'Button 3']
+            logicalValueRange = [0, 1]

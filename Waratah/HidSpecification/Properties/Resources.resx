@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ExceptionCannotFindNextAvailableUsageId" xml:space="preserve">
+    <value>There is no next available id</value>
+  </data>
+  <data name="ExceptionDuplicatedUnitName" xml:space="preserve">
+    <value>Duplicate name '{0}'</value>
+  </data>
+  <data name="ExceptionInvalidDimensionBaseUnitCannotBeNull" xml:space="preserve">
+    <value>Dimension BaseUnit cannot be null</value>
+  </data>
+  <data name="ExceptionInvalidDimensionExponentIsZero" xml:space="preserve">
+    <value>Exponent cannot be 0</value>
+  </data>
+  <data name="ExceptionInvalidDimensionNoUnitSystemOverlap" xml:space="preserve">
+    <value>No overlap of Unit systems with {0}</value>
+  </data>
+  <data name="ExceptionInvalidDimensionNoValidExponent" xml:space="preserve">
+    <value>No exponent for this Unit is valid when combining with {0}.  Cannot combine empty Units together</value>
+  </data>
+  <data name="ExceptionInvalidExponent" xml:space="preserve">
+    <value>exponent must be between {0} and {1}: actual {2}</value>
+  </data>
+  <data name="ExceptionInvalidExponentWithDimensionName" xml:space="preserve">
+    <value>{0} {1}</value>
+  </data>
+  <data name="ExceptionInvalidTransformConflictWithExistingUsageId" xml:space="preserve">
+    <value>Transformed Usage conflicts with existing non-transformed usage '{0}'</value>
+  </data>
+  <data name="ExceptionInvalidTransformUsageId" xml:space="preserve">
+    <value>UsagePage of the transform '{0}' must be the same as the usage being transformed '{1}'</value>
+  </data>
+  <data name="ExceptionMultiplierInvalid" xml:space="preserve">
+    <value>Multiplier must be between {0} and {1}: actual {2}</value>
+  </data>
+  <data name="ExceptionMultiplierNotBased10" xml:space="preserve">
+    <value>Multiplier '{0}' is not Base-10. (e.g. 1.0, 100.0, 0.0001).</value>
+  </data>
+  <data name="ExceptionRangeHasDifferentUsagePages" xml:space="preserve">
+    <value>Page for UsageStart '{0}' and Page for UsageEnd '{1}' are different.</value>
+  </data>
+  <data name="ExceptionRangeUsageDoesNotExistInRange" xml:space="preserve">
+    <value>Usage {0}:{1} does not exist within range {2} {3}</value>
+  </data>
+  <data name="ExceptionRangeUsageStartIdBiggerThanUsageEndId" xml:space="preserve">
+    <value>Starting UsageId '{0}' is &gt;= '{1}' Ending UsageId</value>
+  </data>
+  <data name="ExceptionUsageNamesMismatch" xml:space="preserve">
+    <value>UsageIds are the same but Names are different ({0}, {1}).  Something is terribly screwed-up</value>
+  </data>
+  <data name="ExceptionUsagePageCannotAddIdToGeneratedPage" xml:space="preserve">
+    <value>Cannot add a Usage to the generated UsagePage '{0}'</value>
+  </data>
+  <data name="ExceptionUsagePageIdMatchesNameDoesnt" xml:space="preserve">
+    <value>Id '{0}' matched existing UsagePage '{1}', but name '{2}' did not.  To extend an existing UsagePage both must match</value>
+  </data>
+  <data name="ExceptionUsagePageIdNotFoundNameOmitted" xml:space="preserve">
+    <value>Existing UsagePage with id '{0}' not found.  Name may only be omitted if UsagePage with id already exists</value>
+  </data>
+  <data name="ExceptionUsagePageNameAndIdMatchDifferentPages" xml:space="preserve">
+    <value>Two distinct UsagePages matched.  Name '{0}' matched '{1}', Id '{2}' matched '{3}'</value>
+  </data>
+  <data name="ExceptionUsagePageNameMatchesIdDoesnt" xml:space="preserve">
+    <value>Name '{0}' matched existing UsagePage '{1}', but id '{2}' did not.  To extend an existing UsagePage both must match</value>
+  </data>
+  <data name="ExceptionUsagePageNameNotFoundIdOmitted" xml:space="preserve">
+    <value>Existing UsagePage with name '{0}' not found.  Id may only be omitted if UsagePage with name already exists</value>
+  </data>
+  <data name="ExceptionUsagePageUsageIdAlreadyExists" xml:space="preserve">
+    <value>Id of specified Usage '{0}' already exists in UsagePage '{1}' as '{2}'.  Smallest id available is '{3}'</value>
+  </data>
+  <data name="ExceptionUsagePageUsageNameAlreadyExists" xml:space="preserve">
+    <value>Name of specified Usage '{0}' already exists in UsagePage '{1}' as '{2}'</value>
+  </data>
+</root>

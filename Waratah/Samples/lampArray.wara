@@ -1,0 +1,356 @@
+﻿[[applicationCollection]]
+usage = ['Lighting And Illumination', 'LampArray']
+
+    [[applicationCollection.featureReport]]
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Lighting And Illumination', 'LampArrayAttributesReport']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampCount']
+            sizeInBits = 16
+            logicalValueRange = 'maxUnsignedSizeRange'
+            reportFlags = ['constant']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BoundingBoxWidthInMicrometers']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+            reportFlags = ['constant']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BoundingBoxHeightInMicrometers']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+            reportFlags = ['constant']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BoundingBoxDepthInMicrometers']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+            reportFlags = ['constant']
+
+    [[applicationCollection.featureReport]]
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Lighting And Illumination', 'LampAttributesRequestReport']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampId']
+            sizeInBits = 16
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+    [[applicationCollection.featureReport]]
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Lighting And Illumination', 'LampAttributesResponseReport']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampId']
+            sizeInBits = 16
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'PositionXInMicrometers']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'PositionYInMicrometers']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'PositionZInMicrometers']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'UpdateLatencyInMicroseconds']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampPurposes']
+            sizeInBits = 32
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IsProgrammable']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'InputBinding']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+    [[applicationCollection.featureReport]]
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Lighting And Illumination', 'LampMultiUpdateReport']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampCount']
+            logicalValueRange = [0, 8]
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampUpdateFlags']
+            logicalValueRange = [0, 1]
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampId']
+            sizeInBits = 16
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 1
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 2
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 3
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 4
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 5
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 6
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 7
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            #
+            # Lamp 8
+            #
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+    [[applicationCollection.featureReport]]
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Lighting And Illumination', 'LampRangeUpdateReport']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampUpdateFlags']
+            logicalValueRange = [0, 1]
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampIdStart']
+            sizeInBits = 16
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'LampIdEnd']
+            sizeInBits = 16
+            logicalValueRange = 'maxUnsignedSizeRange'
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'RedLevelCount']
+            sizeInBits = 8
+            reportFlags = ['data', 'absolute']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'GreenLevelCount']
+            sizeInBits = 8
+            reportFlags = ['data', 'absolute']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'BlueLevelCount']
+            sizeInBits = 8
+            reportFlags = ['data', 'absolute']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'IntensityLevelCount']
+            sizeInBits = 8
+            reportFlags = ['data', 'absolute']
+
+    [[applicationCollection.featureReport]]
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Lighting And Illumination', 'LampArrayControlReport']
+
+            [[applicationCollection.featureReport.logicalCollection.variableItem]]
+            usage = ['Lighting And Illumination', 'AutonomousMode']
+            logicalValueRange = [0, 1]

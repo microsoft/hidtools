@@ -1,0 +1,30 @@
+[[applicationCollection]]
+usage = ['Telephony Device', 'Headset']
+
+    [[applicationCollection.inputReport]]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Telephony Device', 'Phone Mute']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Telephony Device', 'Hook Switch']
+        logicalValueRange = [0, 1]
+
+    [[applicationCollection.outputReport]]
+
+        [[applicationCollection.outputReport.variableItem]]
+        usage = ['LED', 'Off-Hook']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.outputReport.variableItem]]
+        usage = ['LED', 'Mute']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.outputReport.variableItem]]
+        usage = ['LED', 'Microphone']
+        logicalValueRange = [0, 1]
+
+        [[applicationCollection.outputReport.variableItem]]
+        usage = ['LED', 'Ring']
+        logicalValueRange = [0, 1]
