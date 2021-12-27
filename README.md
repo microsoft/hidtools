@@ -67,6 +67,71 @@ usage = ['Generic Desktop', 'Mouse']
             logicalValueRange = [0, 1]
 ```
 
+#### Plain-text output
+```
+05-01....UsagePage(Generic Desktop[1])
+09-02....UsageId(Mouse[2])
+A1-01....Collection(Application)
+85-01........ReportId(1)
+09-01........UsageId(Pointer[1])
+A1-00........Collection(Physical)
+09-30............UsageId(X[48])
+09-31............UsageId(Y[49])
+15-80............LogicalMinimum(-128)
+25-7F............LogicalMaximum(127)
+95-02............ReportCount(2)
+75-08............ReportSize(8)
+81-06............Input(Data, Variable, Relative, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+05-09............UsagePage(Button[9])
+19-01............UsageIdMin(Button 1[1])
+29-03............UsageIdMax(Button 3[3])
+15-00............LogicalMinimum(0)
+25-01............LogicalMaximum(1)
+95-03............ReportCount(3)
+75-01............ReportSize(1)
+81-02............Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+C0...........EndCollection()
+95-01........ReportCount(1)
+75-05........ReportSize(5)
+81-03........Input(Constant, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+C0.......EndCollection()
+```
+
+#### C++ output
+```C++
+#include <memory>
+
+static const uint8_t hidReportDescriptor [] = 
+{
+    0x05, 0x01,    // UsagePage(Generic Desktop[1])
+    0x09, 0x02,    // UsageId(Mouse[2])
+    0xA1, 0x01,    // Collection(Application)
+    0x85, 0x01,    //     ReportId(1)
+    0x09, 0x01,    //     UsageId(Pointer[1])
+    0xA1, 0x00,    //     Collection(Physical)
+    0x09, 0x30,    //         UsageId(X[48])
+    0x09, 0x31,    //         UsageId(Y[49])
+    0x15, 0x80,    //         LogicalMinimum(-128)
+    0x25, 0x7F,    //         LogicalMaximum(127)
+    0x95, 0x02,    //         ReportCount(2)
+    0x75, 0x08,    //         ReportSize(8)
+    0x81, 0x06,    //         Input(Data, Variable, Relative, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0x05, 0x09,    //         UsagePage(Button[9])
+    0x19, 0x01,    //         UsageIdMin(Button 1[1])
+    0x29, 0x03,    //         UsageIdMax(Button 3[3])
+    0x15, 0x00,    //         LogicalMinimum(0)
+    0x25, 0x01,    //         LogicalMaximum(1)
+    0x95, 0x03,    //         ReportCount(3)
+    0x75, 0x01,    //         ReportSize(1)
+    0x81, 0x02,    //         Input(Data, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0xC0,          //     EndCollection()
+    0x95, 0x01,    //     ReportCount(1)
+    0x75, 0x05,    //     ReportSize(5)
+    0x81, 0x03,    //     Input(Constant, Variable, Absolute, NoWrap, Linear, PreferredState, NoNullPosition, BitField)
+    0xC0,          // EndCollection()
+};
+```
+
 # Legal
 
 ## Contributing
