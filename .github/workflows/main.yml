@@ -29,7 +29,7 @@ jobs:
         uses: microsoft/setup-msbuild@v1
 
       - name: Setup NuGet
-        uses: NuGet/setup-nuget@v1.0.2
+        uses: NuGet/setup-nuget@v1.2.6
         
       - name: Restore NuGet Packages
         run: nuget restore Waratah\Waratah.sln
