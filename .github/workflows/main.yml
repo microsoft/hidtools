@@ -40,8 +40,5 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-artifact@v1.0.0
         with:
-          name: published_waratah
+          name: Waratah-Published
           path: Waratah\WaratahCmd\bin\Release
-          
-      - name: Run Tests
-        run: vstest.console.exe Waratah\HidEngineTest\bin\Release\HidEngineTest.dll
