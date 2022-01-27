@@ -4,6 +4,7 @@
 namespace HidEngine.ReportDescriptorComposition.Modules
 {
     using System.Collections.Generic;
+    using System.Linq;
     using HidEngine.Properties;
     using HidEngine.ReportDescriptorItems;
     using HidSpecification;
@@ -77,9 +78,9 @@ namespace HidEngine.ReportDescriptorComposition.Modules
         /// </code>
         /// </summary>
         /// <param name="combineUsages">Usages to combine together into a variable item.</param>
-        /// <param name="reportCount">Counts to combine.</param>
+        /// <param name="combinedReportCount">Combined ReportCount for this item.</param>
         /// <returns>List of HID Report Items describing this <see cref="VariableModule"/>.</returns>
-        public List<ShortItem> GenerateDescriptorItems(List<HidUsageId> combineUsages, int reportCount)
+        public List<ShortItem> GenerateDescriptorItems(List<HidUsageId> combineUsages, int combinedReportCount)
         {
             List<ShortItem> descriptorItems = new List<ShortItem>();
 
@@ -93,9 +94,9 @@ namespace HidEngine.ReportDescriptorComposition.Modules
 
             int cachedCount = this.Count;
 
-            // Temporarily set the Count to the # items that are being combined.
+            // Temporarily set the base Count to the # items that are being combined.
             // This allows the existing generation logic to work.
-            this.Count = reportCount;
+            this.Count = combinedReportCount;
 
             descriptorItems.AddRange(this.GenerateReportDataVariableItems(HidConstants.MainDataItemGroupingKind.Variable));
 
@@ -123,7 +124,7 @@ namespace HidEngine.ReportDescriptorComposition.Modules
         public bool IsCanBeDescriptorCombined(VariableModule other)
         {
             // Can only be descriptor-combined if this corresponds to a single field.
-            bool isCanBeCombined = other.IsCanBeDescriptorCombined();
+            bool isCanBeCombined = (other.IsCanBeDescriptorCombined() == this.IsCanBeDescriptorCombined());
 
             // Validate all other fields are the same, except for UsageId; where it being different is the whole point...
             bool isSameUsagePage = (other.Usage.Page.Id == this.Usage.Page.Id);

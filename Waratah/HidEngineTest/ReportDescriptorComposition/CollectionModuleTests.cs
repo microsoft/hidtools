@@ -10,6 +10,7 @@ namespace HidEngineTest.ReportDescriptorComposition
     using HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
+    using System.Linq;
 
     [TestClass]
     public class CollectionModuleTests
@@ -38,6 +39,58 @@ namespace HidEngineTest.ReportDescriptorComposition
 
             Assert.AreEqual(HidConstants.MainItemCollectionKind.Logical, logicalCollection.Kind);
             Assert.AreEqual((array.TotalSizeInBits + variable.TotalSizeInBits), logicalCollection.TotalSizeInBits);
+        }
+
+        /// <summary>
+        /// Modules will be combined when all fields are identical (and ReportCount == 1).  This reduces the number of descriptor items.
+        /// The combined module will have all the same fields, except, multiple UsageIds and enlarged ReportCount
+        /// </summary>
+        [TestMethod]
+        public void OptimizedCollectionsCombineFields()
+        {
+            // Two VariableModules with ReportCount==1, preceed VariableModule with ReportCount==3
+            // First two VariableModules will be combined.
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+
+                // Using LogicalCollection, as is a simple specialization of BaseCollection.
+                CollectionModule logicalCollection = new CollectionModule(HidConstants.MainItemCollectionKind.Logical, report);
+
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                VariableModule variable1 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 1"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable2 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 2"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable3 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 3"), 3, logicalRange, null, null, null, null, null, string.Empty, report);
+
+                logicalCollection.Initialize(DefaultCollectionUsage, new List<BaseModule> { variable1, variable2, variable3 });
+
+                List<ShortItem> generatedItems = logicalCollection.GenerateDescriptorItems(true);
+
+                uint[] foundReportItemCountValue = generatedItems.Where(x => x is ReportCountItem).Select(x => ((ReportCountItem)x).Count).ToArray();
+
+                CollectionAssert.AreEqual(foundReportItemCountValue, new uint[] { 2, 3 });
+            }
+
+            // Two VariableModules with ReportCount==1, after VariableModule with ReportCount==3
+            // Last two VariableModules will be combined.
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+
+                // Using LogicalCollection, as is a simple specialization of BaseCollection.
+                CollectionModule logicalCollection = new CollectionModule(HidConstants.MainItemCollectionKind.Logical, report);
+
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                VariableModule variable1 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 1"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable2 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 2"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable3 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 3"), 3, logicalRange, null, null, null, null, null, string.Empty, report);
+
+                logicalCollection.Initialize(DefaultCollectionUsage, new List<BaseModule> {variable3, variable1, variable2});
+
+                List<ShortItem> generatedItems = logicalCollection.GenerateDescriptorItems(true);
+
+                uint[] foundReportItemCountValue = generatedItems.Where(x => x is ReportCountItem).Select(x => ((ReportCountItem)x).Count).ToArray();
+
+                CollectionAssert.AreEqual(foundReportItemCountValue, new uint[] { 3, 2 });
+            }
         }
     }
 }
