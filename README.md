@@ -10,6 +10,8 @@ Waratah is a HID descriptor composition tool.  It offers a high-level of abstrac
 
 It is expected to be used by device firmware authors during device bring-up.
 
+See [Wiki](https://github.com/microsoft/hidtools/wiki) for more details 
+
 ## Overview
 
 Waratah uses a [TOML-like](https://toml.io/en/) hierarchical language of sections and keys to represent a HID Report Descriptor  (*Note: There is currently no support for HID Physical Descriptors*).  This can then be compiled to to either a simple plain-text format, or a C++ header file suitable for ingestion into device firmware.
