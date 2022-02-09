@@ -39,9 +39,6 @@ Waratah uses a [TOML-like](https://toml.io/en/) hierarchical language of section
 - Inline Usage transformation.
 - Usage Range validation.
 
-### Limitations/Differences to standard TOML:
-- Only decimal/float number format supported (not hex/octal/binary)
-
 ### Example: Simple mouse with 3 buttons.
 
 ```toml
