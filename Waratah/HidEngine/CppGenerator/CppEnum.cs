@@ -140,11 +140,15 @@ namespace HidEngine.CppGenerator
             writer.WriteLineIndented($"enum class {this.TypeName} : {this.EnumType}");
             writer.WriteLineIndented("{");
 
+            bool isFirstEnumValue = true;
+
             using (DisposableIndent indent = writer.CreateDisposableIndent())
             {
                 foreach (string val in this.Values)
                 {
-                    writer.WriteLineIndented($"{string.Concat(val.Where(char.IsLetterOrDigit))},");
+                    writer.WriteLineIndented($"{string.Concat(val.Where(char.IsLetterOrDigit))}{(isFirstEnumValue ? " = 1" : string.Empty)},");
+
+                    isFirstEnumValue = false;
                 }
             }
 
