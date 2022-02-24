@@ -3,15 +3,18 @@ usage = ['Generic Desktop', 'Keyboard']
 
     [[applicationCollection.inputReport]]
 
+        # Special buttons
+        #
+        # N.B. Windows applies special buttons only to subsequent keys, so
+        # must appear in report beforehand.
+        [[applicationCollection.inputReport.variableItem]]
+        usageRange = ['Keyboard/Keypad', 'Keyboard LeftControl', 'Keyboard Right GUI']
+        logicalValueRange = [0, 1]
+
         # Regular Buttons
         [[applicationCollection.inputReport.arrayItem]]
         usageRange = ['Keyboard/Keypad', 'ErrorRollOver', 'Keyboard Application']
         count = 8
-
-        # Special buttons
-        [[applicationCollection.inputReport.variableItem]]
-        usageRange = ['Keyboard/Keypad', 'Keyboard LeftControl', 'Keyboard Right GUI']
-        logicalValueRange = [0, 1]
 
     # LEDS
     [[applicationCollection.outputReport]]
