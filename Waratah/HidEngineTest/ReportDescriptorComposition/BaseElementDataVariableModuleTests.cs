@@ -40,6 +40,13 @@ namespace HidEngineTest.ReportDescriptorComposition
     {
         private static readonly ReportKind DefaultReportKind = ReportKind.Input;
 
+        [TestInitialize]
+        public void Initialize()
+        {
+            // Reset the Unit definitions after each test.
+            Utils.GlobalReset();
+        }
+
         [TestMethod]
         public void SimpleLogicalRange()
         {
