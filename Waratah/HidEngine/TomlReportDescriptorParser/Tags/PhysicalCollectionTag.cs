@@ -155,7 +155,7 @@ namespace HidEngine.TomlReportDescriptorParser.Tags
                 List<BaseModule> collectionItems = new List<BaseModule>();
                 foreach (IModuleGeneratorTag tag in this.Tags)
                 {
-                    BaseModule module = tag.GenerateDescriptorModule(parent);
+                    BaseModule module = tag.GenerateDescriptorModule(collection);
                     if (module != null)
                     {
                         collectionItems.Add(module);

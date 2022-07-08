@@ -3,12 +3,12 @@
 
 namespace HidEngineTest.TomlReportDescriptorParser
 {
+    using HidEngine.ReportDescriptorComposition.Modules;
     using HidEngine.TomlReportDescriptorParser;
     using HidEngine.TomlReportDescriptorParser.Tags;
     using HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Nett;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -96,6 +96,38 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
 
             Assert.ThrowsException<TomlGenericException>(() => LogicalCollectionTag.TryParse(rawTomlTags.ElementAt(0)));
+        }
+
+        /// <summary>
+        /// Previously found a bug where the parent of child modules (generated from logicalCollection/physicalCollection)
+        /// was not the collection module.
+        /// </summary>
+        [TestMethod]
+        public void GeneratedModuleRelationshipsAreValid()
+        {
+            string nonDecoratedTomlDoc = @"
+                [[inputReport]]
+                    [[inputReport.logicalCollection]]
+                    usage = ['Lighting And Illumination', 'LampArrayAttributesReport']
+                        [[inputReport.logicalCollection.variableItem]]
+                        usage = ['Lighting And Illumination', 'LampCount']
+                        sizeInBits = 8";
+
+            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedTomlDoc);
+            TagFinder.Initialize(decoratedTomlDoc);
+            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+            InputReportTag tag = InputReportTag.TryParse(rawTomlTags.ElementAt(0));
+            ReportModule reportModule = (ReportModule)tag.GenerateDescriptorModule(null);
+
+            Assert.AreEqual(1, reportModule.Children.Count);
+
+            CollectionModule logicalCollectionModule = (CollectionModule)reportModule.Children.First();
+            foreach (BaseModule child in logicalCollectionModule.Children)
+            {
+                // The parent of the child, must be the child's parent.
+                Assert.AreEqual(logicalCollectionModule, child.Parent);
+            }
         }
     }
 }
