@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.CppGenerator
+namespace Microsoft.HidTools.HidEngine.CppGenerator
 {
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
-    using HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
 
     /// <summary>
     /// Represents a single CPP struct.

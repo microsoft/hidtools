@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser.Tags
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 {
     using System;
 

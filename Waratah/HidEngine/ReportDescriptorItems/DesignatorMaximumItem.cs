@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
     using System;
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Defines the index of the ending designator associated with an array or bitmap.

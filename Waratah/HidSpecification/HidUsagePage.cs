@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidSpecification
+namespace Microsoft.HidTools.HidSpecification
 {
     using System;
     using System.Collections.Generic;
     using System.Globalization;
     using System.Linq;
-    using HidSpecification.Properties;
+    using Microsoft.HidTools.HidSpecification.Properties;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
     using Newtonsoft.Json.Serialization;

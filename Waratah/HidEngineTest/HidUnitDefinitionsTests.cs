@@ -3,14 +3,14 @@
 
 namespace HidEngineTest
 {
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.ReportDescriptorComposition.Modules;
-    using HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
     using System.Collections.Generic;
-    using HidEngine.TomlReportDescriptorParser;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidSpecification;
 
     [TestClass]
     public class HidUnitDefinitionsTests
@@ -33,6 +33,7 @@ namespace HidEngineTest
             // New Unit can now be looked-up.
             HidUnitDefinitions.GetInstance().TryFindUnitByName("testUnit");
         }
+
         [TestMethod]
         public void NonExistingUnitCantBeFound()
         {

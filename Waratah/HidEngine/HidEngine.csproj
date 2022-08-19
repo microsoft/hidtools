@@ -7,8 +7,8 @@
     <ProjectGuid>{C420E9CD-5F03-4999-8766-D37E4B7C3CEB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HidEngine</RootNamespace>
-    <AssemblyName>HidEngine</AssemblyName>
+    <RootNamespace>Microsoft.HidTools.HidEngine</RootNamespace>
+    <AssemblyName>Microsoft.HidTools.HidEngine</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -183,16 +183,16 @@
     <Analyzer Include="..\packages\StyleCop.Analyzers.1.1.118\analyzers\dotnet\cs\StyleCop.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HidSpecification\HidSpecification.csproj">
-      <Project>{f6a61745-0a87-435c-a0dc-caa73f3f8bc7}</Project>
-      <Name>HidSpecification</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HidSpecification\HidSpecification.csproj">
+      <Project>{f6a61745-0a87-435c-a0dc-caa73f3f8bc7}</Project>
+      <Name>HidSpecification</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

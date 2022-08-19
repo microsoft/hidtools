@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Mandatory attribute for all Global items specializations of <see cref="ShortItem"/>.

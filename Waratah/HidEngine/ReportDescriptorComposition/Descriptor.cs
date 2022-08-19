@@ -1,18 +1,18 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorComposition
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Text;
     using ConsoleTables;
-    using HidEngine.CppGenerator;
-    using HidEngine.Properties;
-    using HidEngine.ReportDescriptorComposition.Modules;
-    using HidEngine.ReportDescriptorItems;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.CppGenerator;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Describes a HID Report Descriptor.

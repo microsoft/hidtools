@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Defines the beginning or end of a set of local items.

@@ -3,9 +3,9 @@
 
 namespace HidEngineTest.TomlReportDescriptorParser
 {
-    using HidEngine.TomlReportDescriptorParser;
-    using HidEngine.TomlReportDescriptorParser.Tags;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Nett;
     using System;
@@ -34,8 +34,8 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Assert.IsNotNull(tag);
             Assert.AreEqual(tag.Value.Id, 0x1591);
             Assert.AreEqual(tag.Value.Name, "Data Field: Activity Type || (Modifier: Change Sensitivity Absolute)");
-            Assert.AreEqual(tag.Value.Kinds[0], HidSpecification.HidUsageKind.NAry);
-            Assert.AreEqual(tag.Value.Page.Kind, HidSpecification.HidUsagePageKind.Defined);
+            Assert.AreEqual(tag.Value.Kinds[0], Microsoft.HidTools.HidSpecification.HidUsageKind.NAry);
+            Assert.AreEqual(tag.Value.Page.Kind, Microsoft.HidTools.HidSpecification.HidUsagePageKind.Defined);
             Assert.AreEqual(tag.Value.Page.Name, "Sensors");
             Assert.AreEqual(tag.Value.Page.Id, 0x20);
         }
@@ -53,8 +53,8 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Assert.IsNotNull(tag);
             Assert.AreEqual(tag.Value.Id, 0x1591);
             Assert.AreEqual(tag.Value.Name, "Data Field: Activity Type || (Modifier: Change Sensitivity Absolute)");
-            Assert.AreEqual(tag.Value.Kinds[0], HidSpecification.HidUsageKind.NAry);
-            Assert.AreEqual(tag.Value.Page.Kind, HidSpecification.HidUsagePageKind.Defined);
+            Assert.AreEqual(tag.Value.Kinds[0], Microsoft.HidTools.HidSpecification.HidUsageKind.NAry);
+            Assert.AreEqual(tag.Value.Page.Kind, Microsoft.HidTools.HidSpecification.HidUsagePageKind.Defined);
             Assert.AreEqual(tag.Value.Page.Name, "Sensors");
             Assert.AreEqual(tag.Value.Page.Id, 0x20);
         }

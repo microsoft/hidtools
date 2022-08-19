@@ -3,11 +3,11 @@
 
 namespace HidEngineTest.CppGenerator
 {
-    using HidEngine;
-    using HidEngine.CppGenerator;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.ReportDescriptorComposition.Modules;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine;
+    using Microsoft.HidTools.HidEngine.CppGenerator;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
 

@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser.Tags
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 {
     using System.Collections.Generic;
-    using HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
 
     /// <summary>
     /// Represents an Input Report TOML tag.

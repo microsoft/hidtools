@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidSpecification
+namespace Microsoft.HidTools.HidSpecification
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using HidSpecification.Properties;
+    using Microsoft.HidTools.HidSpecification.Properties;
 
     /// <summary>
     /// Container to store all Units (base-units/predefined and user-created).

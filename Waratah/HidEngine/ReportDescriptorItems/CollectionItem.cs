@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
     using System;
-    using HidEngine.Properties;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Identifies the start of a relationship betwen two or more items.

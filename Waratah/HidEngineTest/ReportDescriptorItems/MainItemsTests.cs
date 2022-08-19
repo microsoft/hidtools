@@ -3,10 +3,10 @@
 
 namespace HidEngineTest.ReportDescriptorItems
 {
-    using HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     [TestClass]
     public class MainItems

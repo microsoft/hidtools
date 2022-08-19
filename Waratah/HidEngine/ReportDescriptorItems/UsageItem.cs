@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
     using System;
     using System.Linq;
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Usage index for an item usage.  represents a suggested usage for the item or collection.

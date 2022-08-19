@@ -3,11 +3,11 @@
 
 namespace HidEngineTest.ReportDescriptorComposition
 {
-    using HidEngine;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.ReportDescriptorComposition.Modules;
-    using HidEngine.ReportDescriptorItems;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
     using System.Linq;

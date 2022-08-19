@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Instruction to place a copy of the global itme state table on the stack.

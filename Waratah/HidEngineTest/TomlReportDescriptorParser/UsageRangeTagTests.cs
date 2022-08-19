@@ -3,14 +3,14 @@
 
 namespace HidEngineTest.TomlReportDescriptorParser
 {
-    using HidEngine.TomlReportDescriptorParser;
-    using HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Nett;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     [TestClass]
     public class UsageRangeTagTests

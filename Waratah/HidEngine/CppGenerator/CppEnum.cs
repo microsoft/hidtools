@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.CppGenerator
+namespace Microsoft.HidTools.HidEngine.CppGenerator
 {
     using System.Collections.Generic;
     using System.Linq;

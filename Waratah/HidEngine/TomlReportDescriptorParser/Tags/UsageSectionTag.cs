@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser.Tags
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 {
     using System.Collections.Generic;
     using System.Reflection;
-    using HidEngine.Properties;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Represents a Usage section TOML tag.

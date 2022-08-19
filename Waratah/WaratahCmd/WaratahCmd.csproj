@@ -85,6 +85,10 @@
       <Project>{c420e9cd-5f03-4999-8766-d37e4b7c3ceb}</Project>
       <Name>HidEngine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HidSpecification\HidSpecification.csproj">
+      <Project>{f6a61745-0a87-435c-a0dc-caa73f3f8bc7}</Project>
+      <Name>HidSpecification</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

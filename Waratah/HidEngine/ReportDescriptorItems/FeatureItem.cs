@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
     using System.Collections.Generic;
     using System.Reflection;
-    using HidSpecification;
     using Medallion;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Defines a Feature MainData item.

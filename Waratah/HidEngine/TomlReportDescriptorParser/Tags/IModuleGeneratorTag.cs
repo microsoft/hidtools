@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser.Tags
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 {
-    using HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
 
     /// <summary>
     /// Describes an interface usable by Tags for those that will generate <see cref="BaseModule"/>s.

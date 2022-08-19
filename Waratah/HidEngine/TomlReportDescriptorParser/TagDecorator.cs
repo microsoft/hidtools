@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reflection;
-    using HidEngine.Properties;
-    using HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
 
     /// <summary>
     /// Helper to permit a regular TOML parser to artifically disambiguate multiple ReportDescriptor tags.

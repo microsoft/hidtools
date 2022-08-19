@@ -3,8 +3,8 @@
 
 namespace HidEngineTest.TomlReportDescriptorParser
 {
-    using HidEngine.TomlReportDescriptorParser;
-    using HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Nett;
     using System;
@@ -28,8 +28,8 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Assert.AreEqual(tag.NonDecoratedName, "usage");
             Assert.AreEqual(tag.Value.Name, "LampArray");
             Assert.AreEqual(tag.Value.Id, 1);
-            Assert.AreEqual(tag.Value.Kinds[0], HidSpecification.HidUsageKind.CA);
-            Assert.AreEqual(tag.Value.Page.Kind, HidSpecification.HidUsagePageKind.Defined);
+            Assert.AreEqual(tag.Value.Kinds[0], Microsoft.HidTools.HidSpecification.HidUsageKind.CA);
+            Assert.AreEqual(tag.Value.Page.Kind, Microsoft.HidTools.HidSpecification.HidUsagePageKind.Defined);
             Assert.AreEqual(tag.Value.Page.Name, "Lighting And Illumination");
             Assert.AreEqual(tag.Value.Page.Id, 89);
         }
@@ -48,8 +48,8 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Assert.AreEqual(tag.NonDecoratedName, "usage");
             Assert.AreEqual(tag.Value.Name, "LampArray");
             Assert.AreEqual(tag.Value.Id, 1);
-            Assert.AreEqual(tag.Value.Kinds[0], HidSpecification.HidUsageKind.CA);
-            Assert.AreEqual(tag.Value.Page.Kind, HidSpecification.HidUsagePageKind.Defined);
+            Assert.AreEqual(tag.Value.Kinds[0], Microsoft.HidTools.HidSpecification.HidUsageKind.CA);
+            Assert.AreEqual(tag.Value.Page.Kind, Microsoft.HidTools.HidSpecification.HidUsagePageKind.Defined);
             Assert.AreEqual(tag.Value.Page.Name, "Lighting And Illumination");
             Assert.AreEqual(tag.Value.Page.Id, 89);
         }

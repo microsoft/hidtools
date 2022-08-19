@@ -1,9 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorComposition
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
 {
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Container for all Flags that apply to Input/Output/Feature items (HID1_11-6.2.2.5).

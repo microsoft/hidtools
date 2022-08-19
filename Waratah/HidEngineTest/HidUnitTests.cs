@@ -3,7 +3,7 @@
 
 namespace HidEngineTest
 {
-    using HidSpecification;
+    using Microsoft.HidTools.HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System;
 

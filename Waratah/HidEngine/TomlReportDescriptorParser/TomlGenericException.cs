@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
 {
     using System;
     using System.Collections.Generic;
-    using HidEngine.Properties;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.TomlReportDescriptorParser.Tags;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Describes an exception that occurs during the parsing of the TOML report descriptor.

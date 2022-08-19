@@ -1,13 +1,13 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine
+namespace Microsoft.HidTools.HidEngine
 {
     using System;
     using System.IO;
     using System.Linq;
-    using HidEngine.Properties;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Container for all Global settings.

@@ -7,8 +7,8 @@
     <ProjectGuid>{F6A61745-0A87-435C-A0DC-CAA73F3F8BC7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HidSpecification</RootNamespace>
-    <AssemblyName>HidSpecification</AssemblyName>
+    <RootNamespace>Microsoft.HidTools.HidSpecification</RootNamespace>
+    <AssemblyName>Microsoft.HidTools.HidSpecification</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

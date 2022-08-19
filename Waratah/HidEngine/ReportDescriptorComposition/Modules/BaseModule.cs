@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorComposition.Modules
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 {
     using System.Collections.Generic;
-    using HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
 
     /// <summary>
     /// Abstract base class for all descriptor modules.

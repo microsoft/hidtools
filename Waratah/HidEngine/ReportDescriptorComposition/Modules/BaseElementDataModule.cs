@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorComposition.Modules
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 {
     using System;
     using System.Collections.Generic;
     using System.Reflection;
-    using HidEngine.Properties;
-    using HidEngine.ReportDescriptorItems;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Base for all Items that convey data in a report. (e.g. VariableItem, LogicalCollections).

@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidSpecification
+namespace Microsoft.HidTools.HidSpecification
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using HidSpecification.Properties;
+    using Microsoft.HidTools.HidSpecification.Properties;
 
     /// <summary>
     /// A HID defined (or definable) Unit.

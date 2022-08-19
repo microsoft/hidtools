@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
 {
     using System;
     using System.Collections.Generic;
-    using HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.Properties;
 
     /// <summary>
     /// Generic container for Helper methods.

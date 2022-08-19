@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorItems
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
 {
     using System;
     using System.Linq;
     using System.Reflection;
-    using HidEngine.Properties;
-    using HidSpecification;
     using Medallion;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
     /// Kind of wire representation.

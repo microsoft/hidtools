@@ -5,10 +5,10 @@ namespace HidEngineTest.ReportDescriptorComposition
 {
     using System;
     using System.Collections.Generic;
-    using HidEngine;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.ReportDescriptorItems;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
 
     [TestClass]

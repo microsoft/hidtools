@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser.Tags
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 {
     using System.Collections.Generic;
-    using HidEngine.Properties;
-    using HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
 
     /// <summary>
     /// Represents a Logical ValueRange TOML Tag.

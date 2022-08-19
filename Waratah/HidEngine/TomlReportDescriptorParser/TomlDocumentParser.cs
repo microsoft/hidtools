@@ -1,12 +1,12 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.TomlReportDescriptorParser
+namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
 {
     using System.Collections.Generic;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.ReportDescriptorComposition.Modules;
-    using HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
     using Nett;
 
     /// <summary>

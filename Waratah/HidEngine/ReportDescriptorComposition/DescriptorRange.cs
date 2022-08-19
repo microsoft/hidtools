@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.ReportDescriptorComposition
+namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
 {
     using System;
     using System.Diagnostics;
-    using HidEngine.Properties;
+    using Microsoft.HidTools.HidEngine.Properties;
 
     /// <summary>
     /// Kind of module range.

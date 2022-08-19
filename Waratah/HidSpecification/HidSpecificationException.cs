@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidSpecification
+namespace Microsoft.HidTools.HidSpecification
 {
     using System;
 

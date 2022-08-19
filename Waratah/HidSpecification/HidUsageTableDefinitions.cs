@@ -1,14 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidSpecification
+namespace Microsoft.HidTools.HidSpecification
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
     using System.Reflection;
-    using HidSpecification.Properties;
+    using Microsoft.HidTools.HidSpecification.Properties;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
@@ -94,7 +94,7 @@ namespace HidSpecification
             // and define which version to use in TOML.
             if (instance == null || clear)
             {
-                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("HidSpecification.ParsedUsageTables.ParsedHidUsageTable.json"))
+                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Microsoft.HidTools.HidSpecification.ParsedUsageTables.ParsedHidUsageTable.json"))
                 {
                     using (StreamReader reader = new StreamReader(stream))
                     {

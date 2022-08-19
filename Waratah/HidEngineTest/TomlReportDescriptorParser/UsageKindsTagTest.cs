@@ -6,8 +6,8 @@ namespace HidEngineTest.TomlReportDescriptorParser
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using HidEngine.TomlReportDescriptorParser;
-    using HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Nett;
 
@@ -27,9 +27,9 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Assert.IsNotNull(testTag);
 
             Assert.AreEqual(3, testTag.Value.Count);
-            Assert.IsTrue(testTag.Value.Contains(HidSpecification.HidUsageKind.Sel));
-            Assert.IsTrue(testTag.Value.Contains(HidSpecification.HidUsageKind.OOC));
-            Assert.IsTrue(testTag.Value.Contains(HidSpecification.HidUsageKind.MC));
+            Assert.IsTrue(testTag.Value.Contains(Microsoft.HidTools.HidSpecification.HidUsageKind.Sel));
+            Assert.IsTrue(testTag.Value.Contains(Microsoft.HidTools.HidSpecification.HidUsageKind.OOC));
+            Assert.IsTrue(testTag.Value.Contains(Microsoft.HidTools.HidSpecification.HidUsageKind.MC));
         }
 
         [TestMethod]
@@ -92,7 +92,7 @@ namespace HidEngineTest.TomlReportDescriptorParser
             Assert.IsNotNull(testTag);
 
             Assert.AreEqual(1, testTag.Value.Count);
-            Assert.IsTrue(testTag.Value.Contains(HidSpecification.HidUsageKind.Sel));
+            Assert.IsTrue(testTag.Value.Contains(Microsoft.HidTools.HidSpecification.HidUsageKind.Sel));
         }
     }
 }

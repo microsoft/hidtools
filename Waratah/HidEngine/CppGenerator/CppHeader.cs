@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine.CppGenerator
+namespace Microsoft.HidTools.HidEngine.CppGenerator
 {
     using System.Collections.Generic;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.ReportDescriptorComposition.Modules;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
 
     /// <summary>
     /// Represents the contents of a Descriptor CPP header file.

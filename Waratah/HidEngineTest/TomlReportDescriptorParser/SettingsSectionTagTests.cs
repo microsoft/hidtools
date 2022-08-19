@@ -3,9 +3,9 @@
 
 namespace HidEngineTest.TomlReportDescriptorParser
 {
-    using HidEngine;
-    using HidEngine.TomlReportDescriptorParser;
-    using HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.HidTools.HidEngine;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using Nett;
     using System.Collections.Generic;

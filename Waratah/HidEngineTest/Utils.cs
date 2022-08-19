@@ -3,9 +3,9 @@
 
 namespace HidEngineTest
 {
-    using HidEngine;
-    using HidEngine.CppGenerator;
-    using HidSpecification;
+    using Microsoft.HidTools.HidEngine;
+    using Microsoft.HidTools.HidEngine.CppGenerator;
+    using Microsoft.HidTools.HidSpecification;
 
     public class Utils
     {

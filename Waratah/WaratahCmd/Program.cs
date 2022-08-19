@@ -4,9 +4,9 @@
 namespace WaratahCmd
 {
     using CommandLine;
-    using HidEngine;
-    using HidEngine.ReportDescriptorComposition;
-    using HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine;
+    using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
     using System;
     using System.Drawing;
     using System.IO;

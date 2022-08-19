@@ -1,7 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidEngine
+namespace Microsoft.HidTools.HidEngine
 {
     using System;
 

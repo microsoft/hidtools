@@ -1,11 +1,11 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-namespace HidSpecification
+namespace Microsoft.HidTools.HidSpecification
 {
     using System;
     using System.Globalization;
-    using HidSpecification.Properties;
+    using Microsoft.HidTools.HidSpecification.Properties;
 
     /// <summary>
     /// All HID constants (manually) extracted from the HID 1.11 specification.
