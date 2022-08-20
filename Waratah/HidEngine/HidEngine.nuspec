@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/microsoft/hidtools</projectUrl>
+    <description>$description$</description>
+    <copyright>$copyright$</copyright>
+    <tags>HID Human Interface Device descriptor</tags>
+    <dependencies>
+      <dependency id="Microsoft.HidTools.HidSpecification" version="1.0.0" />
+    </dependencies>
+  </metadata>
+</package>
