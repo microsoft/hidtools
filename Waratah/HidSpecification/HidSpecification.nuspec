@@ -15,5 +15,6 @@
     <dependencies>
       <group targetFramework=".NETFramework4.7.2" />
     </dependencies>
+    <repository type="git" url="https://github.com/microsoft/hidtools/tree/main/Waratah/HidSpecification" />
   </metadata>
 </package>
