@@ -222,6 +222,12 @@
   <data name="ExceptionSettingsDestinationFileNoExtension" xml:space="preserve">
     <value>Extension must not be specified, determined by settings</value>
   </data>
+  <data name="ExceptionSettingsHidUsageTablesFileDoesNotExist" xml:space="preserve">
+    <value>HID Usage Tables file '{0}' does not exist</value>
+  </data>
+  <data name="ExceptionSettingsHidUsageTablesFileExtensionUnsupported" xml:space="preserve">
+    <value>Cannot parse a non {0} HID Usage Tables file</value>
+  </data>
   <data name="ExceptionSettingsInvalidSizeInBits" xml:space="preserve">
     <value>Invalid for size {0}</value>
   </data>

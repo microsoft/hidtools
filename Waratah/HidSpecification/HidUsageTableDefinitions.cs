@@ -11,6 +11,8 @@ namespace Microsoft.HidTools.HidSpecification
     using Microsoft.HidTools.HidSpecification.Properties;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
+    using UglyToad.PdfPig;
+    using UglyToad.PdfPig.Content;
 
     /// <summary>
     /// Container to store all UsagePages and Usages as defined by HID Usage Tables document.
@@ -18,6 +20,8 @@ namespace Microsoft.HidTools.HidSpecification
     [JsonObject(MemberSerialization.OptIn)]
     public class HidUsageTableDefinitions
     {
+        private const string EmbeddedUsageTablesFilePath = "Microsoft.HidTools.HidSpecification.Embedded.hut1_3_0.pdf";
+
         private static HidUsageTableDefinitions instance = null;
 
         /// <summary>
@@ -54,6 +58,11 @@ namespace Microsoft.HidTools.HidSpecification
         }
 
         /// <summary>
+        /// Gets or sets the alternative Usage Tables file.  By default the embedded file is used.
+        /// </summary>
+        public static string AlternativeHidUsageTablesFilePath { get; set; }
+
+        /// <summary>
         /// Gets the Version of the table.
         /// </summary>
         [JsonProperty]
@@ -70,6 +79,17 @@ namespace Microsoft.HidTools.HidSpecification
         /// </summary>
         [JsonProperty]
         public UInt16 UsageTableSubRevisionInternal { get; }
+
+        /// <summary>
+        /// Gets the readable UsageTable version.
+        /// </summary>
+        public string UsageTableVersionReadable
+        {
+            get
+            {
+                return $"{this.UsageTableVersion}.{this.UsageTableRevision}.{this.UsageTableSubRevisionInternal}";
+            }
+        }
 
         /// <summary>
         /// Gets the date the table was generated.
@@ -90,18 +110,37 @@ namespace Microsoft.HidTools.HidSpecification
         /// <returns>Single instance.</returns>
         public static HidUsageTableDefinitions GetInstance(bool clear = false)
         {
-            // TODO: Could support multiple versions of the HUT,
-            // and define which version to use in TOML.
             if (instance == null || clear)
             {
-                using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Microsoft.HidTools.HidSpecification.ParsedUsageTables.ParsedHidUsageTable.json"))
-                {
-                    using (StreamReader reader = new StreamReader(stream))
-                    {
-                        string parsedHidUsagesSpecContents = reader.ReadToEnd();
+                string filePath = null;
+                Stream fileStream = null;
 
-                        instance = DeserializeFromJson(parsedHidUsagesSpecContents);
+                if (string.IsNullOrEmpty(AlternativeHidUsageTablesFilePath))
+                {
+                    filePath = EmbeddedUsageTablesFilePath;
+                    fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filePath);
+                }
+                else
+                {
+                    filePath = AlternativeHidUsageTablesFilePath;
+                    fileStream = File.OpenRead(filePath);
+                }
+
+                try
+                {
+                    using (PdfDocument document = PdfDocument.Open(fileStream))
+                    {
+                        if (document.Advanced.TryGetEmbeddedFiles(out IReadOnlyList<EmbeddedFile> embeddedFiles))
+                        {
+                            string parsedHidUsagesSpecContents = System.Text.Encoding.UTF8.GetString(embeddedFiles[0].Bytes.ToArray());
+
+                            instance = DeserializeFromJson(parsedHidUsagesSpecContents);
+                        }
                     }
+                }
+                catch (Exception)
+                {
+                    throw new HidSpecificationException(Resources.ExceptionUsageTablesFileInvalid, filePath);
                 }
             }
 

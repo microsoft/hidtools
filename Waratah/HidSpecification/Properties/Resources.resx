@@ -189,4 +189,7 @@
   <data name="ExceptionUsagePageUsageNameAlreadyExists" xml:space="preserve">
     <value>Name of specified Usage '{0}' already exists in UsagePage '{1}' as '{2}'</value>
   </data>
+  <data name="ExceptionUsageTablesFileInvalid" xml:space="preserve">
+    <value>HID Usage Tables file {0} is invalid.  If explicitly specified, ensure it was retrieved from usb.org/hid</value>
+  </data>
 </root>

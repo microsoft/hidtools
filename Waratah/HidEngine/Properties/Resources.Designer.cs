@@ -19,7 +19,7 @@ namespace Microsoft.HidTools.HidEngine.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -372,6 +372,24 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         internal static string ExceptionSettingsDestinationFileNoExtension {
             get {
                 return ResourceManager.GetString("ExceptionSettingsDestinationFileNoExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HID Usage Tables file &apos;{0}&apos; does not exist.
+        /// </summary>
+        internal static string ExceptionSettingsHidUsageTablesFileDoesNotExist {
+            get {
+                return ResourceManager.GetString("ExceptionSettingsHidUsageTablesFileDoesNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot parse a non {0} HID Usage Tables file.
+        /// </summary>
+        internal static string ExceptionSettingsHidUsageTablesFileExtensionUnsupported {
+            get {
+                return ResourceManager.GetString("ExceptionSettingsHidUsageTablesFileExtensionUnsupported", resourceCulture);
             }
         }
         

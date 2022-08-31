@@ -36,6 +36,7 @@ namespace WaratahCmd
             {
                 Settings.GetInstance().SourceFilePath = options.SourceFile;
                 Settings.GetInstance().DestinationFilePath = options.DestinationFile;
+                Settings.GetInstance().HidUsageTablesFilePath = options.HidUsageTablesFile;
 
                 Console.WriteLine("Reading from file \'{0}\'", Settings.GetInstance().SourceFilePath);
                 string descriptorTomlDoc = File.ReadAllText(Settings.GetInstance().SourceFilePath);

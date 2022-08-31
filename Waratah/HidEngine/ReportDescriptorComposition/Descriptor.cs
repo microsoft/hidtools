@@ -184,7 +184,8 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
         {
             StringBuilder summary = new StringBuilder();
 
-            summary.AppendLine($"Descriptor size {this.GenerateDescriptorBytes().Length} (bytes)");
+            summary.AppendLine($"Descriptor size: {this.GenerateDescriptorBytes().Length} (bytes)");
+            summary.AppendLine($"HID Usage Tables Version: {HidSpecification.HidUsageTableDefinitions.GetInstance().UsageTableVersionReadable}");
             summary.AppendLine();
 
             IEnumerable<ReportModule> reports = this.ApplicationCollections.SelectMany(x => x.Reports);

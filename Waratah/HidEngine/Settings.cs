@@ -16,6 +16,7 @@ namespace Microsoft.HidTools.HidEngine
     {
         private const string DefaultCppDescriptorName = "hidReportDescriptor";
         private const string FileExtension = ".wara";
+        private const string HidUsageTablesFileExtension = ".pdf";
 
         private static Settings instance = null;
 
@@ -24,6 +25,7 @@ namespace Microsoft.HidTools.HidEngine
 
         private string sourceFilePath = string.Empty;
         private string destinationFilePath = string.Empty;
+        private string hidUsageTablesFilePath = string.Empty;
 
         private Settings()
         {
@@ -137,6 +139,38 @@ namespace Microsoft.HidTools.HidEngine
                     }
 
                     this.destinationFilePath = fullPath;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a value of the Alternative HID Usage Tables file.
+        /// </summary>
+        public string HidUsageTablesFilePath
+        {
+            get
+            {
+                return this.hidUsageTablesFilePath;
+            }
+
+            set
+            {
+                if (!string.IsNullOrWhiteSpace(value))
+                {
+                    string fullPath = Path.GetFullPath(value);
+
+                    if (!File.Exists(fullPath))
+                    {
+                        throw new SettingsGenericException(Resources.ExceptionSettingsHidUsageTablesFileDoesNotExist, fullPath);
+                    }
+
+                    if (!Path.GetExtension(fullPath).Equals(HidUsageTablesFileExtension, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        throw new SettingsGenericException(Resources.ExceptionSettingsHidUsageTablesFileExtensionUnsupported, HidUsageTablesFileExtension);
+                    }
+
+                    this.hidUsageTablesFilePath = fullPath;
+                    HidSpecification.HidUsageTableDefinitions.AlternativeHidUsageTablesFilePath = this.hidUsageTablesFilePath;
                 }
             }
         }
