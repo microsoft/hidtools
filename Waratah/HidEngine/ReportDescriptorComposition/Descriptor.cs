@@ -119,7 +119,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
         {
             CppHeader header = new CppHeader(this);
 
-            return header.GenerateCpp();
+            return header.GenerateCpp(this.GenerateSummary(true));
         }
 
         /// <inheritdoc/>
@@ -179,33 +179,42 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
         /// <summary>
         /// Generates a summary of this descriptor than can be printed on a Console to the user.
         /// </summary>
+        /// <param name="asCppComment">Whether to generate summary as a CPP comment.</param>
         /// <returns>Summary of this Descriptor.</returns>
-        public string GenerateSummary()
+        public string GenerateSummary(bool asCppComment = false)
         {
             StringBuilder summary = new StringBuilder();
 
+            summary.AppendLine($"HID Usage Tables: {HidSpecification.HidUsageTableDefinitions.GetInstance().UsageTableVersionReadable}");
             summary.AppendLine($"Descriptor size: {this.GenerateDescriptorBytes().Length} (bytes)");
-            summary.AppendLine($"HID Usage Tables Version: {HidSpecification.HidUsageTableDefinitions.GetInstance().UsageTableVersionReadable}");
-            summary.AppendLine();
 
             IEnumerable<ReportModule> reports = this.ApplicationCollections.SelectMany(x => x.Reports);
             IOrderedEnumerable<ReportModule> orderedReports = reports.ToList().OrderBy(x => x.Id).ThenBy(x => x.Kind);
 
-            ConsoleTable reportsSummaryTable = new ConsoleTable(new ConsoleTableOptions
-            {
-                Columns = new[] { "Report Id", "Kind", "Report Size (bits)" },
-                EnableCount = false,
-                NumberAlignment = Alignment.Right,
-            });
+            // Note: ConsoleTable requires initialization by "ConsoleTable.From" for alignment setting to apply.
+            var summaryTableRows = orderedReports.Select(x => new { ReportId = x.Id, Kind = x.Kind.ToString(), ReportSizeInBits = x.TotalSizeInBits });
+            string summaryTableText = ConsoleTable.From(summaryTableRows).Configure(o => o.NumberAlignment = Alignment.Right).ToStringAlternative();
 
-            foreach (ReportModule report in orderedReports)
+            summary.Append(summaryTableText);
+
+            if (asCppComment)
             {
-                reportsSummaryTable.AddRow(new[] { $"{report.Id}", $"{report.Kind}", $"{report.TotalSizeInBits}" });
+                StringBuilder summaryAsComment = new StringBuilder();
+                using (System.IO.StringReader reader = new System.IO.StringReader(summary.ToString()))
+                {
+                    string line = string.Empty;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        summaryAsComment.AppendLine($"// {line}");
+                    }
+                }
+
+                return summaryAsComment.ToString().Trim();
             }
-
-            summary.Append(reportsSummaryTable.ToStringAlternative());
-
-            return summary.ToString();
+            else
+            {
+                return summary.ToString();
+            }
         }
 
         /// <summary>

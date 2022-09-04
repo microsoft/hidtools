@@ -53,6 +53,8 @@ namespace WaratahCmd
                 destinationFile.Flush();
                 Console.WriteLine("Successfully generated descriptor file \'{0}\'", Settings.GetInstance().DestinationFilePath, Color.Green);
 
+                Console.WriteLine();
+
                 Console.WriteLine(descriptor.GenerateSummary(), Color.LightGreen);
             }
             catch (Exception e)
