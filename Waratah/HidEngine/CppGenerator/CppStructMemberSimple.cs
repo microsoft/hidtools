@@ -136,7 +136,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
 
             string initialValue = this.InitialValue.HasValue ? $" = {this.InitialValue}" : string.Empty;
 
-            int uniqueNameSuffix = UniqueNameCache.GenerateUniqueNameSuffix(this.Name);
+            int uniqueNameSuffix = UniqueMemberNameCache.GenerateUniqueNameSuffix(this.Name);
             string nameIdSuffix = uniqueNameSuffix == 0 ? string.Empty : uniqueNameSuffix.ToString();
 
             string combined = $"{typeStr} {this.Name}{nameIdSuffix}{arrayStr}{initialValue};";

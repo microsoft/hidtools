@@ -33,7 +33,7 @@ namespace HidEngineTest.ReportDescriptorComposition
             DescriptorRange logicalRange = new DescriptorRange(0, 16);
             VariableModule variable = new VariableModule(DefaultUsageStart, 1, logicalRange, null, null, null, null, null, string.Empty, report);
 
-            report.Initialize(1, new List<BaseModule> { array, variable });
+            report.Initialize(1, null, new List<BaseModule> { array, variable });
 
             Assert.AreEqual(2, report.Children.Count);
             Assert.AreEqual(1, report.Id);
@@ -51,7 +51,7 @@ namespace HidEngineTest.ReportDescriptorComposition
                 ReportModule report = new ReportModule(DefaultReportKind, null);
                 VariableModule variable = new VariableModule(DefaultUsageStart, 1, null, null, 7, null, null, null, string.Empty, report);
 
-                report.Initialize(1, new List<BaseModule> { variable });
+                report.Initialize(1, null, new List<BaseModule> { variable });
 
                 Assert.AreEqual(2, report.Children.Count);
                 Assert.AreEqual(1, report.Children[1].TotalSizeInBits);
@@ -62,7 +62,7 @@ namespace HidEngineTest.ReportDescriptorComposition
                 ReportModule report = new ReportModule(DefaultReportKind, null);
                 VariableModule variable = new VariableModule(DefaultUsageStart, 1, null, null, 2, null, null, null, string.Empty, report);
 
-                report.Initialize(1, new List<BaseModule> { variable });
+                report.Initialize(1, null, new List<BaseModule> { variable });
 
                 Assert.AreEqual(2, report.Children.Count);
                 Assert.AreEqual(6, report.Children[1].TotalSizeInBits);
@@ -77,7 +77,7 @@ namespace HidEngineTest.ReportDescriptorComposition
                 ReportModule report = new ReportModule(DefaultReportKind, null);
                 ArrayModule array = new ArrayModule(DefaultUsageStart, DefaultUsageEnd, 1, null, string.Empty, report);
 
-                Assert.ThrowsException<DescriptorModuleParsingException>(() => report.Initialize(id, new List<BaseModule> { array }));
+                Assert.ThrowsException<DescriptorModuleParsingException>(() => report.Initialize(id, null, new List<BaseModule> { array }));
             }
 
             CreateReportWithInvalidId(0);

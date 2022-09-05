@@ -69,10 +69,11 @@
     <Compile Include="CppGenerator\CppStruct.cs" />
     <Compile Include="CppGenerator\CppStructMemberEnum.cs" />
     <Compile Include="CppGenerator\CppStructMemberSimple.cs" />
-    <Compile Include="CppGenerator\UniqueNameCache.cs" />
+    <Compile Include="CppGenerator\UniqueMemberNameCache.cs" />
     <Compile Include="CppGenerator\DisposableIndent.cs" />
     <Compile Include="CppGenerator\ICppGenerator.cs" />
     <Compile Include="CppGenerator\IndentedWriter.cs" />
+    <Compile Include="CppGenerator\UniqueStructNameCache.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

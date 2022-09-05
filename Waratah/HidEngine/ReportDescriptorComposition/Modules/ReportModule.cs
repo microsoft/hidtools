@@ -82,6 +82,11 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
         }
 
         /// <summary>
+        /// Gets or sets the 'name' of this module.
+        /// </summary>
+        public string Name { get; protected set; }
+
+        /// <summary>
         /// Gets the children contained within this Report.
         /// </summary>
         public List<BaseModule> Children { get; private set; }
@@ -111,10 +116,12 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
         /// to be created before it's children, and the children to have a reference to it's parent.
         /// </summary>
         /// <param name="id">Id of this Report.  It is up to the caller to ensure Ids are unique for all reports of a particular kind across all ApplicationCollections.</param>
+        /// <param name="name">Logical name of this module. Optional.</param>
         /// <param name="children">Items belonging to this Report.</param>
-        public void Initialize(int id, List<BaseModule> children)
+        public void Initialize(int id, string name, List<BaseModule> children)
         {
             this.Id = id;
+            this.Name = name;
 
             if (children == null || children.Count == 0)
             {

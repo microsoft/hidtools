@@ -85,7 +85,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         {
             string arrayStr = (this.ElementCount > 1) ? $"[{this.ElementCount}]" : string.Empty;
 
-            int uniqueNameSuffix = UniqueNameCache.GenerateUniqueNameSuffix(this.Name);
+            int uniqueNameSuffix = UniqueMemberNameCache.GenerateUniqueNameSuffix(this.Name);
             string nameIdSuffix = uniqueNameSuffix == 0 ? string.Empty : uniqueNameSuffix.ToString();
 
             string combined = $"{this.Enumerator.TypeName} {this.Name}{nameIdSuffix}{arrayStr};";

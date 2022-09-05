@@ -19,12 +19,14 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// Initializes a new instance of the <see cref="BaseReportTag"/> class.
         /// </summary>
         /// <param name="id">Report Id.</param>
+        /// <param name="name">Friendly name of this Report.</param>
         /// <param name="items">Items belonging to this report.</param>
         /// <param name="rawTag">Root TOML element describing a Report.</param>
-        protected BaseReportTag(IdTag id, List<IModuleGeneratorTag> items, KeyValuePair<string, object> rawTag)
+        protected BaseReportTag(IdTag id, NameTag name, List<IModuleGeneratorTag> items, KeyValuePair<string, object> rawTag)
             : base(rawTag)
         {
             this.Id = id;
+            this.Name = name;
             this.Items = items;
         }
 
@@ -33,6 +35,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// Guaranteed to be unique for amongst all reports of a given type.
         /// </summary>
         public IdTag Id { get; }
+
+        /// <summary>
+        /// Gets the (optional) Name of the Report.
+        /// </summary>
+        public NameTag Name { get; }
 
         /// <summary>
         /// Gets the items belonging to this report.
@@ -46,9 +53,10 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// <param name="rawTag">Root TOML element describing a Report.</param>
         /// <returns>Id and Items as a tuple.  Can be null.</returns>
         /// <exception cref="TomlInvalidLocationException">Thrown when an unexpected tag is encountered.</exception>
-        protected static (IdTag id, List<IModuleGeneratorTag> items) TryParseInternal(KeyValuePair<string, object> rawTag)
+        protected static (IdTag id, NameTag name, List<IModuleGeneratorTag> items) TryParseInternal(KeyValuePair<string, object> rawTag)
         {
             IdTag reportId = null;
+            NameTag name = null;
             List<IModuleGeneratorTag> reportItems = new List<IModuleGeneratorTag>();
 
             Dictionary<string, object> reportChildren = ((Dictionary<string, object>[])rawTag.Value)[0];
@@ -59,6 +67,16 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                     reportId = IdTag.TryParse(child);
 
                     if (reportId != null)
+                    {
+                        continue;
+                    }
+                }
+
+                if (name == null)
+                {
+                    name = NameTag.TryParse(child);
+
+                    if (name != null)
                     {
                         continue;
                     }
@@ -102,7 +120,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                 throw new TomlInvalidLocationException(child, rawTag);
             }
 
-            return (reportId, reportItems);
+            return (reportId, name, reportItems);
         }
 
         /// <summary>
@@ -132,7 +150,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             try
             {
                 // TODO: Perhaps valid reportId check (and no duplicate reportId) should be done in the ReportDescriptorComposer layer. not here???
-                report.Initialize(this.FindOrGenerateReportId(reportIdsForKind), reportModules);
+                report.Initialize(this.FindOrGenerateReportId(reportIdsForKind), this.Name?.Value, reportModules);
             }
             catch (DescriptorModuleParsingException parsingException)
             {

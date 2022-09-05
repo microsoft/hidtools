@@ -6,6 +6,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
     using System;
     using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
 
     /// <summary>
@@ -13,7 +14,10 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
     /// </summary>
     public class CppStruct : ICppGenerator
     {
+        private const string ReportName = "HidReport";
+
         private readonly ReportModule report;
+        private string name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CppStruct"/> class.
@@ -23,9 +27,10 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         {
             // Structs are never nested within each other, so OK to reset caches.
             CppEnum.Reset();
-            UniqueNameCache.Reset();
+            UniqueMemberNameCache.Reset();
 
             this.report = report;
+            this.Name = report.Name;
 
             this.Members = new List<ICppGenerator>();
             this.Members.Add(new CppStructMemberSimple(this.report));
@@ -33,6 +38,26 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             foreach (BaseElementModule module in report.GetReportElements())
             {
                 this.Members.AddRange(ParseFromModule(module));
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of this struct.
+        /// </summary>
+        public string Name
+        {
+            get
+            {
+                return this.name;
+            }
+
+            private set
+            {
+                if (value != null)
+                {
+                    // Filter-out invalid characters.
+                    this.name = string.Concat(value.Where(char.IsLetterOrDigit));
+                }
             }
         }
 
@@ -53,7 +78,18 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// </example>
         public void GenerateCpp(IndentedWriter writer)
         {
-            writer.WriteLineIndented($"struct HidReport{this.report}");
+            string fooname;
+            if (string.IsNullOrEmpty(this.report.Name))
+            {
+                fooname = $"{ReportName}{this.report}";
+            }
+            else
+            {
+                fooname = this.report.Name;
+            }
+
+            writer.WriteLineIndented($"struct {UniqueStructNameCache.GenerateUniqueName(fooname)}");
+
             writer.WriteLineIndented("{");
 
             using (DisposableIndent indent = writer.CreateDisposableIndent())

@@ -40,7 +40,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
         public Int32 LogicalMaximum { get; protected set; }
 
         /// <summary>
-        /// Gets or sets the 'name' of this item.
+        /// Gets or sets the 'name' of this module.
         /// </summary>
         public string Name { get; protected set; }
 

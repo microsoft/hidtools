@@ -15,8 +15,8 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         // Unique report ids for across all Output reports.
         private static List<int> uniqueReportIds = new List<int>();
 
-        private OutputReportTag(IdTag id, List<IModuleGeneratorTag> items, KeyValuePair<string, object> rawTag)
-            : base(id, items, rawTag)
+        private OutputReportTag(IdTag id, NameTag name, List<IModuleGeneratorTag> items, KeyValuePair<string, object> rawTag)
+            : base(id, name, items, rawTag)
         {
         }
 
@@ -36,7 +36,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 
             var parsed = BaseReportTag.TryParseInternal(rawTag);
 
-            return new OutputReportTag(parsed.id, parsed.items, rawTag);
+            return new OutputReportTag(parsed.id, parsed.name, parsed.items, rawTag);
         }
 
         /// <inheritdoc/>

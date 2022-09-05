@@ -20,7 +20,8 @@ namespace HidEngineTest
             Settings.GetInstance(true);
 
             // Cleans-up any modification made to the global UniqueNameCache.
-            UniqueNameCache.Reset();
+            UniqueMemberNameCache.Reset();
+            UniqueStructNameCache.Reset();
 
             CppEnum.Reset();
         }

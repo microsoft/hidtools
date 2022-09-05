@@ -119,7 +119,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
                 uniqueCache.Add(foundEnum);
 
                 // Ensure all enums are named uniquely.
-                foundEnum.NameIdSuffix = UniqueNameCache.GenerateUniqueNameSuffix(foundEnum.Name);
+                foundEnum.NameIdSuffix = UniqueMemberNameCache.GenerateUniqueNameSuffix(foundEnum.Name);
             }
 
             return foundEnum;
