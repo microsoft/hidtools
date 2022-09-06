@@ -138,6 +138,9 @@
   <data name="ExceptionDescriptorCollectionModuleNoItems" xml:space="preserve">
     <value>Must contain at least 1 item</value>
   </data>
+  <data name="ExceptionDescriptorCollectionOnlyPaddingItemsEncountered" xml:space="preserve">
+    <value>Only paddingItem(s) encountered in Collection.  Collection must contain at least 1 non-padding item to be valid.</value>
+  </data>
   <data name="ExceptionDescriptorCouldNotCalculateLogicalRange" xml:space="preserve">
     <value>Could not calculate bits required for logical range [{0}, {1}]</value>
   </data>

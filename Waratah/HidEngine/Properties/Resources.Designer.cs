@@ -124,6 +124,15 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only paddingItem(s) encountered in Collection.  Collection must contain at least 1 non-padding item to be valid..
+        /// </summary>
+        internal static string ExceptionDescriptorCollectionOnlyPaddingItemsEncountered {
+            get {
+                return ResourceManager.GetString("ExceptionDescriptorCollectionOnlyPaddingItemsEncountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Could not calculate bits required for logical range [{0}, {1}].
         /// </summary>
         internal static string ExceptionDescriptorCouldNotCalculateLogicalRange {

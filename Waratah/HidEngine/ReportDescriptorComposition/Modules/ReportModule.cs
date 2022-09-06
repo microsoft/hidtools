@@ -470,7 +470,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 
         /// <summary>
         /// Validates that this ReportModule doesn't contain 'only' paddingItems, as otherwise what's the point
-        /// of the Report!
+        /// of the Report!.
         /// </summary>
         private void ValidateDoesNotContainOnlyPaddingModules()
         {

@@ -270,12 +270,13 @@ namespace HidEngineTest.ReportDescriptorComposition
             }
         }
 
+        /// <summary>
+        /// Report cannot contain only paddingItems, must contain at least 1 item with a usage.
+        /// Because, otherwise, what's the point on the Report!
+        /// </summary>
         [TestMethod]
-        public void ReportCannotContainOnlyPaddingModules()
+        public void CannotContainOnlyPaddingModules()
         {
-            // Report cannot contain only paddingItems, must contain at least 1 item with a usage.
-            // Because, otherwise, what's the point on the Report!
-
             string nonDecoratedTomlDoc = @"
                 [[applicationCollection]]
                 usage = ['Generic Desktop', 'Keyboard']

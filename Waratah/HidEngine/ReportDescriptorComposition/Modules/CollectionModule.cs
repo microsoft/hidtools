@@ -89,6 +89,8 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             this.Children = children;
 
             this.Usage = usage ?? throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorModuleNoUsage);
+
+            this.ValidateDoesNotContainOnlyPaddingModules();
         }
 
         /// <summary>
@@ -229,6 +231,19 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             }
 
             return descriptorItems;
+        }
+
+        private void ValidateDoesNotContainOnlyPaddingModules()
+        {
+            foreach (BaseElementModule module in this.GetReportElements())
+            {
+                if (!(module is PaddingModule))
+                {
+                    return;
+                }
+            }
+
+            throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorCollectionOnlyPaddingItemsEncountered);
         }
     }
 }

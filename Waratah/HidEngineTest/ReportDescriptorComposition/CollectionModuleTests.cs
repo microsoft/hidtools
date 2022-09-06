@@ -3,10 +3,10 @@
 
 namespace HidEngineTest.ReportDescriptorComposition
 {
-    using Microsoft.HidTools.HidEngine;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
     using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
     using Microsoft.HidTools.HidSpecification;
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using System.Collections.Generic;
@@ -91,6 +91,28 @@ namespace HidEngineTest.ReportDescriptorComposition
 
                 CollectionAssert.AreEqual(foundReportItemCountValue, new uint[] { 3, 2 });
             }
+        }
+
+        /// <summary>
+        /// Report cannot contain only paddingItems, must contain at least 1 item with a usage.
+        /// Because, otherwise, what's the point on the Report!
+        /// </summary>
+        [TestMethod]
+        public void CannotContainOnlyPaddingModules()
+        {
+            string nonDecoratedTomlDoc = @"
+                [[applicationCollection]]
+                usage = ['Generic Desktop', 'Mouse']
+
+                    [[applicationCollection.inputReport]]
+
+                        [[applicationCollection.inputReport.physicalCollection]]
+                        usage = ['Generic Desktop', 'Pointer']
+
+                            [[applicationCollection.inputReport.physicalCollection.paddingItem]]
+                            sizeInBits = 4";
+
+            Assert.ThrowsException<TomlGenericException>(() => TomlDocumentParser.TryParseReportDescriptor(nonDecoratedTomlDoc));
         }
     }
 }
