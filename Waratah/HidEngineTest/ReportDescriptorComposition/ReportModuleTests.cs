@@ -97,13 +97,17 @@ namespace HidEngineTest.ReportDescriptorComposition
 
                         [[applicationCollection.inputReport]]
 
+                            [[applicationCollection.inputReport.variableItem]]
+                            usage = ['Button', 'Button 1']
+                            sizeInBits = 8
+
                             [[applicationCollection.inputReport.paddingItem]]
                             sizeInBits = 4
 
                             [[applicationCollection.inputReport.paddingItem]]
                             sizeInBits = 4";
 
-                ValidateModuleSizes(nonDecoratedTomlDoc, 8);
+                ValidateModuleSizes(nonDecoratedTomlDoc, 8, 8);
             }
 
             // No combination possible. (only a single paddingModule).
@@ -114,10 +118,14 @@ namespace HidEngineTest.ReportDescriptorComposition
 
                         [[applicationCollection.inputReport]]
 
+                            [[applicationCollection.inputReport.variableItem]]
+                            usage = ['Button', 'Button 1']
+                            sizeInBits = 8
+
                             [[applicationCollection.inputReport.paddingItem]]
                             sizeInBits = 8";
 
-                ValidateModuleSizes(nonDecoratedTomlDoc, 8);
+                ValidateModuleSizes(nonDecoratedTomlDoc, 8, 8);
             }
 
             // Can be combined, including 3bit paddingModule auto-added to ensure byte-alignment.
@@ -128,6 +136,10 @@ namespace HidEngineTest.ReportDescriptorComposition
 
                         [[applicationCollection.inputReport]]
 
+                            [[applicationCollection.inputReport.variableItem]]
+                            usage = ['Button', 'Button 1']
+                            sizeInBits = 8
+
                             [[applicationCollection.inputReport.paddingItem]]
                             sizeInBits = 7
 
@@ -135,7 +147,7 @@ namespace HidEngineTest.ReportDescriptorComposition
                             sizeInBits = 6";
 
                 // Extra bits added at end for report byte-alignment.
-                ValidateModuleSizes(nonDecoratedTomlDoc, 16);
+                ValidateModuleSizes(nonDecoratedTomlDoc, 8, 16);
             }
 
             // Can't be combined, as each field must be <= 32bits.
@@ -146,6 +158,10 @@ namespace HidEngineTest.ReportDescriptorComposition
 
                         [[applicationCollection.inputReport]]
 
+                            [[applicationCollection.inputReport.variableItem]]
+                            usage = ['Button', 'Button 1']
+                            sizeInBits = 8
+
                             [[applicationCollection.inputReport.paddingItem]]
                             sizeInBits = 31
 
@@ -153,7 +169,7 @@ namespace HidEngineTest.ReportDescriptorComposition
                             sizeInBits = 9";
 
                 // Extra bits added at end for report byte-alignment.
-                ValidateModuleSizes(nonDecoratedTomlDoc, 31, 9);
+                ValidateModuleSizes(nonDecoratedTomlDoc, 8, 31, 9);
             }
         }
 
@@ -252,6 +268,24 @@ namespace HidEngineTest.ReportDescriptorComposition
             {
                 Assert.AreEqual(moduleSizes[i], descriptor.ApplicationCollections[0].Reports[0].GetReportElements()[i].TotalSizeInBits);
             }
+        }
+
+        [TestMethod]
+        public void ReportCannotContainOnlyPaddingModules()
+        {
+            // Report cannot contain only paddingItems, must contain at least 1 item with a usage.
+            // Because, otherwise, what's the point on the Report!
+
+            string nonDecoratedTomlDoc = @"
+                [[applicationCollection]]
+                usage = ['Generic Desktop', 'Keyboard']
+
+                    [[applicationCollection.inputReport]]
+
+                        [[applicationCollection.inputReport.paddingItem]]
+                        sizeInBits = 8";
+
+            Assert.ThrowsException<TomlGenericException>(() => TomlDocumentParser.TryParseReportDescriptor(nonDecoratedTomlDoc));
         }
     }
 }

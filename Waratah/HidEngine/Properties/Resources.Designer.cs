@@ -250,6 +250,15 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Only paddingItem(s) encountered in Report.  Report must contain at least 1 non-padding item to be valid..
+        /// </summary>
+        internal static string ExceptionDescriptorReportOnlyPaddingItemsEncountered {
+            get {
+                return ResourceManager.GetString("ExceptionDescriptorReportOnlyPaddingItemsEncountered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unexpected module uncountered.
         /// </summary>
         internal static string ExceptionDescriptorReportUnexpectedModuleEncountered {

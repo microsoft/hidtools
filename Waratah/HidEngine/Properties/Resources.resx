@@ -180,6 +180,9 @@
   <data name="ExceptionDescriptorReportModuleNoItems" xml:space="preserve">
     <value>Report empty, must contain at least 1 item</value>
   </data>
+  <data name="ExceptionDescriptorReportOnlyPaddingItemsEncountered" xml:space="preserve">
+    <value>Only paddingItem(s) encountered in Report.  Report must contain at least 1 non-padding item to be valid.</value>
+  </data>
   <data name="ExceptionDescriptorReportUnexpectedModuleEncountered" xml:space="preserve">
     <value>Unexpected module uncountered</value>
   </data>

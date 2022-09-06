@@ -177,6 +177,8 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             this.PadReportToByteAlign();
 
             this.CombineContiguousPaddingModules();
+
+            this.ValidateDoesNotContainOnlyPaddingModules();
         }
 
         /// <summary>
@@ -464,6 +466,23 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 
             // Requested 'beforeModule' was not a child of it's reported parent.
             throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorReportUnexpectedModuleEncountered);
+        }
+
+        /// <summary>
+        /// Validates that this ReportModule doesn't contain 'only' paddingItems, as otherwise what's the point
+        /// of the Report!
+        /// </summary>
+        private void ValidateDoesNotContainOnlyPaddingModules()
+        {
+            foreach (BaseElementModule module in this.GetReportElements())
+            {
+                if (!(module is PaddingModule))
+                {
+                    return;
+                }
+            }
+
+            throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorReportOnlyPaddingItemsEncountered);
         }
     }
 }
