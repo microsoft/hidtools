@@ -13,7 +13,7 @@
     <copyright>$copyright$</copyright>
     <tags>HID Human Interface Device descriptor</tags>
     <dependencies>
-      <dependency id="Microsoft.HidTools.HidSpecification" version="1.0.0" />
+      <dependency id="Microsoft.HidTools.HidSpecification" version="1.1.0" />
     </dependencies>
     <repository type="git" url="https://github.com/microsoft/hidtools/tree/main/Waratah/HidEngine" />
   </metadata>
