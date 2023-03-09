@@ -117,7 +117,10 @@ namespace Microsoft.HidTools.HidSpecification
 
                 if (string.IsNullOrEmpty(AlternativeHidUsageTablesFilePath))
                 {
-                    filePath = EmbeddedUsageTablesFilePath;
+                    // It's expected there will only ever be a single embedded .PDF, which will be the most recent HUT.
+                    // Note: The name of this file is 'unknown' here, and is instead determine by the build property.
+
+                    filePath = Assembly.GetExecutingAssembly().GetManifestResourceNames().Where(x => x.EndsWith("pdf")).First();
                     fileStream = Assembly.GetExecutingAssembly().GetManifestResourceStream(filePath);
                 }
                 else
