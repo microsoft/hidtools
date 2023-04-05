@@ -4,7 +4,6 @@
 namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 {
     using System.Collections.Generic;
-    using System.Linq;
     using Microsoft.HidTools.HidEngine.Properties;
     using Microsoft.HidTools.HidEngine.ReportDescriptorItems;
     using Microsoft.HidTools.HidSpecification;
@@ -113,6 +112,14 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
         public bool IsCanBeDescriptorCombined()
         {
             // Count must be 1 to be considered for combination.
+            //
+            // hid_11:6.2.2.8 "Local Items" - "While Local items do not carry over to the next Main item,
+            // they may apply to more than one control within a single item. For example, if an Input item defining
+            // five controls is preceded by three Usage tags, the three usages would be assigned sequentially to the
+            // first three controls, and the third usage would also be assigned to the fourth and fifth controls."
+            //
+            // i.e. Cannot combine modules with ReportCount > 1 as HID parsers will attribute
+            // the last Usage with the 'balance' of ReportCount.
             return this.Count == 1;
         }
 
@@ -123,8 +130,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
         /// <returns>Bool indicating whether combination is possible.</returns>
         public bool IsCanBeDescriptorCombined(VariableModule other)
         {
-            // Can only be descriptor-combined if this corresponds to a single field.
-            bool isCanBeCombined = (other.IsCanBeDescriptorCombined() == this.IsCanBeDescriptorCombined());
+            bool isCanBeCombined = (other.IsCanBeDescriptorCombined() && this.IsCanBeDescriptorCombined());
 
             // Validate all other fields are the same, except for UsageId; where it being different is the whole point...
             bool isSameUsagePage = (other.Usage.Page.Id == this.Usage.Page.Id);
