@@ -288,5 +288,52 @@ namespace HidEngineTest.ReportDescriptorComposition
 
             Assert.ThrowsException<TomlGenericException>(() => TomlDocumentParser.TryParseReportDescriptor(nonDecoratedTomlDoc));
         }
+
+
+        /// <summary>
+        /// Modules will be combined when all fields are identical (and ReportCount == 1).  This reduces the number of descriptor items.
+        /// The combined module will have all the same fields, except, multiple UsageIds and enlarged ReportCount
+        /// </summary>
+        [TestMethod]
+        public void OptimizedReportsCombineFields()
+        {
+            // Two VariableModules with ReportCount==1, preceed VariableModule with ReportCount==4
+            // First two VariableModules will be combined.
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                VariableModule variable1 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 1"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable2 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 2"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable3 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 3"), 4, logicalRange, null, null, null, null, null, string.Empty, report);
+
+                report.Initialize(1, string.Empty, new List<BaseModule> { variable1, variable2, variable3 });
+
+                List<ShortItem> generatedItems = report.GenerateDescriptorItems(true);
+
+                uint[] foundReportItemCountValue = generatedItems.Where(x => x is ReportCountItem).Select(x => ((ReportCountItem)x).Count).ToArray();
+
+                CollectionAssert.AreEqual(foundReportItemCountValue, new uint[] { 2, 4 });
+            }
+
+            // Two VariableModules with ReportCount==1, after VariableModule with ReportCount==4
+            // Last two VariableModules will be combined.
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                VariableModule variable1 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 1"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable2 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 2"), 1, logicalRange, null, null, null, null, null, string.Empty, report);
+                VariableModule variable3 = new VariableModule(HidUsageTableDefinitions.GetInstance().TryFindUsageId("Ordinal", "Instance 3"), 4, logicalRange, null, null, null, null, null, string.Empty, report);
+
+                report.Initialize(1, string.Empty, new List<BaseModule> { variable3, variable1, variable2 });
+
+                List<ShortItem> generatedItems = report.GenerateDescriptorItems(true);
+
+                uint[] foundReportItemCountValue = generatedItems.Where(x => x is ReportCountItem).Select(x => ((ReportCountItem)x).Count).ToArray();
+
+                CollectionAssert.AreEqual(foundReportItemCountValue, new uint[] { 4, 2 });
+            }
+        }
     }
 }

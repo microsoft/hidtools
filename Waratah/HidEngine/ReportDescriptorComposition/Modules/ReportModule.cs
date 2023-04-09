@@ -143,10 +143,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             // Always safe to convert to UInt32, as previous checks prevent -ve values.
             descriptorItems.Add(new ReportIdItem(Convert.ToUInt32(this.Id)));
 
-            foreach (BaseModule item in this.Children)
-            {
-                descriptorItems.AddRange(item.GenerateDescriptorItems(optimize));
-            }
+            descriptorItems.AddRange(this.GenerateChildDescriptorItems(optimize));
 
             return descriptorItems;
         }
@@ -179,6 +176,58 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             this.CombineContiguousPaddingModules();
 
             this.ValidateDoesNotContainOnlyPaddingModules();
+        }
+
+        private List<ShortItem> GenerateChildDescriptorItems(bool optimize)
+        {
+            List<ShortItem> childDescriptorItems = new List<ShortItem>();
+
+            if (optimize)
+            {
+                // Proactively perform an optimization here to descriptor-combine VariableModules at the same level in this Report.
+
+                List<VariableModule> combinableVariableModules = new List<VariableModule>();
+                foreach (BaseModule childModule in this.Children)
+                {
+                    if (childModule is VariableModule castVariableModule)
+                    {
+                        if (castVariableModule.IsDescriptorCombinableWith(combinableVariableModules))
+                        {
+                            combinableVariableModules.Add(castVariableModule);
+                        }
+                        else
+                        {
+                            // This VariableModule can't be descriptor-combined.
+                            // Generate items for all known descriptor-combinable VariableModules, and then restart the process again.
+                            childDescriptorItems.AddRange(VariableModule.GenerateDescriptorItemsForCombinable(combinableVariableModules));
+                            combinableVariableModules.Clear();
+
+                            combinableVariableModules.Add(castVariableModule);
+                        }
+                    }
+                    else
+                    {
+                        // This module can't be descriptor-combined.
+                        // Generate items for all known descriptor-combinable VariableModules, and then restart the process again.
+                        childDescriptorItems.AddRange(VariableModule.GenerateDescriptorItemsForCombinable(combinableVariableModules));
+                        combinableVariableModules.Clear();
+
+                        childDescriptorItems.AddRange(childModule.GenerateDescriptorItems(true));
+                    }
+                }
+
+                // Add anything remaining in the buffer.
+                childDescriptorItems.AddRange(VariableModule.GenerateDescriptorItemsForCombinable(combinableVariableModules));
+            }
+            else
+            {
+                foreach (BaseModule item in this.Children)
+                {
+                    childDescriptorItems.AddRange(item.GenerateDescriptorItems(false));
+                }
+            }
+
+            return childDescriptorItems;
         }
 
         /// <summary>

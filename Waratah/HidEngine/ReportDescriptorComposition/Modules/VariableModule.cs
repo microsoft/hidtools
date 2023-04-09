@@ -54,55 +54,66 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
         /// </summary>
         public HidUsageId Usage { get; }
 
+        /// <summary>
+        /// Combines provided VariableModules, and generates all Descriptor Items to describe the combination.
+        /// </summary>
+        /// <param name="combinableVariableModules">VariableModules to combine and generate items for.</param>
+        /// <returns>List of Items.</returns>
+        public static List<ShortItem> GenerateDescriptorItemsForCombinable(List<VariableModule> combinableVariableModules)
+        {
+            List<ShortItem> descriptorItems = new List<ShortItem>();
+
+            if (combinableVariableModules.Count == 1)
+            {
+                // Always safe to access the first item as we know it's size == 1.
+                descriptorItems.AddRange(combinableVariableModules[0].GenerateDescriptorItems(true));
+            }
+            else if (combinableVariableModules.Count > 1)
+            {
+                List<HidUsageId> combinableUsages = new List<HidUsageId>();
+
+                foreach (VariableModule item in combinableVariableModules)
+                {
+                    combinableUsages.Add(item.Usage);
+                }
+
+                // Always safe to access the first item as we know it's size > 0.
+                descriptorItems.AddRange(combinableVariableModules[0].GenerateDescriptorItems(combinableUsages, combinableVariableModules.Count));
+            }
+
+            return descriptorItems;
+        }
+
+        /// <summary>
+        /// Whether this VariableModule is combinable with every module is the provided list.
+        /// </summary>
+        /// <param name="combinableVariableModules">Modules to test this module is combinable with.</param>
+        /// <returns>Whether this VariableModule is combinable.</returns>
+        public bool IsDescriptorCombinableWith(List<VariableModule> combinableVariableModules)
+        {
+            // Nothing in the buffer to combine with.
+            if (combinableVariableModules.Count == 0)
+            {
+                return this.IsCanBeDescriptorCombined();
+            }
+
+            // Validate it can be combined will all other VariableModules in the buffer.
+            // Note: Should only really need to validate against 1 of them as the combinable property (should be) transitive.
+            bool isCanBeCombined = true;
+            foreach (VariableModule combinableItem in combinableVariableModules)
+            {
+                isCanBeCombined &= combinableItem.IsCanBeDescriptorCombined(this);
+            }
+
+            return isCanBeCombined;
+        }
+
         /// <inheritdoc/>
         public override List<ShortItem> GenerateDescriptorItems(bool optimize)
         {
             /// This is just a specialization of the more generic <see cref="GenerateDescriptorItems(List{HidUsageId}, int)"/>,
             /// where only 1 (i.e. this) Usage exists.
             return this.GenerateDescriptorItems(new List<HidUsageId> { this.Usage }, this.Count);
-        }
-
-        /// <summary>
-        /// When variable module have all the same attributes (e.g. LogicalMaximum, Size, etc...),
-        /// they can (and should) be combined together to proactively save descriptor space and increase brevity.<br/>
-        /// <code>
-        /// UsagePage(...)<br/>
-        /// UsageId(...)<br/>
-        /// UsageId(...)<br/>
-        /// UsageId(...)<br/>
-        /// LogicalMaximum(...)<br/>
-        /// ReportCount(...)<br/>
-        /// ReportSize(...)<br/>
-        /// Input(...)<br/>
-        /// </code>
-        /// </summary>
-        /// <param name="combineUsages">Usages to combine together into a variable item.</param>
-        /// <param name="combinedReportCount">Combined ReportCount for this item.</param>
-        /// <returns>List of HID Report Items describing this <see cref="VariableModule"/>.</returns>
-        public List<ShortItem> GenerateDescriptorItems(List<HidUsageId> combineUsages, int combinedReportCount)
-        {
-            List<ShortItem> descriptorItems = new List<ShortItem>();
-
-            descriptorItems.Add(new UsagePageItem(this.Usage.Page.Id));
-
-            // Combine all the UsageIds together.
-            foreach (HidUsageId usage in combineUsages)
-            {
-                descriptorItems.Add(new UsageItem(usage.Page.Id, usage.Id, false));
-            }
-
-            int cachedCount = this.Count;
-
-            // Temporarily set the base Count to the # items that are being combined.
-            // This allows the existing generation logic to work.
-            this.Count = combinedReportCount;
-
-            descriptorItems.AddRange(this.GenerateReportDataVariableItems(HidConstants.MainDataItemGroupingKind.Variable));
-
-            // Restore previous count.
-            this.Count = cachedCount;
-
-            return descriptorItems;
         }
 
         /// <summary>
@@ -120,7 +131,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             //
             // i.e. Cannot combine modules with ReportCount > 1 as HID parsers will attribute
             // the last Usage with the 'balance' of ReportCount.
-            return this.Count == 1;
+            return (this.Count == 1);
         }
 
         /// <summary>
@@ -161,6 +172,49 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
                 isSameUsageUnitMultiplier &&
                 isSameReportType &&
                 isSameModuleFlags;
+        }
+
+        /// <summary>
+        /// When variable module have all the same attributes (e.g. LogicalMaximum, Size, etc...),
+        /// they can (and should) be combined together to proactively save descriptor space and increase brevity.<br/>
+        /// <code>
+        /// UsagePage(...)<br/>
+        /// UsageId(...)<br/>
+        /// UsageId(...)<br/>
+        /// UsageId(...)<br/>
+        /// LogicalMaximum(...)<br/>
+        /// ReportCount(...)<br/>
+        /// ReportSize(...)<br/>
+        /// Input(...)<br/>
+        /// </code>
+        /// </summary>
+        /// <param name="combinableUsages">Usages to combine together into a variable item.</param>
+        /// <param name="combinedReportCount">Combined ReportCount for this item.</param>
+        /// <returns>List of HID Report Items describing this <see cref="VariableModule"/>.</returns>
+        private List<ShortItem> GenerateDescriptorItems(List<HidUsageId> combinableUsages, int combinedReportCount)
+        {
+            List<ShortItem> descriptorItems = new List<ShortItem>();
+
+            descriptorItems.Add(new UsagePageItem(this.Usage.Page.Id));
+
+            // Combine all the UsageIds together.
+            foreach (HidUsageId usage in combinableUsages)
+            {
+                descriptorItems.Add(new UsageItem(usage.Page.Id, usage.Id, false));
+            }
+
+            int cachedCount = this.Count;
+
+            // Temporarily set the base Count to the # items that are being combined.
+            // This allows the existing generation logic to work.
+            this.Count = combinedReportCount;
+
+            descriptorItems.AddRange(this.GenerateReportDataVariableItems(HidConstants.MainDataItemGroupingKind.Variable));
+
+            // Restore previous count.
+            this.Count = cachedCount;
+
+            return descriptorItems;
         }
     }
 }

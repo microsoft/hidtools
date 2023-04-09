@@ -192,7 +192,7 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
             IOrderedEnumerable<ReportModule> orderedReports = reports.ToList().OrderBy(x => x.Id).ThenBy(x => x.Kind);
 
             // Note: ConsoleTable requires initialization by "ConsoleTable.From" for alignment setting to apply.
-            var summaryTableRows = orderedReports.Select(x => new { ReportId = x.Id, Kind = x.Kind.ToString(), ReportSizeInBits = x.TotalSizeInBits });
+            var summaryTableRows = orderedReports.Select(x => new { ReportId = x.Id, Kind = x.Kind.ToString(), ReportSizeInBytes = x.TotalSizeInBits / 8 });
             string summaryTableText = ConsoleTable.From(summaryTableRows).Configure(o => o.NumberAlignment = Alignment.Right).ToStringAlternative();
 
             summary.Append(summaryTableText);

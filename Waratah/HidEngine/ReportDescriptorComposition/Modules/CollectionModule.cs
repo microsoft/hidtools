@@ -144,35 +144,40 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 
             if (optimize)
             {
-                // Proactively perform an optimization here to descriptor-combine VariableItems at the same level in this collection.
+                // Proactively perform an optimization here to descriptor-combine VariableModules at the same level in this Collection.
 
-                List<VariableModule> combinableItemsBuffer = new List<VariableModule>();
-                foreach (BaseModule item in this.Children)
+                List<VariableModule> combinableVariableModules = new List<VariableModule>();
+                foreach (BaseModule childModule in this.Children)
                 {
-                    if (this.IsCanBeDescriptorCombinedWithPrevious(item, combinableItemsBuffer))
+                    if (childModule is VariableModule castVariableModule)
                     {
-                        combinableItemsBuffer.Add((VariableModule)(item));
-                    }
-                    else
-                    {
-                        // This item can't be descriptor-combined.
-                        // Add any known descriptor-combin'able items, and then restart the process again.
-                        childDescriptorItems.AddRange(this.GenerateDescriptorItemsForCombinableVariableItems(optimize, combinableItemsBuffer));
-                        combinableItemsBuffer.Clear();
-
-                        if (item is VariableModule castModule)
+                        if (castVariableModule.IsDescriptorCombinableWith(combinableVariableModules))
                         {
-                            combinableItemsBuffer.Add(castModule);
+                            combinableVariableModules.Add(castVariableModule);
                         }
                         else
                         {
-                            childDescriptorItems.AddRange(item.GenerateDescriptorItems(false));
+                            // This VariableModule can't be descriptor-combined.
+                            // Generate items for all known descriptor-combinable VariableModules, and then restart the process again.
+                            childDescriptorItems.AddRange(VariableModule.GenerateDescriptorItemsForCombinable(combinableVariableModules));
+                            combinableVariableModules.Clear();
+
+                            combinableVariableModules.Add(castVariableModule);
                         }
+                    }
+                    else
+                    {
+                        // This module can't be descriptor-combined.
+                        // Generate items for all known descriptor-combinable VariableModules, and then restart the process again.
+                        childDescriptorItems.AddRange(VariableModule.GenerateDescriptorItemsForCombinable(combinableVariableModules));
+                        combinableVariableModules.Clear();
+
+                        childDescriptorItems.AddRange(childModule.GenerateDescriptorItems(true));
                     }
                 }
 
                 // Add anything remaining in the buffer.
-                childDescriptorItems.AddRange(this.GenerateDescriptorItemsForCombinableVariableItems(optimize, combinableItemsBuffer));
+                childDescriptorItems.AddRange(VariableModule.GenerateDescriptorItemsForCombinable(combinableVariableModules));
             }
             else
             {
@@ -183,54 +188,6 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
             }
 
             return childDescriptorItems;
-        }
-
-        private bool IsCanBeDescriptorCombinedWithPrevious(BaseModule item, List<VariableModule> combinableItemsBuffer)
-        {
-            if (item is VariableModule castModule)
-            {
-                // Nothing in the buffer to combine with.
-                if (combinableItemsBuffer.Count == 0)
-                {
-                    return castModule.IsCanBeDescriptorCombined();
-                }
-
-                // Validate it can be combined will all other items in the buffer.
-                // Note: should only really need to validate against 1 of them and the combinable property is transitive.
-                bool isCanBeCombined = true;
-                foreach (VariableModule combinableItem in combinableItemsBuffer)
-                {
-                    isCanBeCombined &= combinableItem.IsCanBeDescriptorCombined(castModule);
-                }
-
-                return isCanBeCombined;
-            }
-
-            return false;
-        }
-
-        private List<ShortItem> GenerateDescriptorItemsForCombinableVariableItems(bool optimize, List<VariableModule> combinableItemsBuffer)
-        {
-            List<ShortItem> descriptorItems = new List<ShortItem>();
-
-            if (combinableItemsBuffer.Count == 1)
-            {
-                descriptorItems.AddRange(combinableItemsBuffer[0].GenerateDescriptorItems(optimize));
-            }
-            else if (combinableItemsBuffer.Count >= 1)
-            {
-                List<HidUsageId> combinableUsages = new List<HidUsageId>();
-
-                foreach (VariableModule item in combinableItemsBuffer)
-                {
-                    combinableUsages.Add(item.Usage);
-                }
-
-                // Always safe to access the first item as we know it's size > 0.
-                descriptorItems.AddRange(combinableItemsBuffer[0].GenerateDescriptorItems(combinableUsages, combinableItemsBuffer.Count));
-            }
-
-            return descriptorItems;
         }
 
         private void ValidateDoesNotContainOnlyPaddingModules()
