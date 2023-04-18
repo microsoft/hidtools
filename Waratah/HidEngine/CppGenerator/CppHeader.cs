@@ -40,21 +40,18 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             CppDescriptor cppDescriptor = new CppDescriptor(this.descriptor);
             cppDescriptor.GenerateCpp(writer);
 
-            if (Settings.GetInstance().PackingInBytes.HasValue)
+            writer.WriteLineIndented("#pragma pack(push,1)");
+            writer.WriteBlankLine();
+
+            foreach (ApplicationCollectionModule ac in this.descriptor.ApplicationCollections)
             {
-                writer.WriteLineIndented("#pragma pack(push,1)");
-                writer.WriteBlankLine();
-
-                foreach (ApplicationCollectionModule ac in this.descriptor.ApplicationCollections)
+                foreach (ReportModule report in ac.Reports)
                 {
-                    foreach (ReportModule report in ac.Reports)
-                    {
-                        new CppStruct(report).GenerateCpp(writer);
-                    }
+                    new CppStruct(report).GenerateCpp(writer);
                 }
-
-                writer.WriteLineIndented("#pragma pack(pop)");
             }
+
+            writer.WriteLineIndented("#pragma pack(pop)");
 
             return writer.Generate();
         }

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="CppGenerator\CppStructMemberEnumTests.cs" />
     <Compile Include="CppGenerator\CppStructMemberSimpleTests.cs" />
+    <Compile Include="CppGenerator\CppStructMemberArrayTests.cs" />
     <Compile Include="HidUnitDefinitionsTests.cs" />
     <Compile Include="HidUnitTests.cs" />
     <Compile Include="ReportDescriptorComposition\BaseElementModuleTests.cs" />

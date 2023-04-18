@@ -35,9 +35,16 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             this.Members = new List<ICppGenerator>();
             this.Members.Add(new CppStructMemberSimple(this.report));
 
-            foreach (BaseElementModule module in report.GetReportElements())
+            if (Settings.GetInstance().PackingInBytes.HasValue)
             {
-                this.Members.AddRange(ParseFromModule(module));
+                foreach (BaseElementModule module in report.GetReportElements())
+                {
+                    this.Members.AddRange(ParseFromModule(module));
+                }
+            }
+            else
+            {
+                this.Members.Add(new CppStructMemberArray(this.report));
             }
         }
 
@@ -78,17 +85,17 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// </example>
         public void GenerateCpp(IndentedWriter writer)
         {
-            string fooname;
+            string tempName;
             if (string.IsNullOrEmpty(this.report.Name))
             {
-                fooname = $"{ReportName}{this.report}";
+                tempName = $"{ReportName}{this.report}";
             }
             else
             {
-                fooname = this.report.Name;
+                tempName = this.report.Name;
             }
 
-            writer.WriteLineIndented($"struct {UniqueStructNameCache.GenerateUniqueName(fooname)}");
+            writer.WriteLineIndented($"struct {UniqueStructNameCache.GenerateUniqueName(tempName)}");
 
             writer.WriteLineIndented("{");
 

@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CppGenerator\CppStructMemberArray.cs" />
     <Compile Include="CppGenerator\CppDescriptor.cs" />
     <Compile Include="CppGenerator\CppEnum.cs" />
     <Compile Include="CppGenerator\CppFieldPrimativeDataTypeExtension.cs" />

@@ -10,7 +10,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
     using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
-    /// Describies a simple struct member (i.e. discrete type.)
+    /// Describes a simple struct member (i.e. discrete type.)
     /// </summary>
     public class CppStructMemberSimple : ICppGenerator
     {
