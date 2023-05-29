@@ -5,6 +5,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 {
     using System;
     using System.Collections.Generic;
+    using System.Runtime.InteropServices;
     using Microsoft.HidTools.HidEngine.Properties;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
@@ -34,6 +35,41 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             this.ReportFlags = reportFlags;
             this.Name = name;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ArrayItemTag"/> class.
+        /// Can only be instantiated via <see cref="TryParse(KeyValuePair{string, object})"/>.
+        /// </summary>
+        private ArrayItemTag(
+            UsagesTag usages,
+            CountTag count,
+            ReportFlagsTag reportFlags,
+            NameTag name,
+            KeyValuePair<string, object> rawTag)
+            : base(rawTag)
+        {
+            this.Usages = usages;
+            this.Count = count;
+            this.ReportFlags = reportFlags;
+            this.Name = name;
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether Usages or UsageRange is non-null.
+        /// </summary>
+        public bool IsRange
+        {
+            get
+            {
+                return this.UsageRange != null;
+            }
+        }
+
+        /// <summary>
+        /// Gets the associated Usages for the ArrayItem.
+        /// Will be null when <see cref="IsRange"/> is true.
+        /// </summary>
+        public UsagesTag Usages { get; }
 
         /// <summary>
         /// Gets the associated UsageRange for the ArrayItem.
@@ -70,6 +106,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             }
 
             UsageRangeTag usageRange = null;
+            UsagesTag usages = null;
             CountTag count = null;
             ReportFlagsTag reportFlags = null;
             NameTag name = null;
@@ -77,6 +114,16 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             Dictionary<string, object> children = ((Dictionary<string, object>[])rawTag.Value)[0];
             foreach (KeyValuePair<string, object> child in children)
             {
+                if (usages == null)
+                {
+                    usages = UsagesTag.TryParse(child, typeof(ArrayItemTag));
+
+                    if (usages != null)
+                    {
+                        continue;
+                    }
+                }
+
                 if (usageRange == null)
                 {
                     usageRange = UsageRangeTag.TryParse(child, typeof(ArrayItemTag));
@@ -120,12 +167,22 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                 throw new TomlInvalidLocationException(child, rawTag);
             }
 
-            if (usageRange == null)
+            if (usageRange != null && usages == null)
             {
-                throw new TomlGenericException(Resources.ExceptionTomlArrayItemMissingUsageRangeTag, rawTag);
+                return new ArrayItemTag(usageRange, count, reportFlags, name, rawTag);
             }
-
-            return new ArrayItemTag(usageRange, count, reportFlags, name, rawTag);
+            else if (usageRange == null && usages != null)
+            {
+                return new ArrayItemTag(usages, count, reportFlags, name, rawTag);
+            }
+            else if (usageRange == null && usages == null)
+            {
+                throw new TomlGenericException(Resources.ExceptionTomlArrayItemMissingUsageRangeUsagesTag, rawTag);
+            }
+            else
+            {
+                throw new TomlGenericException(Resources.ExceptionTomlArrayItemCannotSpecifyUsageRangeAndUsagesTag, rawTag);
+            }
         }
 
         /// <inheritdoc/>
@@ -133,13 +190,26 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         {
             try
             {
-                ArrayModule module = new ArrayModule(
-                    this.UsageRange.UsageStart,
-                    this.UsageRange.UsageEnd,
-                    this.Count?.Value,
-                    this.ReportFlags?.Value,
-                    this.Name?.Value,
-                    parent);
+                ArrayModule module = null;
+                if (this.IsRange)
+                {
+                    module = new ArrayModule(
+                        this.UsageRange.UsageStart,
+                        this.UsageRange.UsageEnd,
+                        this.Count?.Value,
+                        this.ReportFlags?.Value,
+                        this.Name?.Value,
+                        parent);
+                }
+                else
+                {
+                    module = new ArrayModule(
+                        this.Usages.Usages,
+                        this.Count?.Value,
+                        this.ReportFlags?.Value,
+                        this.Name?.Value,
+                        parent);
+                }
 
                 return module;
             }

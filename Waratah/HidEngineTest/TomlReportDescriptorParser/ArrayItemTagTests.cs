@@ -25,18 +25,36 @@ namespace HidEngineTest.TomlReportDescriptorParser
         [TestMethod]
         public void SimpleTagCreation()
         {
-            string nonDecoratedString = @"
-                [[arrayItem]]
-                    usageRange = ['Button', 'Button 1', 'Button 3']";
+            {
+                string nonDecoratedString = @"
+                    [[arrayItem]]
+                        usageRange = ['Button', 'Button 1', 'Button 3']";
 
-            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
-            TagFinder.Initialize(decoratedTomlDoc);
+                string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+                TagFinder.Initialize(decoratedTomlDoc);
 
-            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+                Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
 
-            ArrayItemTag tag = ArrayItemTag.TryParse(rawTomlTags.ElementAt(0));
-            Assert.IsNotNull(tag);
-            Assert.IsNotNull(tag.UsageRange);
+                ArrayItemTag tag = ArrayItemTag.TryParse(rawTomlTags.ElementAt(0));
+                Assert.IsNotNull(tag);
+                Assert.IsNotNull(tag.UsageRange);
+            }
+
+            {
+                string nonDecoratedString = @"
+                    [[arrayItem]]
+                        usages = [ ['Consumer', 'AL Email Reader'], ['Consumer', 'AL Calculator'] ]";
+
+                string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+                TagFinder.Initialize(decoratedTomlDoc);
+
+                Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+                ArrayItemTag tag = ArrayItemTag.TryParse(rawTomlTags.ElementAt(0));
+                Assert.IsNotNull(tag);
+                Assert.IsNotNull(tag.Usages);
+                Assert.AreEqual(tag.Usages.Usages.Count, 2);
+            }
         }
 
         [TestMethod]

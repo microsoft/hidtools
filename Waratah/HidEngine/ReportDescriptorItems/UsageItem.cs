@@ -46,13 +46,15 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorItems
         /// <inheritdoc/>
         public override string ToString()
         {
+            HidUsageId usage = HidUsageTableDefinitions.GetInstance().TryFindUsageId(this.UsagePage, this.UsageId);
+
             if (this.IsExtended)
             {
-                return $"UsagePage({this.UsagePage}) - UsageId({this.UsageId})";
+                return $"UsagePage({usage.Page}) - UsageId({usage})";
             }
             else
             {
-                return $"UsageId({HidUsageTableDefinitions.GetInstance().TryFindUsageId(this.UsagePage, this.UsageId)})";
+                return $"UsageId({usage})";
             }
         }
 

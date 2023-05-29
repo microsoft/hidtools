@@ -252,8 +252,11 @@
   <data name="ExceptionSettingsSourceFileExtensionUnsupported" xml:space="preserve">
     <value>Cannot parse a non {0} source file</value>
   </data>
-  <data name="ExceptionTomlArrayItemMissingUsageRangeTag" xml:space="preserve">
-    <value>Missing required usageRange key, must specify a usageRange</value>
+  <data name="ExceptionTomlArrayItemCannotSpecifyUsageRangeAndUsagesTag" xml:space="preserve">
+    <value>Cannot specify both 'usageRange' and 'usages' keys</value>
+  </data>
+  <data name="ExceptionTomlArrayItemMissingUsageRangeUsagesTag" xml:space="preserve">
+    <value>Missing required usageRange/usages key, must specify either a usageRange or a usages key.</value>
   </data>
   <data name="ExceptionTomlCannotBeZero" xml:space="preserve">
     <value>Must be a non-zero value</value>
@@ -351,6 +354,9 @@
   <data name="ExceptionTomlUsageRangeInvalidDataType" xml:space="preserve">
     <value>Invalid type. Must be either an array of 3 integers or 3 strings</value>
   </data>
+  <data name="ExceptionTomlUsagesTagInvalidDataType" xml:space="preserve">
+    <value>Invalid type. Must be either an array of 2 integers or 2 strings</value>
+  </data>
   <data name="ExceptionTomlUsageTagInvalid" xml:space="preserve">
     <value>Invalid type. Must be either an array of 2 integers or 2 strings</value>
   </data>
@@ -364,6 +370,6 @@
     <value>Cannot use '{0}'.  Must be an array of two integers</value>
   </data>
   <data name="ExceptionTomlValueRangeInvalidDataType" xml:space="preserve">
-    <value>Invalid type.  Must be either an array of two integers, '{0}' or '{1}'</value>
+    <value>Invalid type.  Must be an array of two integers or '{0}' or '{1}'</value>
   </data>
 </root>

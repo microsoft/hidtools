@@ -6,6 +6,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
     using Microsoft.HidTools.HidSpecification;
 
@@ -29,15 +30,61 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             this.ElementCount = module.Count;
 
             List<string> enumValues = new List<string>();
-            for (ushort i = 0; i <= (module.UsageEnd.Id - module.UsageStart.Id); i++)
+
+            // Explicit name is preferred, but optional.
+            string baseName = string.Empty;
+
+            if (module.IsRange)
             {
-                HidUsageId id = HidUsageTableDefinitions.GetInstance().TryFindUsageId(module.UsageStart.Page.Id, (ushort)(module.UsageStart.Id + i));
+                for (ushort i = 0; i <= (module.UsageEnd.Id - module.UsageStart.Id); i++)
+                {
+                    HidUsageId id = HidUsageTableDefinitions.GetInstance().TryFindUsageId(module.UsageStart.Page.Id, (ushort)(module.UsageStart.Id + i));
 
-                enumValues.Add(id.Name);
+                    enumValues.Add(id.Name);
+                }
+
+                // UsageName is a good back-up as it must always be present.
+                baseName = string.IsNullOrEmpty(module.Name) ? module.UsageStart.Page.Name : module.Name;
             }
+            else
+            {
+                // When all Usages are the same UsagePage, can use the name, otherwise nothing...
+                bool isAllSamePage = true;
+                HidUsagePage firstPage = module.Usages[0].Page;
 
-            // Explicit name is preferred, but optional. UsageName is a good back-up as it must always be present.
-            string baseName = string.IsNullOrEmpty(module.Name) ? module.UsageStart.Page.Name : module.Name;
+                foreach (HidUsageId usage in module.Usages)
+                {
+                    if (usage.Page != firstPage)
+                    {
+                        isAllSamePage = false;
+                        break;
+                    }
+                }
+
+                foreach (HidUsageId usage in module.Usages)
+                {
+                    string enumValueName = string.Empty;
+                    if (isAllSamePage)
+                    {
+                        enumValueName = $"{usage.Name}";
+                    }
+                    else
+                    {
+                        enumValueName = $"{usage.Page.Name}{usage.Name}";
+                    }
+
+                    enumValues.Add(enumValueName);
+                }
+
+                if (isAllSamePage)
+                {
+                    baseName = string.IsNullOrEmpty(module.Name) ? firstPage.Name : module.Name;
+                }
+                else
+                {
+                    baseName = string.IsNullOrEmpty(module.Name) ? string.Empty : module.Name;
+                }
+            }
 
             string enumName = $"{baseName}{ArrayEnumSuffix}";
             CppFieldPrimativeDataType enumType = CppFieldPrimativeDataTypeExtension.CalculateType(module.LogicalMinimum, module.SizeInBits);

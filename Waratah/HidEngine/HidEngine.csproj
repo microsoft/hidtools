@@ -172,6 +172,7 @@
     <Compile Include="TomlReportDescriptorParser\Tags\BaseValueRangeBaseTag.cs" />
     <Compile Include="TomlReportDescriptorParser\Tags\UsageUnitMultiplierTag.cs" />
     <Compile Include="TomlReportDescriptorParser\Tags\VariableItemTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\UsagesTag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

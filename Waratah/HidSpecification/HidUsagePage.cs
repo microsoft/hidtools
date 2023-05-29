@@ -213,9 +213,9 @@ namespace Microsoft.HidTools.HidSpecification
         /// <inheritdoc/>
         public override string ToString()
         {
-            string id = this.Id.ToString("#,#", CultureInfo.InvariantCulture);
+            string hexid = $"0x{this.Id:X4}";
 
-            return $"{this.Name}[{id}]";
+            return $"{this.Name}[{hexid}]";
         }
 
         /// <summary>

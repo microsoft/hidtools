@@ -19,7 +19,7 @@ namespace Microsoft.HidTools.HidEngine.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -466,11 +466,20 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Missing required usageRange key, must specify a usageRange.
+        ///   Looks up a localized string similar to Cannot specify both &apos;usageRange&apos; and &apos;usages&apos; keys.
         /// </summary>
-        internal static string ExceptionTomlArrayItemMissingUsageRangeTag {
+        internal static string ExceptionTomlArrayItemCannotSpecifyUsageRangeAndUsagesTag {
             get {
-                return ResourceManager.GetString("ExceptionTomlArrayItemMissingUsageRangeTag", resourceCulture);
+                return ResourceManager.GetString("ExceptionTomlArrayItemCannotSpecifyUsageRangeAndUsagesTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing required usageRange/usages key, must specify either a usageRange or a usages key..
+        /// </summary>
+        internal static string ExceptionTomlArrayItemMissingUsageRangeUsagesTag {
+            get {
+                return ResourceManager.GetString("ExceptionTomlArrayItemMissingUsageRangeUsagesTag", resourceCulture);
             }
         }
         
@@ -765,6 +774,15 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Invalid type. Must be either an array of 2 integers or 2 strings.
         /// </summary>
+        internal static string ExceptionTomlUsagesTagInvalidDataType {
+            get {
+                return ResourceManager.GetString("ExceptionTomlUsagesTagInvalidDataType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid type. Must be either an array of 2 integers or 2 strings.
+        /// </summary>
         internal static string ExceptionTomlUsageTagInvalid {
             get {
                 return ResourceManager.GetString("ExceptionTomlUsageTagInvalid", resourceCulture);
@@ -799,7 +817,7 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid type.  Must be either an array of two integers, &apos;{0}&apos; or &apos;{1}&apos;.
+        ///   Looks up a localized string similar to Invalid type.  Must be an array of two integers or &apos;{0}&apos; or &apos;{1}&apos;.
         /// </summary>
         internal static string ExceptionTomlValueRangeInvalidDataType {
             get {
