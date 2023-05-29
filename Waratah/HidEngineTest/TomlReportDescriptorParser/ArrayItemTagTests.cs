@@ -90,5 +90,21 @@ namespace HidEngineTest.TomlReportDescriptorParser
 
             Assert.ThrowsException<TomlGenericException>(() => ArrayItemTag.TryParse(rawTomlTags.ElementAt(0)));
         }
+
+        [TestMethod]
+        public void CannotUseUsagesAndUsageRange()
+        {
+            string nonDecoratedString = @"
+                [[arrayItem]]
+                    usages = [ ['Generic Desktop', 'X'], ['Generic Desktop', 'Z'] ]
+                    usageRange = ['Button', 'Button 1', 'Button 3']";
+
+            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+            TagFinder.Initialize(decoratedTomlDoc);
+
+            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+            Assert.ThrowsException<TomlGenericException>(() => ArrayItemTag.TryParse(rawTomlTags.ElementAt(0)));
+        }
     }
 }
