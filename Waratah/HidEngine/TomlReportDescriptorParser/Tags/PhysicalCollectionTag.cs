@@ -83,7 +83,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 
                 if (usageTransform == null)
                 {
-                    usageTransform = UsageTransformTag.TryParse(child, typeof(LogicalCollectionTag));
+                    usageTransform = UsageTransformTag.TryParse(child, typeof(PhysicalCollectionTag));
                     if (usageTransform != null)
                     {
                         continue;
