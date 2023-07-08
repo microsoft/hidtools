@@ -42,10 +42,10 @@ namespace HidEngineTest.CppGenerator
             VariableModule variable = new VariableModule(DefaultUsage, 1, logicalRange, null, null, null, null, null, null, report);
             report.Initialize(1, null, new List<BaseModule> { variable });
 
-            CppStructMemberSimple cppStructMemberSimple = new CppStructMemberSimple(report);
+            CppStructMemberSimple cppStructMemberSimple = new CppStructMemberSimple(report, "MacroName");
 
             Assert.AreEqual("ReportId", cppStructMemberSimple.Name);
-            Assert.AreEqual(1, cppStructMemberSimple.InitialValue);
+            Assert.AreEqual("MacroName", cppStructMemberSimple.InitialValue);
             Assert.AreEqual(CppFieldPrimativeDataType.uint8_t, cppStructMemberSimple.Type);
         }
 

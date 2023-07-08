@@ -25,13 +25,14 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// Initializes a new instance of the <see cref="CppStructMemberSimple"/> class.
         /// </summary>
         /// <param name="module">The module to initialize from.</param>
-        public CppStructMemberSimple(ReportModule module)
+        /// <param name="reportIdMacroName">Initial value of the ReportId field.</param>
+        public CppStructMemberSimple(ReportModule module, string reportIdMacroName)
         {
             this.Type = CppFieldPrimativeDataType.uint8_t;
             this.ArraySize = 1;
 
             this.Name = ReportIdName;
-            this.InitialValue = module.Id;
+            this.InitialValue = reportIdMacroName;
         }
 
         /// <summary>
@@ -120,7 +121,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// Gets the InitialValue of the field.  Typically this is null.
         /// Member will be assigned this value in-line in generated CPP.
         /// </summary>
-        public int? InitialValue { get; private set; }
+        public string InitialValue { get; private set; }
 
         /// <inheritdoc/>
         /// <example>
@@ -134,7 +135,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
 
             string arrayStr = (this.ArraySize > 1) ? $"[{this.ArraySize}]" : string.Empty;
 
-            string initialValue = this.InitialValue.HasValue ? $" = {this.InitialValue}" : string.Empty;
+            string initialValue = string.IsNullOrEmpty(this.InitialValue) ? string.Empty : $" = {this.InitialValue}";
 
             int uniqueNameSuffix = UniqueMemberNameCache.GenerateUniqueNameSuffix(this.Name);
             string nameIdSuffix = uniqueNameSuffix == 0 ? string.Empty : uniqueNameSuffix.ToString();

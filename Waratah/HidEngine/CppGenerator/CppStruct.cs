@@ -8,16 +8,17 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
     using System.Diagnostics;
     using System.Linq;
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
+    using Newtonsoft.Json.Linq;
 
     /// <summary>
     /// Represents a single CPP struct.
     /// </summary>
     public class CppStruct : ICppGenerator
     {
-        private const string ReportName = "HidReport";
+        private const string DefaultReportNamePrefix = "HidReport";
+        private const string ReportMacroIdSuffix = "_ID";
 
         private readonly ReportModule report;
-        private string name;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CppStruct"/> class.
@@ -30,10 +31,24 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             UniqueMemberNameCache.Reset();
 
             this.report = report;
-            this.Name = report.Name;
+
+            if (this.report.Name != null)
+            {
+                // Filter-out invalid characters.
+                this.Name = string.Concat(this.report.Name.Where(char.IsLetterOrDigit));
+            }
+            else
+            {
+                this.Name = $"{DefaultReportNamePrefix}{this.report}";
+            }
+
+            this.UniqueName = UniqueStructNameCache.GenerateUniqueName(this.Name);
+
+            // Note: Since UniqueName is unique, using it as a basis for macroName, will alway guarantee uniqueness.
+            this.ReportIdMacroName = GenerateReportIdMacroNameFromUniqueName(this.UniqueName);
 
             this.Members = new List<ICppGenerator>();
-            this.Members.Add(new CppStructMemberSimple(this.report));
+            this.Members.Add(new CppStructMemberSimple(this.report, this.ReportIdMacroName));
 
             if (Settings.GetInstance().PackingInBytes.HasValue)
             {
@@ -51,22 +66,17 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// <summary>
         /// Gets the name of this struct.
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return this.name;
-            }
+        public string Name { get; }
 
-            private set
-            {
-                if (value != null)
-                {
-                    // Filter-out invalid characters.
-                    this.name = string.Concat(value.Where(char.IsLetterOrDigit));
-                }
-            }
-        }
+        /// <summary>
+        /// Gets the unique-name of this struct.
+        /// </summary>
+        public string UniqueName { get; }
+
+        /// <summary>
+        /// Gets the name of the ReportId associated with this struct.
+        /// </summary>
+        public string ReportIdMacroName { get; }
 
         /// <summary>
         /// Gets the members that are part of this struct.
@@ -85,17 +95,9 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// </example>
         public void GenerateCpp(IndentedWriter writer)
         {
-            string tempName;
-            if (string.IsNullOrEmpty(this.report.Name))
-            {
-                tempName = $"{ReportName}{this.report}";
-            }
-            else
-            {
-                tempName = this.report.Name;
-            }
+            writer.WriteLineIndented($"#define {this.ReportIdMacroName} ({this.report.Id})");
 
-            writer.WriteLineIndented($"struct {UniqueStructNameCache.GenerateUniqueName(tempName)}");
+            writer.WriteLineIndented($"struct {this.UniqueName}");
 
             writer.WriteLineIndented("{");
 
@@ -157,6 +159,38 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             }
 
             return members;
+        }
+
+        private static string GenerateReportIdMacroNameFromUniqueName(string uniqueName)
+        {
+            // Assume camelCase uniqueName.
+            // Standard macro format is ALL CAPs with underscores between words.
+
+            string macroName = string.Empty;
+            if (uniqueName.Length < 2)
+            {
+                // Too short to insert underscores.
+                macroName = uniqueName.ToUpper();
+            }
+            else
+            {
+                for (int i = 0; i < (uniqueName.Length - 1); i++)
+                {
+                    macroName += char.ToUpper(uniqueName[i]);
+
+                    if (char.IsLower(uniqueName[i]) && char.IsUpper(uniqueName[i + 1]))
+                    {
+                        // End of word detected.
+                        macroName += "_";
+                    }
+                }
+
+                macroName += char.ToUpper(uniqueName[uniqueName.Length - 1]);
+            }
+
+            macroName += CppStruct.ReportMacroIdSuffix;
+
+            return macroName;
         }
     }
 }
