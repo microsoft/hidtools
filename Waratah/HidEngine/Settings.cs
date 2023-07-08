@@ -192,6 +192,14 @@ namespace Microsoft.HidTools.HidEngine
         }
 
         /// <summary>
+        /// Gets or sets the variable modifier of the generated CPP descriptor byte array.
+        /// </summary>
+        public string CppDescriptorVariableModifier
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Lazy accessor for singleton instance of Settings.  Initializes on first invocation.
         /// </summary>
         /// <param name="clear">When true, clears all existing settings.  Useful for unit-tests.</param>

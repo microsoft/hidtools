@@ -56,7 +56,9 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             // Determine the initial indent required to ensure all non-byte text starts at the same offset.
             int maxWireRepresentationStringLength = this.descriptor.LastGeneratedItems.Max(x => x.WireRepresentationString(WireRepresentationKind.CppHeader).Length);
 
-            writer.WriteLineIndented($"static const uint8_t {Settings.GetInstance().CppDescriptorName} [] = {Environment.NewLine}{{");
+            string variableModifier = string.IsNullOrEmpty(Settings.GetInstance().CppDescriptorVariableModifier) ? string.Empty : $" {Settings.GetInstance().CppDescriptorVariableModifier}";
+
+            writer.WriteLineIndented($"static const{variableModifier} uint8_t {Settings.GetInstance().CppDescriptorName}[] = {Environment.NewLine}{{");
 
             foreach (ShortItem item in this.descriptor.LastGeneratedItems)
             {

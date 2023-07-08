@@ -16,13 +16,14 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
     {
         private static SettingsSectionTag instance = null;
 
-        private SettingsSectionTag(PackingInBytesTag packing, OptimizeTag optimize, GenerateCppTag generateCpp, CppDescriptorNameTag descriptorName, KeyValuePair<string, object> rawTag)
+        private SettingsSectionTag(PackingInBytesTag packing, OptimizeTag optimize, GenerateCppTag generateCpp, CppDescriptorNameTag descriptorName, CppDescriptorVariableModifierTag descriptorVariableModifier, KeyValuePair<string, object> rawTag)
             : base(rawTag)
         {
             this.Packing = packing;
             this.Optimize = optimize;
             this.GenerateCpp = generateCpp;
             this.CppDescriptorName = descriptorName;
+            this.CppDescriptorVariableModifier = descriptorVariableModifier;
         }
 
         /// <summary>
@@ -44,6 +45,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// Gets the name of the cpp variable to hold the descriptor bytes.
         /// </summary>
         public CppDescriptorNameTag CppDescriptorName { get; }
+
+        /// <summary>
+        /// Gets the name of the cpp variable modifer of the descriptor bytes.
+        /// </summary>
+        public CppDescriptorVariableModifierTag CppDescriptorVariableModifier { get; }
 
         /// <summary>
         /// Attempts to parse the given tag as an <see cref="SettingsSectionTag"/>.
@@ -70,6 +76,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             OptimizeTag optimize = null;
             GenerateCppTag generateCpp = null;
             CppDescriptorNameTag descriptorName = null;
+            CppDescriptorVariableModifierTag descriptorVariableModifier = null;
 
             Dictionary<string, object> children = ((Dictionary<string, object>[])rawTag.Value)[0];
             foreach (KeyValuePair<string, object> child in children)
@@ -114,10 +121,20 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                     }
                 }
 
+                if (descriptorVariableModifier == null)
+                {
+                    descriptorVariableModifier = CppDescriptorVariableModifierTag.TryParse(child);
+
+                    if (descriptorVariableModifier != null)
+                    {
+                        continue;
+                    }
+                }
+
                 throw new TomlInvalidLocationException(child, rawTag);
             }
 
-            instance = new SettingsSectionTag(packing, optimize, generateCpp, descriptorName, rawTag);
+            instance = new SettingsSectionTag(packing, optimize, generateCpp, descriptorName, descriptorVariableModifier, rawTag);
             instance.AddToGlobalSettings();
 
             return instance;
@@ -147,6 +164,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             if (this.CppDescriptorName != null)
             {
                 Settings.GetInstance().CppDescriptorName = this.CppDescriptorName.Value;
+            }
+
+            if (this.CppDescriptorVariableModifier != null)
+            {
+                Settings.GetInstance().CppDescriptorVariableModifier = this.CppDescriptorVariableModifier.Value;
             }
         }
     }
