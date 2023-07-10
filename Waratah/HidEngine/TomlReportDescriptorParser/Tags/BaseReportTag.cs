@@ -20,13 +20,15 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// </summary>
         /// <param name="id">Report Id.</param>
         /// <param name="name">Friendly name of this Report.</param>
+        /// <param name="relation">UsageRelation of this Report. Optional.  Allows for multiple Reports to be children of a single PhysicalCollection.</param>
         /// <param name="items">Items belonging to this report.</param>
         /// <param name="rawTag">Root TOML element describing a Report.</param>
-        protected BaseReportTag(IdTag id, NameTag name, List<IModuleGeneratorTag> items, KeyValuePair<string, object> rawTag)
+        protected BaseReportTag(IdTag id, NameTag name, UsageRelationTag relation, List<IModuleGeneratorTag> items, KeyValuePair<string, object> rawTag)
             : base(rawTag)
         {
             this.Id = id;
             this.Name = name;
+            this.Relation = relation;
             this.Items = items;
         }
 
@@ -42,6 +44,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         public NameTag Name { get; }
 
         /// <summary>
+        /// Gets the 'UsageRelation' of this Report.
+        /// </summary>
+        public UsageRelationTag Relation { get; }
+
+        /// <summary>
         /// Gets the items belonging to this report.
         /// A report can contain collections (e.g. LogicalCollection) and individual items (e.g. PaddingItem, Usage).
         /// </summary>
@@ -53,10 +60,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// <param name="rawTag">Root TOML element describing a Report.</param>
         /// <returns>Id and Items as a tuple.  Can be null.</returns>
         /// <exception cref="TomlInvalidLocationException">Thrown when an unexpected tag is encountered.</exception>
-        protected static (IdTag id, NameTag name, List<IModuleGeneratorTag> items) TryParseInternal(KeyValuePair<string, object> rawTag)
+        protected static (IdTag id, NameTag name, UsageRelationTag relation, List<IModuleGeneratorTag> items) TryParseInternal(KeyValuePair<string, object> rawTag)
         {
             IdTag reportId = null;
             NameTag name = null;
+            UsageRelationTag relation = null;
             List<IModuleGeneratorTag> reportItems = new List<IModuleGeneratorTag>();
 
             Dictionary<string, object> reportChildren = ((Dictionary<string, object>[])rawTag.Value)[0];
@@ -77,6 +85,16 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                     name = NameTag.TryParse(child);
 
                     if (name != null)
+                    {
+                        continue;
+                    }
+                }
+
+                if (relation == null)
+                {
+                    relation = UsageRelationTag.TryParse(child);
+
+                    if (relation != null)
                     {
                         continue;
                     }
@@ -120,7 +138,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                 throw new TomlInvalidLocationException(child, rawTag);
             }
 
-            return (reportId, name, reportItems);
+            return (reportId, name, relation, reportItems);
         }
 
         /// <summary>
@@ -150,7 +168,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             try
             {
                 // TODO: Perhaps valid reportId check (and no duplicate reportId) should be done in the ReportDescriptorComposer layer. not here???
-                report.Initialize(this.FindOrGenerateReportId(reportIdsForKind), this.Name?.Value, reportModules);
+                report.Initialize(this.FindOrGenerateReportId(reportIdsForKind), this.Name?.Value, this.Relation?.Value, reportModules);
             }
             catch (DescriptorModuleParsingException parsingException)
             {

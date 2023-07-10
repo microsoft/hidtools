@@ -104,9 +104,37 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
 
             descriptorItems.Add(new CollectionItem(HidConstants.MainItemCollectionKind.Application));
 
-            foreach (ReportModule report in this.Reports)
+            // All Reports with the same UsageRelation, are to be grouped within (the same) PhysicalCollection.
+            // This is to provide Sensors with the required mechanism to have multiple reports within the same PhysicalCollection.
+            // This pattern (used by Sensors) is deprecated, but still necessary to support.
+            // In the non-Sensors case, all Reports will have a null UsageRelation.
+            // Note: For simplicity, the PhysicalCollection is added 'here' (during item creation), rather than a higher layer adding it's own CollectionModule.
+
+            List<HidUsageId> usageRelations = this.Reports.Select(x => x.Relation).ToList();
+
+            foreach (HidUsageId usageRelation in usageRelations.Distinct())
             {
-                descriptorItems.AddRange(report.GenerateDescriptorItems(optimize));
+                if (usageRelation != null)
+                {
+                    descriptorItems.Add(new UsagePageItem(usageRelation.Page.Id));
+
+                    descriptorItems.Add(new UsageItem(usageRelation.Page.Id, usageRelation.Id, false));
+
+                    descriptorItems.Add(new CollectionItem(HidConstants.MainItemCollectionKind.Physical));
+                }
+
+                foreach (ReportModule report in this.Reports)
+                {
+                    if (report.Relation == usageRelation)
+                    {
+                        descriptorItems.AddRange(report.GenerateDescriptorItems(optimize));
+                    }
+                }
+
+                if (usageRelation != null)
+                {
+                    descriptorItems.Add(new EndCollectionItem());
+                }
             }
 
             descriptorItems.Add(new EndCollectionItem());

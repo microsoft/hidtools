@@ -772,6 +772,15 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid UsagePage &apos;{0}&apos;.  usageSection may only be used with &apos;Sensors&apos; usages..
+        /// </summary>
+        internal static string ExceptionTomlUsageSectionTagInvalid {
+            get {
+                return ResourceManager.GetString("ExceptionTomlUsageSectionTagInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid type. Must be either an array of 2 integers or 2 strings.
         /// </summary>
         internal static string ExceptionTomlUsagesTagInvalidDataType {

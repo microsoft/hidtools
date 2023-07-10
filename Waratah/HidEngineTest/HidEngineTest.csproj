@@ -105,6 +105,7 @@
     <Compile Include="TomlReportDescriptorParser\UsageKindsTagTest.cs" />
     <Compile Include="TomlReportDescriptorParser\UsagePageSectionTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\UsageRangeTagTests.cs" />
+    <Compile Include="TomlReportDescriptorParser\UsageRelationTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\UsageSectionTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\UsageTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\UsageTransformTagTests.cs" />

@@ -354,6 +354,9 @@
   <data name="ExceptionTomlUsageRangeInvalidDataType" xml:space="preserve">
     <value>Invalid type. Must be either an array of 3 integers or 3 strings</value>
   </data>
+  <data name="ExceptionTomlUsageSectionTagInvalid" xml:space="preserve">
+    <value>Invalid UsagePage '{0}'.  usageSection may only be used with 'Sensors' usages.</value>
+  </data>
   <data name="ExceptionTomlUsagesTagInvalidDataType" xml:space="preserve">
     <value>Invalid type. Must be either an array of 2 integers or 2 strings</value>
   </data>

@@ -40,7 +40,7 @@ namespace HidEngineTest.CppGenerator
             ReportModule report = new ReportModule(DefaultReportKind, null);
             DescriptorRange logicalRange = new DescriptorRange(0, 10);
             VariableModule variable = new VariableModule(DefaultUsage, 1, logicalRange, null, null, null, null, null, null, report);
-            report.Initialize(1, null, new List<BaseModule> { variable });
+            report.Initialize(1, null, null, new List<BaseModule> { variable });
 
             CppStructMemberArray cppStructMemberArray = new CppStructMemberArray(report);
 
