@@ -47,9 +47,9 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                 throw new TomlGenericException(Resources.ExceptionTomlCppNameEmpty, rawTag);
             }
 
-            // Only letters, digits, whitespace permitted.
+            // Only letters, digits, '_', whitespace permitted.
             // ':', '-', '/', '\' permitted because Sensor's Usages use it...
-            string filteredName = string.Concat(name.Where(x => (char.IsLetterOrDigit(x) || char.IsWhiteSpace(x) || x == ':' || x == '-' || x == '\\' || x == '/')));
+            string filteredName = string.Concat(name.Where(x => (char.IsLetterOrDigit(x) || char.IsWhiteSpace(x) || x == ':' || x == '-' || x == '\\' || x == '/' || x == '_')));
             if (name != filteredName)
             {
                 throw new TomlGenericException(Resources.ExceptionTomlCppNameNonDigitsLetters, rawTag);
