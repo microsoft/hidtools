@@ -43,12 +43,20 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 
             List<HidUsageId> usages = new List<HidUsageId>();
 
-            foreach (object[] tagUsageObj in tagUsageObjArray)
+            foreach (object tagUsageObj in tagUsageObjArray)
             {
-                if (tagUsageObj.Length == 2)
+                // Validate all entries are expected type.
+                if (tagUsageObj.GetType() != typeof(object[]))
                 {
-                    object usagePageObj = tagUsageObj[0];
-                    object usageIdObj = tagUsageObj[1];
+                    throw new TomlGenericException(Resources.ExceptionTomlUsagesTagInvalidDataType, rawTag);
+                }
+
+                object[] usageObj = tagUsageObj as object[];
+
+                if (usageObj.Length == 2)
+                {
+                    object usagePageObj = usageObj[0];
+                    object usageIdObj = usageObj[1];
 
                     HidUsageId usage = null;
 
