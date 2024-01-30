@@ -87,7 +87,7 @@
     <PropertyGroup>
         <!--Current HID Usage Tables on USB-IF website-->
         <!--When the 'next' HUT is released, only this need be updated-->
-        <USBIFHUT>https://www.usb.org/sites/default/files/hut1_4.pdf</USBIFHUT>
+        <USBIFHUT>https://www.usb.org/sites/default/files/hut1_5.pdf</USBIFHUT>
     </PropertyGroup>
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
         <!--Due to the license agreement of the HUT document, it may not be published (e.g. included in source-code via Github)-->
