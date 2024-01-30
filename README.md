@@ -8,7 +8,7 @@ https://www.nuget.org/packages/Microsoft.HidTools.HidEngine
 
 Or from the package manager console:
 
-    > Install-Package Microsoft.HidTools.HidEngine -Version 1.2.0
+    > Install-Package Microsoft.HidTools.HidEngine -Version 1.3.0
 
 # Waratah
 
