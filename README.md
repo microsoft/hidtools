@@ -1,5 +1,77 @@
 # Project
 
+This is a fork of Waratah that can be built using `mono`
+
+## Build Dependencies
+
+You'll need the following tools
+
+- [mono](https://www.mono-project.com/download/stable/)
+- [nuget](https://www.nuget.org/downloads)
+    - You'll want to download the `Windows x86 Commandline` version
+    - Make note of the path to `nuget.exe`, as you'll need it later in the build
+    - Attribution [to this article](https://strongbox.github.io/user-guide/tool-integration/nuget-mono-example.html) that covers using `nuget` on Linux.
+
+
+## Building the project
+
+### Getting `nuget` packages
+
+First, you'll need to download the nuget packages:
+
+```shell
+mono --runtime=v4.0 [path-to-nuget]/nuget.exe ./Waratah/Waratah.sln
+```
+
+Or, if you've created a `nuget` alias, you can just use `nuget`
+
+### Building the project
+
+Use `msbuild` to make the project
+
+```shell
+msbuild Waratah/Waratah.sln /p:Configuration=Release
+```
+
+That command creates the file `./Waratah/WaratahCmd/bin/Release/WaratahCmd.exe` that can be run like so:
+
+```shell
+mono ./Waratah/WaratahCmd/bin/Release/WaratahCmd.exe --source [path to config file]
+```
+
+### Making a stand-alone application
+
+If you'd like to make a stand-alone version of the application, you can do so.
+
+
+```shell
+mkbundle -o WaratahCmd ./Waratah/WarataCmd/bin/Release/WaratahCmd.exe
+```
+
+NOTE: you may get an error about missing `dll`s. If that's the case, you can add the `--sdk` option. [Source](https://stackoverflow.com/a/42201087)
+
+```shell
+mkbundle -o WaratahCmd ./Waratah/WarataCmd/bin/Release/WaratahCmd.exe --sdk [path-to-sdk]
+```
+
+The path to mono's `SDK` is different across different linux distributions. For `debian-12`, it's actually just `/`:
+
+```shell
+mkbundle -o WaratahCmd ./Waratah/WarataCmd/bin/Release/WaratahCmd.exe --sdk /
+```
+
+For help on finding where the mono `sdk` is in your linux distribution, the [arch linux `mkbundle` man page](https://man.archlinux.org/man/extra/mono/mkbundle.1.en#sdk) says the following:
+
+```plaintext
+--sdk SDK_PATH
+    Use this flag to specify a path from which mkbundle will resolve the Mono
+    SDK from. The SDK path should be the prefix path that you used to configure
+    a Mono installation. And would typically contain files like
+    SDK_PATH/bin/mono, SDK_PATH/lib/mono/4.5 and so on. 
+```
+
+# Original README
+
 This repo is the central location of Microsoft HID Tools.  Currently, the only tool available is Waratah.  The underlying HidSpecification and HidEngine libaries are available via Nuget
 
 https://www.nuget.org/packages/Microsoft.HidTools.HidSpecification
