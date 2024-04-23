@@ -106,7 +106,7 @@
       <Output ItemName="AssembliesToMerge" TaskParameter="Include" />
     </CreateItem>
     <Message Importance="high" Text="Merging binaries into single assembly (with ILRepack)" />
-    <Exec Command="&quot;$(ILRepack)&quot; /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; /verbose @(AssembliesToMerge->'/lib:/%(Directory)', ' ') @(AssembliesToMerge->'&quot;%(FullPath)&quot;', ' ')" />
+    <Exec Command="&quot;$(ILRepack)&quot; /out:@(MainAssembly) &quot;@(IntermediateAssembly)&quot; @(AssembliesToMerge->'/lib:%(RootDir)%(Directory)', ' ') @(AssembliesToMerge->'&quot;%(FullPath)&quot;', ' ')" />
     <Delete Files="@(ReferenceCopyLocalPaths->'$(OutDir)%(DestinationSubDirectory)%(Filename)%(Extension)')" />
   </Target>
 </Project>
