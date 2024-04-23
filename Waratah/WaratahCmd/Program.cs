@@ -10,7 +10,6 @@ namespace WaratahCmd
     using System;
     using System.Drawing;
     using System.IO;
-    using Console = Colorful.Console;
 
     class Program
     {

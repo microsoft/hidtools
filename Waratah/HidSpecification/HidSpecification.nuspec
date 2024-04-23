@@ -8,13 +8,13 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <!-- <icon>icon.png</icon> -->
-    <projectUrl>https://github.com/microsoft/hidtools</projectUrl>
+    <projectUrl>https://github.com/mattrcole/hidtools</projectUrl>
     <description>$description$</description>
     <copyright>$copyright$</copyright>
     <tags>HID Human Interface Device descriptor</tags>
     <dependencies>
       <group targetFramework=".NETFramework4.7.2" />
     </dependencies>
-    <repository type="git" url="https://github.com/microsoft/hidtools/tree/main/Waratah/HidSpecification" />
+    <repository type="git" url="https://github.com/mattrcole/hidtools/tree/main/Waratah/HidSpecification" />
   </metadata>
 </package>
