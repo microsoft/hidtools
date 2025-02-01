@@ -175,6 +175,7 @@ namespace Microsoft.HidTools.HidEngine
             }
         }
 
+
         /// <summary>
         /// Gets or sets a value indicating whether the descriptor should be generated as CPP or plain-text.
         /// </summary>
