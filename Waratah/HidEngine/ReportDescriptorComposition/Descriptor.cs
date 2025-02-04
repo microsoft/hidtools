@@ -101,25 +101,35 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition
         /// <returns>Text representing the descriptor.</returns>
         public string GenerateText()
         {
-            if (Settings.GetInstance().GenerateCpp)
+            switch (Settings.GetInstance().OutputFormat)
             {
-                return this.ToCppHeaderFile();
-            }
-            else
-            {
-                return this.ToString(true);
+                case OutputFormatKind.Cpp:
+                {
+                    return this.ToCppHeaderFile(CppDescriptorFormatKind.Plain);
+                }
+
+                case OutputFormatKind.CppMacro:
+                {
+                    return this.ToCppHeaderFile(CppDescriptorFormatKind.Macro);
+                }
+
+                default:
+                {
+                    return this.ToString(true);
+                }
             }
         }
 
         /// <summary>
         /// Generates a CPP compatible header file including descriptor (in byte format), and supporting Report structs.
         /// </summary>
+        /// <param name="descriptorFormat">Descriptor format.</param>
         /// <returns>Stringified CPP header file of descriptor.</returns>
-        public string ToCppHeaderFile()
+        public string ToCppHeaderFile(CppDescriptorFormatKind descriptorFormat)
         {
             CppHeader header = new CppHeader(this);
 
-            return header.GenerateCpp(this.GenerateSummary(true));
+            return header.GenerateCpp(this.GenerateSummary(true), descriptorFormat);
         }
 
         /// <inheritdoc/>

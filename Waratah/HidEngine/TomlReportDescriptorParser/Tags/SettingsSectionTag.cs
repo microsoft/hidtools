@@ -16,7 +16,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
     {
         private static SettingsSectionTag instance = null;
 
-        private SettingsSectionTag(PackingInBytesTag packing, OptimizeTag optimize, GenerateCppTag generateCpp, CppDescriptorNameTag descriptorName, CppDescriptorVariableModifierTag descriptorVariableModifier, KeyValuePair<string, object> rawTag)
+        private SettingsSectionTag(PackingInBytesTag packing, OptimizeTag optimize, GenerateCppTag generateCpp, CppDescriptorNameTag descriptorName, CppDescriptorVariableModifierTag descriptorVariableModifier, OutputFormatTag outputFormat, KeyValuePair<string, object> rawTag)
             : base(rawTag)
         {
             this.Packing = packing;
@@ -24,6 +24,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             this.GenerateCpp = generateCpp;
             this.CppDescriptorName = descriptorName;
             this.CppDescriptorVariableModifier = descriptorVariableModifier;
+            this.OutputFormat = outputFormat;
         }
 
         /// <summary>
@@ -38,6 +39,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 
         /// <summary>
         /// Gets whether cpp output should be generated.
+        /// Note: Is now deprecated.  Maintained for backwards compatibility.
         /// </summary>
         public GenerateCppTag GenerateCpp { get; }
 
@@ -50,6 +52,12 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// Gets the name of the cpp variable modifer of the descriptor bytes.
         /// </summary>
         public CppDescriptorVariableModifierTag CppDescriptorVariableModifier { get; }
+
+        /// <summary>
+        /// Gets the output format of the descriptor.
+        /// Note: GenerateCpp is now deprecated and is incompatible with OutputFormat.
+        /// </summary>
+        public OutputFormatTag OutputFormat { get; }
 
         /// <summary>
         /// Attempts to parse the given tag as an <see cref="SettingsSectionTag"/>.
@@ -77,6 +85,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             GenerateCppTag generateCpp = null;
             CppDescriptorNameTag descriptorName = null;
             CppDescriptorVariableModifierTag descriptorVariableModifier = null;
+            OutputFormatTag outputFormat = null;
 
             Dictionary<string, object> children = ((Dictionary<string, object>[])rawTag.Value)[0];
             foreach (KeyValuePair<string, object> child in children)
@@ -131,10 +140,26 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                     }
                 }
 
+                if (outputFormat == null)
+                {
+                    outputFormat = OutputFormatTag.TryParse(child);
+                    if (outputFormat != null)
+                    {
+                        continue;
+                    }
+                }
+
                 throw new TomlInvalidLocationException(child, rawTag);
             }
 
-            instance = new SettingsSectionTag(packing, optimize, generateCpp, descriptorName, descriptorVariableModifier, rawTag);
+            // Cannot specify both.
+            // GenerateCpp is deprecated and replaced with the more expressive OutputFormat.
+            if (generateCpp != null && outputFormat != null)
+            {
+                throw new TomlGenericException(Resources.ExceptionTomlCannotSpecifyBothKeys, rawTag, generateCpp.NonDecoratedName, outputFormat.NonDecoratedName);
+            }
+
+            instance = new SettingsSectionTag(packing, optimize, generateCpp, descriptorName, descriptorVariableModifier, outputFormat, rawTag);
             instance.AddToGlobalSettings();
 
             return instance;
@@ -158,7 +183,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
 
             if (this.GenerateCpp != null)
             {
-                Settings.GetInstance().GenerateCpp = this.GenerateCpp.Value;
+                Settings.GetInstance().OutputFormat = OutputFormatKind.Cpp;
             }
 
             if (this.CppDescriptorName != null)
@@ -169,6 +194,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             if (this.CppDescriptorVariableModifier != null)
             {
                 Settings.GetInstance().CppDescriptorVariableModifier = this.CppDescriptorVariableModifier.Value;
+            }
+
+            if (this.OutputFormat != null)
+            {
+                Settings.GetInstance().OutputFormat = this.OutputFormat.Value;
             }
         }
     }

@@ -309,6 +309,9 @@
   <data name="ExceptionTomlMutuallyExclusiveReportFlags" xml:space="preserve">
     <value>Flags '{0}' and '{1}' are mutually exclusive.  Both cannot be declared, remove one</value>
   </data>
+  <data name="ExceptionTomlOutputFormatKindInvalid" xml:space="preserve">
+    <value>Invalid type '{0}' found.  Valid types: "{1}"</value>
+  </data>
   <data name="ExceptionTomlReportFlagsCannotBeEmpty" xml:space="preserve">
     <value>Must not be empty.  Valid flags: "{0}"</value>
   </data>

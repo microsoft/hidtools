@@ -10,11 +10,33 @@ namespace Microsoft.HidTools.HidEngine
     using Microsoft.HidTools.HidSpecification;
 
     /// <summary>
+    /// Describes the output format of the descriptor.
+    /// </summary>
+    public enum OutputFormatKind
+    {
+        /// <summary>
+        /// Output as plain-text.
+        /// </summary>
+        PlainText,
+
+        /// <summary>
+        /// Output as (plain) C++ header.
+        /// </summary>
+        Cpp,
+
+        /// <summary>
+        /// Output as (macro) C++ header).
+        /// </summary>
+        CppMacro,
+    }
+
+    /// <summary>
     /// Container for all Global settings.
     /// </summary>
     public class Settings
     {
         private const string DefaultCppDescriptorName = "hidReportDescriptor";
+        private const string DefaultCppMacroDescriptorName = "HID_REPORT_DESCRIPTOR";
         private const string FileExtension = ".wara";
         private const string HidUsageTablesFileExtension = ".pdf";
 
@@ -26,12 +48,12 @@ namespace Microsoft.HidTools.HidEngine
         private string sourceFilePath = string.Empty;
         private string destinationFilePath = string.Empty;
         private string hidUsageTablesFilePath = string.Empty;
+        private string cppDescriptorName = string.Empty;
 
         private Settings()
         {
-            this.CppDescriptorName = DefaultCppDescriptorName;
             this.Optimize = true;
-            this.GenerateCpp = true;
+            this.OutputFormat = OutputFormatKind.Cpp;
         }
 
         /// <summary>
@@ -116,7 +138,7 @@ namespace Microsoft.HidTools.HidEngine
                     fullPath = Path.GetFullPath(Path.GetFileNameWithoutExtension(this.SourceFilePath));
                 }
 
-                if (this.GenerateCpp)
+                if (this.OutputFormat == OutputFormatKind.Cpp || this.OutputFormat == OutputFormatKind.CppMacro)
                 {
                     return System.IO.Path.ChangeExtension(fullPath, "h");
                 }
@@ -175,27 +197,50 @@ namespace Microsoft.HidTools.HidEngine
             }
         }
 
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the descriptor should be generated as CPP or plain-text.
-        /// </summary>
-        public bool GenerateCpp
-        {
-            get; set;
-        }
-
         /// <summary>
         /// Gets or sets the Name of the generated CPP descriptor byte array.
         /// </summary>
         public string CppDescriptorName
         {
-            get; set;
+            get
+            {
+                if (!string.IsNullOrWhiteSpace(this.cppDescriptorName))
+                {
+                    return this.cppDescriptorName;
+                }
+
+                switch (this.OutputFormat)
+                {
+                    case OutputFormatKind.CppMacro:
+                    {
+                        return DefaultCppMacroDescriptorName;
+                    }
+
+                    default:
+                    {
+                        return DefaultCppDescriptorName;
+                    }
+                }
+            }
+
+            set
+            {
+                this.cppDescriptorName = value;
+            }
         }
 
         /// <summary>
         /// Gets or sets the variable modifier of the generated CPP descriptor byte array.
         /// </summary>
         public string CppDescriptorVariableModifier
+        {
+            get; set;
+        }
+
+        /// <summary>
+        /// Gets or sets the descriptor output format.
+        /// </summary>
+        public OutputFormatKind OutputFormat
         {
             get; set;
         }

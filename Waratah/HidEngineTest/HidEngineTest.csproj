@@ -90,6 +90,7 @@
     <Compile Include="TomlReportDescriptorParser\IdTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\NameTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\OptimizeTagTests.cs" />
+    <Compile Include="TomlReportDescriptorParser\OutputFormatTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\OutputReportTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\PaddingItemTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\PhysicalCollectionTagTests.cs" />

@@ -8,6 +8,22 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
     using Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules;
 
     /// <summary>
+    /// Represents the format of the descriptor in the CPP header file.
+    /// </summary>
+    public enum CppDescriptorFormatKind
+    {
+        /// <summary>
+        /// Descriptor is in plain format.
+        /// </summary>
+        Plain,
+
+        /// <summary>
+        /// Descriptor is in macro format.
+        /// </summary>
+        Macro,
+    }
+
+    /// <summary>
     /// Represents the contents of a Descriptor CPP header file.
     /// </summary>
     public class CppHeader
@@ -27,8 +43,9 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// Generates a CPP header-file containing the descriptor (in byte format), and Report structs.
         /// </summary>
         /// <param name="descriptorSummary">Summary of the generated descriptor.  Will appear immediately before the definition.</param>
+        /// <param name="descriptorFormat">Format of the generated CPP descriptor.</param>
         /// <returns>Stringified CPP header-file.</returns>
-        public string GenerateCpp(string descriptorSummary)
+        public string GenerateCpp(string descriptorSummary, CppDescriptorFormatKind descriptorFormat)
         {
             UniqueStructNameCache.Reset();
             IndentedWriter writer = new IndentedWriter();
@@ -39,7 +56,7 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             writer.WriteBlankLine();
 
             writer.WriteLineIndented(descriptorSummary);
-            CppDescriptor cppDescriptor = new CppDescriptor(this.descriptor);
+            CppDescriptor cppDescriptor = new CppDescriptor(this.descriptor, descriptorFormat);
             cppDescriptor.GenerateCpp(writer);
 
             writer.WriteLineIndented("#pragma pack(push,1)");

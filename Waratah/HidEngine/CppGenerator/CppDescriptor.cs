@@ -19,13 +19,17 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
 
         private Descriptor descriptor;
 
+        private CppDescriptorFormatKind descriptorFormat;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="CppDescriptor"/> class.
         /// </summary>
         /// <param name="descriptor">Underlying descriptor to generate from.</param>
-        public CppDescriptor(Descriptor descriptor)
+        /// <param name="descriptorFormat">Format of the generated CPP descriptor.</param>
+        public CppDescriptor(Descriptor descriptor, CppDescriptorFormatKind descriptorFormat)
         {
             this.descriptor = descriptor;
+            this.descriptorFormat = descriptorFormat;
         }
 
         /// <inheritdoc/>
@@ -53,6 +57,31 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
         /// </example>
         public void GenerateCpp(IndentedWriter writer)
         {
+            switch (this.descriptorFormat)
+            {
+                case CppDescriptorFormatKind.Plain:
+                {
+                    this.GenerateCppPlain(writer);
+
+                    break;
+                }
+
+                case CppDescriptorFormatKind.Macro:
+                {
+                    this.GenerateCppMacro(writer);
+
+                    break;
+                }
+
+                default:
+                {
+                    throw new InvalidOperationException($"Unknown CppDescriptorFormatKind: {this.descriptorFormat}");
+                }
+            }
+        }
+
+        private void GenerateCppPlain(IndentedWriter writer)
+        {
             // Determine the initial indent required to ensure all non-byte text starts at the same offset.
             int maxWireRepresentationStringLength = this.descriptor.LastGeneratedItems.Max(x => x.WireRepresentationString(WireRepresentationKind.CppHeader).Length);
 
@@ -79,6 +108,34 @@ namespace Microsoft.HidTools.HidEngine.CppGenerator
             }
 
             writer.WriteLineIndented("};");
+            writer.WriteBlankLine();
+        }
+
+        private void GenerateCppMacro(IndentedWriter writer)
+        {
+            // Determine the initial indent required to ensure all non-byte text starts at the same offset.
+            int maxWireRepresentationStringLength = this.descriptor.LastGeneratedItems.Max(x => x.WireRepresentationString(WireRepresentationKind.CppHeader).Length);
+
+            writer.WriteLineIndented($"#define {Settings.GetInstance().CppDescriptorName} \\");
+
+            foreach (ShortItem item in this.descriptor.LastGeneratedItems)
+            {
+                if (item.GetType() == typeof(EndCollectionItem))
+                {
+                    writer.Decrease();
+                }
+
+                string paddedWireRepresentation = (item.WireRepresentationString(WireRepresentationKind.CppHeader) + ",").PadRight(maxWireRepresentationStringLength + IndentSize + 1, ' ');
+
+                writer.WriteLineNoIndent($"{CppHeaderIndentString}{paddedWireRepresentation}/* ");
+                writer.WriteLineIndented($"{item} */ \\");
+
+                if (item.GetType() == typeof(CollectionItem))
+                {
+                    writer.Increase();
+                }
+            }
+
             writer.WriteBlankLine();
         }
     }

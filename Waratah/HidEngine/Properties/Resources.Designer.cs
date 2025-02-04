@@ -637,6 +637,15 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid type &apos;{0}&apos; found.  Valid types: &quot;{1}&quot;.
+        /// </summary>
+        internal static string ExceptionTomlOutputFormatKindInvalid {
+            get {
+                return ResourceManager.GetString("ExceptionTomlOutputFormatKindInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Must not be empty.  Valid flags: &quot;{0}&quot;.
         /// </summary>
         internal static string ExceptionTomlReportFlagsCannotBeEmpty {

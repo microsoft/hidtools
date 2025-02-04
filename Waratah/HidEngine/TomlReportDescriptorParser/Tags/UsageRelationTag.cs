@@ -30,7 +30,6 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         /// Attempts to parse the given tag as a <see cref="UsageRelationTag"/>.
         /// </summary>
         /// <param name="rawTag">Root TOML element describing a Usage.</param>
-        /// <param name="validationType">Type to use for Usage Kind validation.</param>
         /// <returns>New <see cref="UsageRelationTag"/> or null if it cannot be parsed as one.</returns>
         /// <exception cref="TomlGenericException">Thrown when supplied values in tag are out of bounds.</exception>
         public static UsageRelationTag TryParse(KeyValuePair<string, object> rawTag)

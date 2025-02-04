@@ -63,10 +63,57 @@ namespace HidEngineTest.TomlReportDescriptorParser
                 Assert.AreEqual(true, Settings.GetInstance().Optimize);
 
                 Assert.AreEqual(true, testTag.GenerateCpp.Value);
-                Assert.AreEqual(true, Settings.GetInstance().GenerateCpp);
+                Assert.AreEqual(OutputFormatKind.Cpp, Settings.GetInstance().OutputFormat);
 
                 Assert.AreEqual("happyDescriptorName", testTag.CppDescriptorName.Value);
                 Assert.AreEqual("happyDescriptorName", Settings.GetInstance().CppDescriptorName);
+            }
+
+            {
+                string nonDecoratedString = @"
+                    [[settings]]
+                    packingInBytes = 1
+                    optimize = true
+                    outputFormat = 'Cpp'
+                    cppDescriptorName = 'happyDescriptorName'";
+
+                string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+                TagFinder.Initialize(decoratedTomlDoc);
+                Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+                SettingsSectionTag testTag = SettingsSectionTag.TryParse(rawTomlTags.ElementAt(0), true);
+
+                Assert.IsNotNull(testTag);
+
+                Assert.AreEqual(1, testTag.Packing.Value);
+                Assert.AreEqual(1, Settings.GetInstance().PackingInBytes);
+
+                Assert.AreEqual(true, testTag.Optimize.Value);
+                Assert.AreEqual(true, Settings.GetInstance().Optimize);
+
+                Assert.AreEqual(null, testTag.GenerateCpp);
+                Assert.AreEqual(OutputFormatKind.Cpp, testTag.OutputFormat.Value);
+                Assert.AreEqual(OutputFormatKind.Cpp, Settings.GetInstance().OutputFormat);
+
+                Assert.AreEqual("happyDescriptorName", testTag.CppDescriptorName.Value);
+                Assert.AreEqual("happyDescriptorName", Settings.GetInstance().CppDescriptorName);
+            }
+        }
+
+        [TestMethod]
+        public void GenerateCppTagAndOutputFormatTagIncompatible()
+        {
+            {
+                string nonDecoratedString = @"
+                    [[settings]]
+                    generateCpp = true
+                    outputFormat = 'Cpp'";
+
+                string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+                TagFinder.Initialize(decoratedTomlDoc);
+                Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+                Assert.ThrowsException<TomlGenericException>(() => SettingsSectionTag.TryParse(rawTomlTags.ElementAt(0), true));
             }
         }
     }
