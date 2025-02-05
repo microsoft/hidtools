@@ -44,7 +44,7 @@ jobs:
         run: vstest.console.exe Waratah\HidEngineTest\bin\Release\HidEngineTest.dll
         
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v1.0.0
+        uses: actions/upload-artifact@v4.0.0
         with:
           name: Waratah-Published
           path: Waratah\WaratahCmd\bin\Release
