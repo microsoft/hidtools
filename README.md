@@ -28,7 +28,7 @@ Waratah uses a [TOML-like](https://toml.io/en/) hierarchical language of section
 
 ### Features:
 - Human-readable text for easy composition and meaningful source-control management.
-- Inbuilt with all public Usages from [HID Usage Table](https://www.usb.org/sites/default/files/hut1_5.pdf)
+- Inbuilt with all public Usages from [HID Usage Table](https://www.usb.org/sites/default/files/hut1_6.pdf)
 - Composition of custom Vendor Usages.
 - Inbuilt with all defined Units.
 - Support for composition of new named Units.
