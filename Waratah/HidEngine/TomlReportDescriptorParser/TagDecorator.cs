@@ -27,6 +27,8 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
 
         private static readonly List<TagAttribute> CachedTagAttributes = new List<TagAttribute>();
 
+        private static readonly string[] NewlineSeparators = { "\r\n", "\r", "\n" };
+
         static TagDecorator()
         {
             foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
@@ -218,7 +220,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
             // Monotonically increasing counter that is appended to the end
             // of every key-name.
             int suffixCounter = 1;
-            foreach (string line in tomlDoc.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.None))
+            foreach (string line in tomlDoc.Split(NewlineSeparators, StringSplitOptions.None))
             {
                 // This line contains a key-value pair.
                 if (line.Contains(KeyNameSeparator))
@@ -257,7 +259,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser
         private static List<string> GenerateCleanSectionNames(string tomlDoc)
         {
             List<string> rawSectionNames = new List<string>();
-            foreach (string line in tomlDoc.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.None))
+            foreach (string line in tomlDoc.Split(NewlineSeparators, StringSplitOptions.None))
             {
                 // Ignore commented-out lines (starts with #)
                 if (line.Contains(SectionPrefix) && line.Contains(SectionSuffix) && !line.TrimStart().StartsWith("#"))
