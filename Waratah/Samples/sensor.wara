@@ -1,0 +1,155 @@
+# A device with accelerometer and gyroscope, with 3 axes each. This format is compatible with the Windows Sensor API.
+
+[[applicationCollection]]
+usage = ['Sensors', 'Sensor']
+
+    # Accelerometer
+    [[applicationCollection.featureReport]]
+    usageRelation = ['Sensors', 'Motion: Accelerometer 3D']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Property: Sensor Connection Type']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Connection Type: PC Integrated', 'Connection Type: PC External']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Property: Reporting State']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Reporting State: Report No Events', 'Reporting State: Report All Events']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Property: Power State']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Power State: Undefined', 'Power State: D4 Power Off']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Event: Sensor State']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Sensor State: Undefined', 'Sensor State: Error']
+
+        [[applicationCollection.featureReport.variableItem]]
+        usage = ['Sensors', 'Property: Report Interval']
+        logicalValueRange = [0, 0xFFFFFFF]
+
+        [[applicationCollection.featureReport.variableItem]]
+        usageTransform = ['Sensors', 'Data Field: Acceleration', 'Modifier: Change Sensitivity Absolute']
+        logicalValueRange = [0, 0xFFFF]
+
+        [[applicationCollection.featureReport.variableItem]]
+        usageTransform = ['Sensors', 'Data Field: Acceleration', 'Modifier: Maximum']
+        logicalValueRange = [-32767, 32767]
+        
+        [[applicationCollection.featureReport.variableItem]]
+        usageTransform = ['Sensors', 'Data Field: Acceleration', 'Modifier: Minimum']
+        logicalValueRange = [-32767, 32767]
+
+    [[applicationCollection.inputReport]]
+    usageRelation = ['Sensors', 'Motion: Accelerometer 3D']
+
+        [[applicationCollection.inputReport.logicalCollection]]
+        usage = ['Sensors', 'Event: Sensor State']
+
+            [[applicationCollection.inputReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Sensor State: Undefined', 'Sensor State: Error']
+
+        [[applicationCollection.inputReport.logicalCollection]]
+        usage = ['Sensors', 'Event: Sensor Event']
+
+            [[applicationCollection.inputReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Sensor Event: Unknown', 'Sensor Event: Change Sensitivity']
+
+        # X, Y, Z axes of acceleration, reported as milli-g's
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Acceleration Axis X']
+        logicalValueRange = [-32767, 32767]
+        usageUnitMultiplier = 0.001
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Acceleration Axis Y']
+        logicalValueRange = [-32767, 32767]
+        usageUnitMultiplier = 0.001
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Acceleration Axis Z']
+        logicalValueRange = [-32767, 32767]
+        usageUnitMultiplier = 0.001
+    
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Motion State']
+        logicalValueRange = [0, 1]
+
+    # Gyrometer
+    [[applicationCollection.featureReport]]
+    usageRelation = ['Sensors', 'Motion: Gyrometer 3D']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Property: Sensor Connection Type']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Connection Type: PC Integrated', 'Connection Type: PC External']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Property: Reporting State']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Reporting State: Report No Events', 'Reporting State: Report All Events']
+
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Property: Power State']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Power State: Undefined', 'Power State: D4 Power Off']
+        
+        [[applicationCollection.featureReport.logicalCollection]]
+        usage = ['Sensors', 'Event: Sensor State']
+
+            [[applicationCollection.featureReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Sensor State: Undefined', 'Sensor State: Error']
+
+        [[applicationCollection.featureReport.variableItem]]
+        usage = ['Sensors', 'Property: Report Interval']
+        logicalValueRange = [0, 0xFFFFFFF]
+
+        [[applicationCollection.featureReport.variableItem]]
+        usageTransform = ['Sensors', 'Data Field: Angular Velocity', 'Modifier: Change Sensitivity Absolute']
+        logicalValueRange = [0, 0xFFFF]
+
+        [[applicationCollection.featureReport.variableItem]]
+        usageTransform = ['Sensors', 'Data Field: Angular Velocity', 'Modifier: Maximum']
+        logicalValueRange = [-32767, 32767]
+        
+        [[applicationCollection.featureReport.variableItem]]
+        usageTransform = ['Sensors', 'Data Field: Angular Velocity', 'Modifier: Minimum']
+        logicalValueRange = [-32767, 32767]
+
+    [[applicationCollection.inputReport]]
+    usageRelation = ['Sensors', 'Motion: Gyrometer 3D']
+
+        [[applicationCollection.inputReport.logicalCollection]]
+        usage = ['Sensors', 'Event: Sensor State']
+
+            [[applicationCollection.inputReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Sensor State: Undefined', 'Sensor State: Error']
+
+        [[applicationCollection.inputReport.logicalCollection]]
+        usage = ['Sensors', 'Event: Sensor Event']
+
+            [[applicationCollection.inputReport.logicalCollection.arrayItem]]
+            usageRange = ['Sensors', 'Sensor Event: Unknown', 'Sensor Event: Change Sensitivity']
+
+        # X, Y, Z axes of angular velocity, reported as degrees per second
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Angular Velocity about X Axis']
+        logicalValueRange = [-32767, 32767]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Angular Velocity about Y Axis']
+        logicalValueRange = [-32767, 32767]
+
+        [[applicationCollection.inputReport.variableItem]]
+        usage = ['Sensors', 'Data Field: Angular Velocity about Z Axis']
+        logicalValueRange = [-32767, 32767]
