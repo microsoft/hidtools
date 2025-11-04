@@ -16,7 +16,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
     {
         private static SettingsSectionTag instance = null;
 
-        private SettingsSectionTag(PackingInBytesTag packing, OptimizeTag optimize, GenerateCppTag generateCpp, CppDescriptorNameTag descriptorName, CppDescriptorVariableModifierTag descriptorVariableModifier, OutputFormatTag outputFormat, KeyValuePair<string, object> rawTag)
+        private SettingsSectionTag(PackingInBytesTag packing, OptimizeTag optimize, GenerateCppTag generateCpp, CppDescriptorNameTag descriptorName, CppDescriptorVariableModifierTag descriptorVariableModifier, OutputFormatTag outputFormat, PermitCustomVariableItemSizeTag permitCustomVariableItemSize, KeyValuePair<string, object> rawTag)
             : base(rawTag)
         {
             this.Packing = packing;
@@ -25,6 +25,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             this.CppDescriptorName = descriptorName;
             this.CppDescriptorVariableModifier = descriptorVariableModifier;
             this.OutputFormat = outputFormat;
+            this.PermitCustomVariableItemSize = permitCustomVariableItemSize;
         }
 
         /// <summary>
@@ -60,6 +61,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
         public OutputFormatTag OutputFormat { get; }
 
         /// <summary>
+        /// Gets the whether to permit variable item sizes larger than the defined range.
+        /// </summary>
+        public PermitCustomVariableItemSizeTag PermitCustomVariableItemSize { get; }
+
+        /// <summary>
         /// Attempts to parse the given tag as an <see cref="SettingsSectionTag"/>.
         /// </summary>
         /// <param name="rawTag">Root TOML element describing an SettingsSectionTag.</param>
@@ -86,6 +92,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             CppDescriptorNameTag descriptorName = null;
             CppDescriptorVariableModifierTag descriptorVariableModifier = null;
             OutputFormatTag outputFormat = null;
+            PermitCustomVariableItemSizeTag permitCustomVariableItemSize = null;
 
             Dictionary<string, object> children = ((Dictionary<string, object>[])rawTag.Value)[0];
             foreach (KeyValuePair<string, object> child in children)
@@ -149,6 +156,15 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                     }
                 }
 
+                if (permitCustomVariableItemSize == null)
+                {
+                    permitCustomVariableItemSize = PermitCustomVariableItemSizeTag.TryParse(child);
+                    if (permitCustomVariableItemSize != null)
+                    {
+                        continue;
+                    }
+                }
+
                 throw new TomlInvalidLocationException(child, rawTag);
             }
 
@@ -159,7 +175,7 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
                 throw new TomlGenericException(Resources.ExceptionTomlCannotSpecifyBothKeys, rawTag, generateCpp.NonDecoratedName, outputFormat.NonDecoratedName);
             }
 
-            instance = new SettingsSectionTag(packing, optimize, generateCpp, descriptorName, descriptorVariableModifier, outputFormat, rawTag);
+            instance = new SettingsSectionTag(packing, optimize, generateCpp, descriptorName, descriptorVariableModifier, outputFormat, permitCustomVariableItemSize, rawTag);
             instance.AddToGlobalSettings();
 
             return instance;
@@ -199,6 +215,11 @@ namespace Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags
             if (this.OutputFormat != null)
             {
                 Settings.GetInstance().OutputFormat = this.OutputFormat.Value;
+            }
+
+            if (this.PermitCustomVariableItemSize != null)
+            {
+                Settings.GetInstance().PermitCustomVariableItemSize = this.PermitCustomVariableItemSize.Value;
             }
         }
     }

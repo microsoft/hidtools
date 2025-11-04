@@ -151,6 +151,15 @@ namespace Microsoft.HidTools.HidEngine.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot specify size smaller than what logicalRange requires ({0}).
+        /// </summary>
+        internal static string ExceptionDescriptorElementCannotSpecifySizeLessThanRange {
+            get {
+                return ResourceManager.GetString("ExceptionDescriptorElementCannotSpecifySizeLessThanRange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size must be specified when logicalRange is absent.
         /// </summary>
         internal static string ExceptionDescriptorElementSizeMustBeSpecified {

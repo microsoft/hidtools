@@ -147,6 +147,9 @@
   <data name="ExceptionDescriptorElementCannotSpecifySize" xml:space="preserve">
     <value>Cannot specify size when logicalRange is specified</value>
   </data>
+  <data name="ExceptionDescriptorElementCannotSpecifySizeLessThanRange" xml:space="preserve">
+    <value>Cannot specify size smaller than what logicalRange requires ({0})</value>
+  </data>
   <data name="ExceptionDescriptorElementSizeMustBeSpecified" xml:space="preserve">
     <value>Size must be specified when logicalRange is absent</value>
   </data>

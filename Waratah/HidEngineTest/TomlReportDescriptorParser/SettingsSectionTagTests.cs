@@ -98,6 +98,23 @@ namespace HidEngineTest.TomlReportDescriptorParser
                 Assert.AreEqual("happyDescriptorName", testTag.CppDescriptorName.Value);
                 Assert.AreEqual("happyDescriptorName", Settings.GetInstance().CppDescriptorName);
             }
+
+            {
+                string nonDecoratedString = @"
+                    [[settings]]
+                    permitcustomvariableitemsize = true";
+
+                string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+                TagFinder.Initialize(decoratedTomlDoc);
+                Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+                SettingsSectionTag testTag = SettingsSectionTag.TryParse(rawTomlTags.ElementAt(0), true);
+
+                Assert.IsNotNull(testTag);
+
+                Assert.AreEqual(true, testTag.PermitCustomVariableItemSize.Value);
+                Assert.AreEqual(true, Settings.GetInstance().PermitCustomVariableItemSize);
+            }
         }
 
         [TestMethod]

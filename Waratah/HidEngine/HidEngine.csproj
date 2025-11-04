@@ -132,6 +132,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="TomlReportDescriptorParser\Tags\CppDescriptorVariableModifierTag.cs" />
     <Compile Include="TomlReportDescriptorParser\Tags\OutputFormatTag.cs" />
+    <Compile Include="TomlReportDescriptorParser\Tags\PermitCustomVariableItemSizeTag.cs" />
     <Compile Include="TomlReportDescriptorParser\Tags\SupportedHidKindsAttribute.cs" />
     <Compile Include="TomlReportDescriptorParser\TomlGenericException.cs" />
     <Compile Include="TomlReportDescriptorParser\Helpers.cs" />

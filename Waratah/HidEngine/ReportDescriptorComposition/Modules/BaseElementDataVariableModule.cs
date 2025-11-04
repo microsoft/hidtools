@@ -238,16 +238,29 @@ namespace Microsoft.HidTools.HidEngine.ReportDescriptorComposition.Modules
                 {
                     case DescriptorRangeKind.Decimal:
                     {
-                        // Not permissible for both Size and explicit LogicalRange to be specified.
-                        if (sizeInBits.HasValue)
-                        {
-                            throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorElementCannotSpecifySize);
-                        }
-
                         this.LogicalMinimum = logicalRange.Minimum.Value;
                         this.LogicalMaximum = logicalRange.Maximum.Value;
 
-                        this.NonAdjustedSizeInBits = RequiredBitsForLogicalRange(this.LogicalMinimum, this.LogicalMaximum);
+                        if (sizeInBits.HasValue)
+                        {
+                            if (!Settings.GetInstance().PermitCustomVariableItemSize)
+                            {
+                                throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorElementCannotSpecifySize);
+                            }
+
+                            // Permitted for size to be greater than that required for logical range, but not less.
+                            int requiredBits = RequiredBitsForLogicalRange(this.LogicalMinimum, this.LogicalMaximum);
+                            if (sizeInBits.Value < requiredBits)
+                            {
+                                throw new DescriptorModuleParsingException(Resources.ExceptionDescriptorElementCannotSpecifySizeLessThanRange, requiredBits);
+                            }
+
+                            this.NonAdjustedSizeInBits = sizeInBits.Value;
+                        }
+                        else
+                        {
+                            this.NonAdjustedSizeInBits = RequiredBitsForLogicalRange(this.LogicalMinimum, this.LogicalMaximum);
+                        }
 
                         break;
                     }

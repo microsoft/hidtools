@@ -1,0 +1,70 @@
+﻿// Copyright (c) Microsoft Corporation.
+// Licensed under the MIT License.
+
+namespace HidEngineTest.TomlReportDescriptorParser
+{
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser;
+    using Microsoft.HidTools.HidEngine.TomlReportDescriptorParser.Tags;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Nett;
+
+    [TestClass]
+    public class PermitCustomVariableItemSizeTests
+    {
+        [TestMethod]
+        public void SimpleTagCreation()
+        {
+            string nonDecoratedString = @"permitcustomvariableitemsize = true";
+
+            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+            TagFinder.Initialize(decoratedTomlDoc);
+            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+            PermitCustomVariableItemSizeTag testTag = PermitCustomVariableItemSizeTag.TryParse(rawTomlTags.ElementAt(0));
+            Assert.IsNotNull(testTag);
+            Assert.AreEqual(true, testTag.Value);
+        }
+
+        [TestMethod]
+        public void InvalidTagCreation()
+        {
+            string nonDecoratedString = @"permitcustomvariableitemsize = 1";
+
+            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+            TagFinder.Initialize(decoratedTomlDoc);
+            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+            Assert.ThrowsException<TomlGenericException>(() => PermitCustomVariableItemSizeTag.TryParse(rawTomlTags.ElementAt(0)));
+        }
+
+        [TestMethod]
+        public void InvalidKeyName()
+        {
+            string nonDecoratedString = @"foo = true";
+
+            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+            TagFinder.Initialize(decoratedTomlDoc);
+            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+            PermitCustomVariableItemSizeTag testTag = PermitCustomVariableItemSizeTag.TryParse(rawTomlTags.ElementAt(0));
+            Assert.IsNull(testTag);
+        }
+
+        [TestMethod]
+        public void CaseInsensitiveKeyName()
+        {
+            string nonDecoratedString = @"PermitCustomVariableitemsize = true";
+
+            string decoratedTomlDoc = TagDecorator.Decorate(nonDecoratedString);
+            TagFinder.Initialize(decoratedTomlDoc);
+            Dictionary<string, object> rawTomlTags = Toml.ReadString(decoratedTomlDoc).ToDictionary();
+
+            PermitCustomVariableItemSizeTag testTag = PermitCustomVariableItemSizeTag.TryParse(rawTomlTags.ElementAt(0));
+            Assert.IsNotNull(testTag);
+            Assert.AreEqual(true, testTag.Value);
+        }
+    }
+}

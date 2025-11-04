@@ -175,11 +175,31 @@ namespace HidEngineTest.ReportDescriptorComposition
         [TestMethod]
         public void LogicalRangeAndSize()
         {
-            // Cannot specify both range and size.
+            // Cannot specify both range and size, unless settings permits.
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                Assert.ThrowsException<DescriptorModuleParsingException>(() => new ElementDataVariableModuleImpl(logicalRange, null, 4, null, report));
+            }
 
-            ReportModule report = new ReportModule(DefaultReportKind, null);
-            DescriptorRange logicalRange = new DescriptorRange(0, 10);
-            Assert.ThrowsException<DescriptorModuleParsingException>(() => new ElementDataVariableModuleImpl(logicalRange, null, 4, null, report));
+            // Can specify both range and size, if settings permits.
+            Settings.GetInstance().PermitCustomVariableItemSize = true;
+
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                BaseElementDataVariableModule element = new ElementDataVariableModuleImpl(logicalRange, null, 8, null, report);
+                Assert.AreEqual(0, element.LogicalMinimum);
+                Assert.AreEqual(10, element.LogicalMaximum);
+                Assert.AreEqual(8, element.SizeInBits);
+            }
+
+            // Cannot specify a size smaller than required for range, even with settings enabled.
+            {
+                ReportModule report = new ReportModule(DefaultReportKind, null);
+                DescriptorRange logicalRange = new DescriptorRange(0, 10);
+                Assert.ThrowsException<DescriptorModuleParsingException>(() => new ElementDataVariableModuleImpl(logicalRange, null, 1, null, report));
+            }
         }
 
         [TestMethod]

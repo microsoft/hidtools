@@ -93,6 +93,7 @@
     <Compile Include="TomlReportDescriptorParser\OutputFormatTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\OutputReportTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\PaddingItemTagTests.cs" />
+    <Compile Include="TomlReportDescriptorParser\PermitCustomVariableItemSizeTests.cs" />
     <Compile Include="TomlReportDescriptorParser\PhysicalCollectionTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\PhysicalValueRangeTagTests.cs" />
     <Compile Include="TomlReportDescriptorParser\PackingInBytesTagTests.cs" />

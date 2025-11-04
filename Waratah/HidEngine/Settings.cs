@@ -246,6 +246,14 @@ namespace Microsoft.HidTools.HidEngine
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether custom variable item sizes are permitted.
+        /// </summary>
+        public bool PermitCustomVariableItemSize
+        {
+            get; set;
+        }
+
+        /// <summary>
         /// Lazy accessor for singleton instance of Settings.  Initializes on first invocation.
         /// </summary>
         /// <param name="clear">When true, clears all existing settings.  Useful for unit-tests.</param>
