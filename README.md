@@ -1,6 +1,10 @@
 # Project
 
-This repo is the central location of Microsoft HID Tools.  Currently, the only tool available is Waratah.  The underlying HidSpecification and HidEngine libaries are available via Nuget
+This repo is the central location of Microsoft HID Tools.  Currently, the only tool available is Waratah.
+
+## Install from Nuget
+
+The underlying HidSpecification and HidEngine libraries are available via Nuget:
 
 https://www.nuget.org/packages/Microsoft.HidTools.HidSpecification
 
@@ -9,6 +13,14 @@ https://www.nuget.org/packages/Microsoft.HidTools.HidEngine
 Or from the package manager console:
 
     > Install-Package Microsoft.HidTools.HidEngine -Version 1.5.0
+
+## Install from .zip or Winget
+
+A singular compiled Waratah package is available from this repo's [Releases](https://github.com/microsoft/hidtools/releases) pages (Specifically its `Waratah-Published.zip` files).
+
+Or from the Winget console:
+
+    > winget install Microsoft.HIDTools.Waratah
 
 # Waratah
 
