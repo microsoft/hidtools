@@ -21,6 +21,7 @@ A singular compiled Waratah package is available from this repo's [Releases](htt
 Or from the Winget console:
 
     > winget install Microsoft.HIDTools.Waratah
+    > waratahcmd --source Z:\foo.wara
 
 # Waratah
 
